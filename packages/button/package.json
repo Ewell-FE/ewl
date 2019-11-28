@@ -1,6 +1,6 @@
 {
   "name": "@ewl/button",
-  "version": "0.0.2",
+  "version": "0.0.3-alpha.0",
   "description": "button",
   "main": "lib/button.tsx",
   "module": "es6/index.js",
