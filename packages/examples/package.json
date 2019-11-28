@@ -1,7 +1,7 @@
 {
   "name": "examples",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "demo",
   "keywords": [
     "react",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@ewl/button": "^0.0.1",
-    "ew-material-configs": "^0.0.1",
+    "ew-material-configs": "^0.0.2",
     "next": "^9.1.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
