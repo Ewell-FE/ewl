@@ -1,0 +1,56 @@
+{
+  "name": "@ewl/button",
+  "version": "0.0.2",
+  "description": "button",
+  "main": "lib/button.tsx",
+  "module": "es6/index.js",
+  "types": "es6/index.d.ts",
+  "source": "src/index.tsx",
+  "jsnext:main": "src/index.tsx",
+  "main:src": "src/index.tsx",
+  "keywords": [
+    "button"
+  ],
+  "author": "lileilei <lileilei@ewell.cc>",
+  "homepage": "https://github.com/Ewell-FE/ew-material.github.io",
+  "license": "ISC",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ewell-FE/ew-material/packages/button"
+  },
+  "scripts": {
+    "clean": "rimraf lib es6 types coverage",
+    "build": "yarn clean && yarn build:tsc:es5 && yarn build:tsc:es6",
+    "build:tsc:es5": "tsc",
+    "build:tsc:es6": "tsc --project tsconfig.es6.json",
+    "start": "npm-run-all -p start:tsc:es5 start:tsc:es6",
+    "start:tsc:es5": "yarn build:tsc:es5 --watch --preserveWatchOutput",
+    "start:tsc:es6": "yarn build:tsc:es6 --watch --preserveWatchOutput"
+  },
+  "dependencies": {
+    "ew-material-configs": "^0.0.1",
+    "react": "^16.12.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/react": "^16.9.13",
+    "jest": "^24.9.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  }
+}

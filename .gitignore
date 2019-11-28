@@ -1,0 +1,11 @@
+.idea
+.next
+.tscache
+coverage
+es6
+lib
+node_modules
+npm-debug*
+out
+types
+lerna-debug.log

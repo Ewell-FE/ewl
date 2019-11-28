@@ -1,0 +1,11 @@
+{
+  "extends": "ew-material-configs/tsconfig.es6.json",
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "es6",
+    "declarationDir": "es6"
+  },
+  "include": [
+    "src"
+  ]
+}
