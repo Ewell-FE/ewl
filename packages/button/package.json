@@ -1,6 +1,6 @@
 {
   "name": "@ewl/button",
-  "version": "0.0.4-alpha.0",
+  "version": "0.0.4-alpha.1",
   "description": "button",
   "main": "lib/button.tsx",
   "module": "es6/index.js",
@@ -13,7 +13,7 @@
   ],
   "author": "lileilei <lileilei@ewell.cc>",
   "homepage": "https://github.com/Ewell-FE/ew-material.github.io",
-  "license": "ISC",
+  "license": "MIT",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -53,5 +53,5 @@
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
   },
-  "gitHead": "6d45a81aa3746e96ca9d2c8662596199f342f566"
+  "gitHead": "a98d976a1384f769f656db2e5c4fe627cffbf8ec"
 }
