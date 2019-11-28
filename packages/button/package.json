@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ewell-FE/ew-material/packages/button"
+    "url": "https://github.com/Ewell-FE/ew-material/tree/master/packages/button"
   },
   "scripts": {
     "clean": "rimraf lib es6 types coverage",
@@ -53,5 +53,5 @@
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
   },
-  "gitHead": "3961c89445d98f5baec4fcc51d46307237289d0e"
+  "gitHead": "6d45a81aa3746e96ca9d2c8662596199f342f566"
 }
