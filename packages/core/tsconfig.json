@@ -3,7 +3,7 @@
   "compilerOptions": {
     "jsx": "react",
     "incremental": true,
-    "tsBuildInfoFile": "./.tscache/tscache",
+    "tsBuildInfoFile": "./tscache/cache",
     "declaration": true,
     "outDir": "lib",
     "declarationDir": "lib"
