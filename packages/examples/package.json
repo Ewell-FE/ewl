@@ -13,7 +13,8 @@
   "license": "ISC",
   "directories": {},
   "files": [
-    "lib"
+    "lib",
+    "es6"
   ],
   "publishConfig": {
     "registry": "http://r.cnpmjs.org/"
@@ -30,7 +31,7 @@
     "serve": "next start"
   },
   "dependencies": {
-    "@ewl/button": "^0.0.1",
+    "@ewl/core": "^0.0.5-alpha.0",
     "ew-material-configs": "^0.0.2",
     "next": "^9.1.4",
     "react": "^16.12.0",

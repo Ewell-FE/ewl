@@ -1,15 +1,15 @@
 {
-  "name": "@ewl/button",
-  "version": "0.0.1-alpha.0",
-  "description": "button",
-  "main": "lib/index.tsx",
+  "name": "@ewl/core",
+  "version": "0.0.5-alpha.0",
+  "description": "core is app main",
+  "main": "lib/index.js",
   "module": "es6/index.js",
   "types": "es6/index.d.ts",
   "source": "src/index.tsx",
   "jsnext:main": "src/index.tsx",
   "main:src": "src/index.tsx",
   "keywords": [
-    "button"
+    "@ewl/core"
   ],
   "author": "lileilei <lileilei@ewell.cc>",
   "homepage": "https://github.com/Ewell-FE/ew-material.github.io",
@@ -19,8 +19,7 @@
     "test": "__tests__"
   },
   "files": [
-    "lib",
-    "es6"
+    "lib"
   ],
   "publishConfig": {
     "access": "public"
@@ -39,6 +38,7 @@
     "start:tsc:es6": "yarn build:tsc:es6 --watch --preserveWatchOutput"
   },
   "dependencies": {
+    "@ewl/button": "^0.0.5-alpha.0",
     "ew-material-configs": "^0.0.2",
     "react": "^16.12.0"
   },
@@ -53,6 +53,5 @@
   "peerDependencies": {
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
-  },
-  "gitHead": "fc4f886cd906a97ddf367d0124b1634635ea5bec"
+  }
 }

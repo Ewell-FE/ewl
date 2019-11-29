@@ -1,0 +1,14 @@
+{
+  "extends": "ew-material-configs/tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "incremental": true,
+    "tsBuildInfoFile": "./.tscache/tscache",
+    "declaration": true,
+    "outDir": "lib",
+    "declarationDir": "lib"
+  },
+  "include": [
+    "src"
+  ]
+}

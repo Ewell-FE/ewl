@@ -1,4 +1,4 @@
-import Button from '@ewl/button'
+import Button from '@ewl/core'
 
 const Home = () => (
     <div>
