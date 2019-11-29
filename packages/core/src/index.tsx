@@ -1,3 +1,1 @@
-import Button from '@ewl/button';
-
-export default Button
+export {default as Button} from '@ewl/button';

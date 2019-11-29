@@ -1,10 +1,10 @@
-import Button from '@ewl/core'
+import {Button} from '@ewl/core'
 
 const Home = () => (
     <div>
-        <Button>hello1</Button>
-        <Button>hello2333</Button>
-        <Button>hello3</Button>
+        <Button>hello</Button>
+        <Button>hi~</Button>
+        <Button>12345</Button>
     </div>
 )
 
