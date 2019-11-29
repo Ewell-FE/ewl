@@ -66,8 +66,8 @@
         "signature": "1ae5ec52e83833700f233274cf12b18b74fe477cbe6028c94e388861d9f5889f"
       },
       "../../button/es6/index.d.ts": {
-        "version": "c84eac087f1d704f694dfe00d294006a99da168d943560851a795623dc77b764",
-        "signature": "c84eac087f1d704f694dfe00d294006a99da168d943560851a795623dc77b764"
+        "version": "ef086d188577ce3d1da1c4b252e56b7e7ca2d64ee60ff00fd9b97c1cf1d1ac10",
+        "signature": "ef086d188577ce3d1da1c4b252e56b7e7ca2d64ee60ff00fd9b97c1cf1d1ac10"
       },
       "../src/index.tsx": {
         "version": "8a99c94e7d3007eaabec84b4532c46be8c3d605cff652f9dd8fd4472cd7de450",
@@ -128,14 +128,8 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "../../../node_modules/@types/react/global.d.ts",
-      "../../../node_modules/csstype/index.d.ts",
-      "../../../node_modules/@types/prop-types/index.d.ts",
-      "../../../node_modules/@types/react/index.d.ts",
-      "../../button/es6/index.d.ts",
-      "../src/index.tsx",
-      "../node_modules/typescript/lib/lib.es2015.d.ts",
       "../node_modules/typescript/lib/lib.es5.d.ts",
+      "../node_modules/typescript/lib/lib.es2015.d.ts",
       "../node_modules/typescript/lib/lib.dom.d.ts",
       "../node_modules/typescript/lib/lib.es2015.core.d.ts",
       "../node_modules/typescript/lib/lib.es2015.collection.d.ts",
@@ -145,7 +139,13 @@
       "../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
       "../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
       "../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
-      "../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts"
+      "../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "../../../node_modules/@types/react/global.d.ts",
+      "../../../node_modules/csstype/index.d.ts",
+      "../../../node_modules/@types/prop-types/index.d.ts",
+      "../../../node_modules/@types/react/index.d.ts",
+      "../../button/es6/index.d.ts",
+      "../src/index.tsx"
     ]
   },
   "version": "3.7.2"

@@ -1,0 +1,38 @@
+{
+  "extends": [
+    "standard",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": 0,
+    "import/no-default-export": "off",
+    "import/no-unresolved": "off",
+    "jsx-a11y/anchor-is-valid": "off", // Next.js use <a>
+    "no-console": "off",
+    "no-undef": "off",
+    //FIXME @see https://github.com/eslint/typescript-eslint-parser/issues/75
+    "no-unused-expressions": "off",
+
+    "react/sort-comp": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-var-requires": "off"
+  },
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "16.12.0"
+    }
+  }
+}

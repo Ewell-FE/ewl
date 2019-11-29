@@ -1,0 +1,6 @@
+node_modules
+.next
+packages/*/es6
+packages/*/lib
+packages/*/__tests__
+packages/*/tscache

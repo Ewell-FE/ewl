@@ -66,8 +66,8 @@
         "signature": "1ae5ec52e83833700f233274cf12b18b74fe477cbe6028c94e388861d9f5889f"
       },
       "../src/index.tsx": {
-        "version": "aae261a4b48eaa8c05e8b6be6b7865aca976c96a7ec892f531d17241f5da4c6b",
-        "signature": "c84eac087f1d704f694dfe00d294006a99da168d943560851a795623dc77b764"
+        "version": "e41441ab5e0abb035cb8fce488739c1d7b1ded0317940b8d39449f08c0cfbc54",
+        "signature": "ef086d188577ce3d1da1c4b252e56b7e7ca2d64ee60ff00fd9b97c1cf1d1ac10"
       }
     },
     "options": {
@@ -118,13 +118,8 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "../../../node_modules/@types/react/global.d.ts",
-      "../../../node_modules/csstype/index.d.ts",
-      "../../../node_modules/@types/prop-types/index.d.ts",
-      "../../../node_modules/@types/react/index.d.ts",
-      "../src/index.tsx",
-      "../node_modules/typescript/lib/lib.es2015.d.ts",
       "../node_modules/typescript/lib/lib.es5.d.ts",
+      "../node_modules/typescript/lib/lib.es2015.d.ts",
       "../node_modules/typescript/lib/lib.dom.d.ts",
       "../node_modules/typescript/lib/lib.es2015.core.d.ts",
       "../node_modules/typescript/lib/lib.es2015.collection.d.ts",
@@ -134,7 +129,12 @@
       "../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
       "../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
       "../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
-      "../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts"
+      "../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "../../../node_modules/@types/react/global.d.ts",
+      "../../../node_modules/csstype/index.d.ts",
+      "../../../node_modules/@types/prop-types/index.d.ts",
+      "../../../node_modules/@types/react/index.d.ts",
+      "../src/index.tsx"
     ]
   },
   "version": "3.7.2"
