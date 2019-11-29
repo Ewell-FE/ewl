@@ -1,6 +1,6 @@
 {
   "name": "@ewl/button",
-  "version": "0.0.1-alpha.0",
+  "version": "0.1.0",
   "description": "button",
   "main": "lib/index.tsx",
   "module": "es6/index.js",
@@ -39,7 +39,7 @@
     "start:tsc:es6": "yarn build:tsc:es6 --watch --preserveWatchOutput"
   },
   "dependencies": {
-    "ew-material-configs": "^0.0.2",
+    "ew-material-configs": "^0.1.0",
     "react": "^16.12.0"
   },
   "devDependencies": {

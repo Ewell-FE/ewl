@@ -1,7 +1,7 @@
 {
   "name": "examples",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "demo",
   "keywords": [
     "react",
@@ -31,8 +31,8 @@
     "serve": "next start"
   },
   "dependencies": {
-    "@ewl/core": "^0.0.5-alpha.0",
-    "ew-material-configs": "^0.0.2",
+    "@ewl/core": "^0.1.0",
+    "ew-material-configs": "^0.1.0",
     "next": "^9.1.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"

@@ -1,6 +1,6 @@
 {
   "name": "@ewl/core",
-  "version": "0.0.5-alpha.0",
+  "version": "0.1.0",
   "description": "core is app main",
   "main": "lib/index.js",
   "module": "es6/index.js",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@ewl/button": "^0.0.5-alpha.0",
-    "ew-material-configs": "^0.0.2",
+    "ew-material-configs": "^0.1.0",
     "react": "^16.12.0"
   },
   "devDependencies": {
