@@ -62,12 +62,16 @@
         "signature": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad"
       },
       "../../../node_modules/@types/react/index.d.ts": {
-        "version": "1ae5ec52e83833700f233274cf12b18b74fe477cbe6028c94e388861d9f5889f",
-        "signature": "1ae5ec52e83833700f233274cf12b18b74fe477cbe6028c94e388861d9f5889f"
+        "version": "ae8ae1f2476bb8e3b17685c49cfa20f1dc5764fabf4bc571006dd50df57a53f2",
+        "signature": "ae8ae1f2476bb8e3b17685c49cfa20f1dc5764fabf4bc571006dd50df57a53f2"
+      },
+      "../../button/es6/button.d.ts": {
+        "version": "f5d43cdaae8dd3c4b2b5223fa8b2925b59a136ae3b7cdb0daf47fbb2a9b30a9c",
+        "signature": "f5d43cdaae8dd3c4b2b5223fa8b2925b59a136ae3b7cdb0daf47fbb2a9b30a9c"
       },
       "../../button/es6/index.d.ts": {
-        "version": "ef086d188577ce3d1da1c4b252e56b7e7ca2d64ee60ff00fd9b97c1cf1d1ac10",
-        "signature": "ef086d188577ce3d1da1c4b252e56b7e7ca2d64ee60ff00fd9b97c1cf1d1ac10"
+        "version": "a65c3c2970dacef32c23e7b2be25f520a03ed3eab219540548d7def0902c0c59",
+        "signature": "a65c3c2970dacef32c23e7b2be25f520a03ed3eab219540548d7def0902c0c59"
       },
       "../src/index.tsx": {
         "version": "8a99c94e7d3007eaabec84b4532c46be8c3d605cff652f9dd8fd4472cd7de450",
@@ -107,8 +111,11 @@
         "../../../node_modules/@types/prop-types/index.d.ts",
         "../../../node_modules/@types/react/global.d.ts"
       ],
-      "../../button/es6/index.d.ts": [
+      "../../button/es6/button.d.ts": [
         "../../../node_modules/@types/react/index.d.ts"
+      ],
+      "../../button/es6/index.d.ts": [
+        "../../button/es6/button.d.ts"
       ],
       "../src/index.tsx": [
         "../../button/es6/index.d.ts"
@@ -121,10 +128,13 @@
         "../../../node_modules/@types/react/global.d.ts"
       ],
       "../../button/es6/index.d.ts": [
-        "../../../node_modules/@types/react/index.d.ts"
+        "../../button/es6/button.d.ts"
       ],
       "../src/index.tsx": [
         "../../button/es6/index.d.ts"
+      ],
+      "../../button/es6/button.d.ts": [
+        "../../../node_modules/@types/react/index.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -144,6 +154,7 @@
       "../../../node_modules/csstype/index.d.ts",
       "../../../node_modules/@types/prop-types/index.d.ts",
       "../../../node_modules/@types/react/index.d.ts",
+      "../../button/es6/button.d.ts",
       "../../button/es6/index.d.ts",
       "../src/index.tsx"
     ]

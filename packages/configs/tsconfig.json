@@ -19,5 +19,10 @@
     "typeRoots": [
       "./node_modules/@types"
     ]
-  }
+  },
+  "include": [
+    "./node_modules/@material-ui/**/*.js",
+    "**/*.tsx"
+  ],
+  "exclude": []
 }

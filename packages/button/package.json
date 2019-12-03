@@ -33,6 +33,7 @@
     "start:tsc:es6": "yarn build:tsc:es6 --watch --preserveWatchOutput"
   },
   "dependencies": {
+    "@material-ui/core": "^4.7.1",
     "react": "^16.12.0"
   },
   "devDependencies": {
@@ -50,7 +51,14 @@
   },
   "jest": {
     "collectCoverage": true,
-    "moduleFileExtensions": ["js","jsx","ts","tsx","json","node"]
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx",
+      "json",
+      "node"
+    ]
   },
   "gitHead": "fc4f886cd906a97ddf367d0124b1634635ea5bec"
 }
