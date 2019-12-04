@@ -9,6 +9,6 @@
     "declarationDir": "lib"
   },
   "include": [
-    "src"
+    "src/**/*.tsx"
   ]
 }

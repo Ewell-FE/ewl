@@ -1,11 +1,10 @@
 .idea
 .next
 .tscache
+__snapshots__
 coverage
 es6
 lib
 node_modules
 npm-debug*
-out
-types
 lerna-debug.log

@@ -1,12 +1,9 @@
-test('two plus two is four', () => {
-    expect(2 + 2).toBe(4);
-});
+import * as React from 'react';
+import Button from '../src';
+import renderer from 'react-test-renderer';
 
-test('null', () => {
-    const n = null;
-    expect(n).toBeNull();
-    expect(n).toBeDefined();
-    expect(n).not.toBeUndefined();
-    expect(n).not.toBeTruthy();
-    expect(n).toBeFalsy();
+test('@ewl/button test ', () => {
+    const component = renderer.create(<Button>Ewell</Button>);
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
 });
