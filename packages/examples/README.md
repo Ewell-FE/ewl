@@ -1,11 +1,11 @@
 # `examples`
 
-> TODO: description
+> Because of the repleaseReducer bug, you must use redux@3.7.2
 
 ## Usage
 
 ```
-import {Button} from '@ewl/core';
+const examples = require('examples');
 
 // TODO: DEMONSTRATE API
 ```

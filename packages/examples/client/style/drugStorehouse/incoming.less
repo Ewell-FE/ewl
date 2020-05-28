@@ -1,0 +1,189 @@
+@import '../vars.less';
+@import '../theme.less';
+
+@backGroundColor:#EEEEEE;
+.clearFloat{
+  content:'';
+  height: 0;
+  clear: both;
+  display: block;
+  zoom: 1;
+}
+
+#incoming{
+  label{
+    width: auto;
+  }
+  width: 100%;
+  height: 100%;
+  background-color: @backGroundColor;
+  display: flex;
+  flex-direction: column;
+  .content{
+    padding:10px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    .content-count-list{
+      .list-title{
+        float: left;
+        width: 45px;
+        padding-top: 3px;
+      }
+      .list{
+        width: calc(100% - 45px);
+        float:left;
+        .list-item{
+          float: left;
+          width:20%;
+          padding: 3px 0;
+        }
+        &::after{
+          .clearFloat
+        }
+      }
+      &::after{
+        .clearFloat
+      }
+    }
+  }
+  .header-item{
+    display: flex;
+    .header-item-label{
+      line-height: 30px;
+      padding-right:10px;
+      width:auto;
+      white-space: nowrap;
+    }
+  }
+}
+.incoming-modal{
+  .ant-drawer-wrapper-body{
+    height: 100%;
+    position: relative;
+  }
+  #incoming-modal-box{
+    // padding: 10px 20px 10px 20px;
+    .modal-top{
+      display: flex;
+      margin-bottom:18px;
+      .top-left{
+        width: 32%;
+        padding-top: 10px;
+      }
+      .top-middle{
+        width: 34%;
+        padding-top: 10px;
+        margin-left: 10px;
+      }
+      .top-right{
+        padding-top: 10px;
+        width: calc(34% - 20px);
+        margin-left: 10px;
+        background-color: #E4E4E4;
+        .form-list{
+          .list-item{
+            .item-label{
+              width: 74px;
+            }
+            .item-component{
+              width: calc(100% - 74px);
+            }
+          }
+        }
+      }
+      .form-list{
+        .list-item{
+          padding-bottom: 18px;
+          .item-label{
+            float: left;
+            white-space: nowrap;
+            padding-right:10px;
+            line-height: 30px;
+            width: 30%;
+            text-align: right;
+            &>label{
+              width: auto;
+            }
+            .ant-checkbox + span{
+              padding-right: 0;
+            }
+          }
+          .item-component{
+            float: left;
+            width: 70%;
+          }
+          .item-component-special{
+            float: left;
+            width: 34%;
+          }
+          &::after{
+            .clearFloat
+          }
+        }
+        .list-item-33{
+          width: 33%;
+          float: left;
+        }
+        .list-item-50{
+          width: 50%;
+          float: left;
+        }
+        .list-item-49-5{
+          width: 49.5%;
+          float: left;
+        }
+        .list-item-66{
+          width: 66%;
+          float: left;
+        }
+        .list-item-99{
+          width: 99%;
+          float: left;
+        }
+        &::after{
+          .clearFloat
+        }
+      }
+    }
+    .modal-bottom{
+      padding-top: 10px;
+      .validity-box{
+        padding:0 10px 10px 10px;
+        h4{
+          .list{
+            float: right;
+          }
+          &::after{
+            .clearFloat
+          }
+        }
+        .ant-table-placeholder{
+          background-color: inherit;
+        }
+      }
+    }
+    .modal-footer{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px 0;
+      background-color: white;
+      box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.15);
+      text-align: center;
+      Button:last-child{
+        margin-left: 10px;
+      }
+    }
+  }
+}
+#reviewed-modal{
+  .footer{
+    text-align: center;
+    padding: 20px 0 0 0;
+  }
+  Button:last-child{
+    margin-left: 10px;
+  }
+}

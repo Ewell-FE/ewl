@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[13],{"7MPn":function(e,n,t){"use strict";t.r(n);var o=t("t8S2"),r=t.n(o),u={demo:{}};n.default=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:u,n=arguments.length>1?arguments[1]:void 0;switch(n.type){case"DEMO":return r()({},e,{demo:n.result});default:return e}}}}]);

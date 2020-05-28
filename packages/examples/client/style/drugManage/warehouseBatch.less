@@ -1,0 +1,50 @@
+.warehouseBatch {
+    width: 100%;
+    margin: 10px;
+    &__top {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 10px;
+    }
+    &__manage{
+        font-size: 18px; 
+    }
+    &__printer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        :hover{
+            cursor:pointer; 
+        }
+    }
+    // &__printerFont {
+    //    font-size: 26px;
+    // }
+    &__warehouse{
+        margin: 10px;
+    }
+    &__tableSpan{
+        padding-right: 10px;
+    }
+    &__button{
+        float: right;
+    }
+    &__table {
+        margin-bottom: 20px;
+    }
+    &__edit{
+        padding-right: 20px;
+    }
+    .ant-checkbox + span {
+        padding-right: 0;
+    }
+    &__printer>i {
+        color: #11A8AB;
+    }
+    &__printer>i>svg {
+        width: 26px;
+        height: 26px;
+        margin-right: 10px;
+    }
+}

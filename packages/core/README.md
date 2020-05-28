@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-const core = require('@ewl/core');
+import {Button} from '@ewl/core';
 
 // TODO: DEMONSTRATE API
 ```

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>更新日志</title>
+    <style>
+      #list{
+        width: 600px;
+        height: 200px;
+        margin: 200px auto;
+        border: 1px solid #c1d6d4;
+        overflow-y: auto;
+      }
+    </style>
+</head>
+<body>
+  <div id="list">
+    <ul>
+      <li>更新日记11111</li>
+      <li>更新日记222222</li>
+      <li>更新日记333333</li>
+      <li>更新日记444444</li>
+      <li>更新日记555555</li>
+      <li>更新日记666666</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li id="cur">更新日记xxxxxxx</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+      <li>更新日记11111</li>
+    </ul>
+  </div>
+<div>
+  <button id="btn">click++</button>
+</div>
+</body>
+<script>
+  document.getElementById("btn").addEventListener('click',function () {
+    let curScrollTop = (document.getElementById("cur").offsetTop-document.getElementById("list").offsetTop)
+    document.getElementById('list').scrollTop = curScrollTop
+  })
+</script>
+</html>

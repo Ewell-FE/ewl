@@ -1,0 +1,43 @@
+#layout {
+  .search {
+    position: relative;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+  }
+  .list ul {
+    background: #efefef;
+    .side-item {
+      min-height: 90px;
+      padding: 10px 15px;
+      border-bottom: 1px solid #E5E5E5;
+      &.active, &:hover {
+        position: relative;
+        background: #fff;
+      }
+      .time {
+        color: #595959;
+        font-size: 14px;
+      }
+      .nnr {
+        margin-bottom: 6px;
+        color: #1A1A1A;
+      }
+      .bq {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        margin-right: 8px;
+        text-align: center;
+        color: #fff;
+        border-radius: 2px;
+        &.bq-blue {
+          background: #65B8F2;
+        }
+        &.bq-orange {
+          background: #FFB153;
+        }
+      }
+    }
+  }
+
+}

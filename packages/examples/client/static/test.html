@@ -1,0 +1,59 @@
+<html>
+<head>
+    <meta http-equiv="Content-type" name="viewport"
+          content="initial-scale=1.0, maximum-scale=2.0, user-scalable=yes, width=device-width">
+    <title>文书查看</title>
+    <link rel="stylesheet" href="Css/showReport.css">
+    <script type="text/javascript">
+        window.onload = function () {
+            changePageSize();
+        };
+        window.onresize = function () {
+            changePageSize();
+        };
+
+        function changePageSize() {
+            var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            if (width < 600) {
+                document.getElementById('report-list').style.display = '';
+                document.getElementById('report-table').style.display = 'none';
+            } else {
+                document.getElementById('report-list').style.display = 'none';
+                document.getElementById('report-table').style.display = '';
+            }
+        }
+    </script>
+</head>
+<body>
+<br><label class="plabel">姓名:</label><label class="pvalue">测试</label><label class="plabel">性别:</label><label
+        class="pvalue">男</label><label class="plabel">住院号:</label><label class="pvalue">G53634</label><label
+        class="plabel">床位:</label><label class="pvalue">1</label><label class="plabel">病区:</label><label class="pvalue">儿心血管测试病区</label>
+<hr>
+<div id="report-list" style="display:none"><a
+        href="./ShowReport.aspx?CureNo=G53634&amp;SheetCode=TPR&amp;Reset=1&amp;OS=&amp;Nav=1">体温单</a><br><a
+        href="./ShowReport.aspx?CureNo=G53634&amp;SheetCode=XC01@XHYY&amp;OS=&amp;Nav=1">输液巡视单</a><br></div>
+<div id="report-table" style="">
+    <table class="gridtable">
+        <tbody>
+        <tr>
+            <th class="ptableno">序号</th>
+            <th>文书类型</th>
+            <th class="ptableaction">操作</th>
+        </tr>
+        <tr>
+            <td class="ptableno">1</td>
+            <td>体温单</td>
+            <td class="ptableaction"><a
+                    href="./ShowReport.aspx?CureNo=G53634&amp;SheetCode=TPR&amp;Reset=1&amp;OS=&amp;Nav=1">查看</a></td>
+        </tr>
+        <tr>
+            <td class="ptableno">2</td>
+            <td>输液巡视单</td>
+            <td class="ptableaction"><a
+                    href="./ShowReport.aspx?CureNo=G53634&amp;SheetCode=XC01@XHYY&amp;OS=&amp;Nav=1">查看</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

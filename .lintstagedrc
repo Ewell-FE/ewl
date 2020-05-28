@@ -1,5 +1,5 @@
 {
-  "*.{ts,tsx,css,less,md}": [
+  "*.{tsx}": [
     "yarn lint",
     "git add"
   ]

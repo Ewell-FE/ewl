@@ -1,21 +1,14 @@
 {
   "extends": "ew-material-configs/tsconfig.json",
-  "include": [
-    "__tests__",
-    "pages",
-    "components"
-  ],
   "compilerOptions": {
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "module": "esnext",
-    "isolatedModules": true,
-    "jsx": "preserve"
-  },
-  "exclude": [
-    "node_modules"
-  ]
+    "baseUrl": ".",
+    "paths": {
+      "~/client/*": [
+        "./client/*"
+      ]
+    },
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  }
 }

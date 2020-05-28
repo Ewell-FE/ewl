@@ -1,0 +1,154 @@
+@import '../vars.less';
+#drugManagement{
+  height: 100%;
+  width: 100%;
+  background-color: #E3E3E5;
+  .flex-column {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .drug-management-header {
+      height: 50px;
+      background: #FFF;
+      line-height: 50px;
+      padding: 0 20px;
+      .header-title {
+        display: inline-block;
+        font-family: PingFang-SC-Bold;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .search-condition {
+        display: inline-block;
+        float: right;
+        ul > li {
+          display: inline-block;
+          margin-right: 15px;
+        }
+      }
+    }
+    .content-table {
+      height: 100%;
+      background-color: white;
+      padding: 15px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      .ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+        padding: 9px 8px;
+      }
+      .overflow {
+        white-space: nowrap !important;
+        color: #333;
+        overflow: hidden;
+        text-overflow: ellipsis !important;
+      }
+    }
+  }
+}
+
+//depart Modal
+.departModal{
+  .ant-modal-header{
+    background: #EEF5F9;
+  }
+  .ant-modal-footer{
+    text-align: center;
+    .ant-btn{
+      width: 110px;
+    }
+    button + button {
+      margin-left: 100px;
+    }
+  }
+  .drug-info{
+    width:100%;
+    height: 100px;
+    padding: 5px 15px;
+    background: #EEF5F9;
+    .drug-info-name{
+      border-bottom:1px dashed #cccccc;
+      font-weight: bold;
+      span{
+        margin-left: 10px;
+        font-weight: normal;
+        font-size: 12px;
+        color: #AAAAAA;
+      }
+      .flag-type{
+        padding: 0 2px;
+        background: #CCCCCC;
+        color:white;
+      }
+    }
+    .drug-info-body{
+      font-size: 12px;
+      .price-span{
+        margin-left: 20px;
+      }
+    }
+  }
+  .form-body-title{
+    padding: 0 2% 2% 0;
+    margin: 0 0 4% 4%;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+  }
+  .form-item{
+    margin: 0;
+  }
+  .form-table{
+    margin: 0 0 4% 5%;
+  }
+}
+
+//price Modal
+.priceModal{
+  .ant-modal-header{
+    background: #EEF5F9;
+  }
+  .ant-modal-body{
+    padding: 24px 24px 24px 38px;
+  }
+  .ant-modal-footer{
+    text-align: center;
+    .ant-btn{
+      width: 110px;
+    }
+    button + button {
+      margin-left: 100px;
+    }
+  }
+  .price-form{
+    .ant-form-item{
+      #addOrUpdatePrice_updateTime.ant-calendar-picker{
+        min-width: 170px;
+      }
+      margin-bottom: 16px;
+    }
+  }
+  .price-drug-info{
+    width: 88%;
+    padding:10px;
+    margin: 0 0 16px 9%;
+    background: #EEF5F9;
+    li{
+      width: 33%;
+      padding: 0 10px;
+      display: inline-block;
+      margin-bottom: 10px;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+    }
+    li:last-child{
+      width: 45%;
+    }
+  }
+  .drug-search-name{
+    width: 647px;
+    max-height: 180px;
+    margin: -10px 0 16px 9%;
+    overflow-y: scroll;
+  }
+}

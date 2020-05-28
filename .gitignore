@@ -8,3 +8,6 @@ lib
 node_modules
 npm-debug*
 lerna-debug.log
+
+# compiled files
+build
