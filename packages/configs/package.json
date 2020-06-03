@@ -17,5 +17,6 @@
     "@typescript-eslint/eslint-plugin": "^2.14.0",
     "@typescript-eslint/parser": "^2.14.0",
     "ts-jest": "^24.2.0"
-  }
+  },
+  "gitHead": "7c4d2fdd5f4b32210a932ff791e18a5ba3839cf7"
 }
