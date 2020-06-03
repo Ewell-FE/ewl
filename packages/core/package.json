@@ -15,7 +15,7 @@
   "homepage": "https://github.com/Ewell-FE/ew-material.github.io",
   "license": "MIT",
   "publishConfig": {
-    "access": "public"
+    "registry": "http://192.168.150.59:8081/repository/npm-host1"
   },
   "repository": {
     "type": "git",
