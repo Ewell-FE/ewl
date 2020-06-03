@@ -3,11 +3,11 @@
   "compilerOptions": {
     "allowJs": true,
     "outDir": "../build/server",
-    "noImplicitAny": false,   //在表达式和声明上有隐含的any类型时报错
     "target": "es2017",
     "module": "commonjs",
     "esModuleInterop": true,
     "declaration": true,   //生成相应的.d.ts文件
+    "noImplicitAny": false,   //在表达式和声明上有隐含的any类型时报错
     "removeComments": true,   //删除所有注释，除了以/!*开头的版权信息
     "emitDecoratorMetadata": true,   //给源码里的装饰器声明加上设计类型元数据
     "experimentalDecorators": true,  //启用实验性装饰器

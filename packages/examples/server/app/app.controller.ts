@@ -1,13 +1,17 @@
-import {Controller, Get} from '@nestjs/common';
+import {Controller, Get, Post, Body, Param} from '@nestjs/common';
 
 import {AppService} from './app.service';
 
-@Controller('cats')
+@Controller('app')
 export class AppController {
-    constructor(private readonly appService: AppService) {}
-
-    @Get()
-    async findAll() {
-        return this.appService.findAll();
+    @Post(':id')
+    getOne(@Param() params) {
+        return {
+            name: `旺财${params.id}`,
+            birth_year: '123',
+            gender: '3454',
+            skin_color: '4354',
+            eye_color: '45454'
+        };
     }
 }

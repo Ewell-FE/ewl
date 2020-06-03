@@ -1,6 +1,8 @@
 import {createStore, applyMiddleware} from 'redux';
-import createReducer from './reducer';
-import asyncModule from './asyncModule';
+import {createEpicMiddleware} from 'redux-observable';
+import reducer from './demo/reducer';
+import {rootEpic} from './epics';
+
 
 const bindMiddleware = (middleware: any) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -10,50 +12,15 @@ const bindMiddleware = (middleware: any) => {
     return applyMiddleware(...middleware);
 };
 
-let store;
+export default function initStore(initialState) {
 
-export function initStore(initState: any = null, ctx?: any) {
-    const {reducers, initialState} = asyncModule(ctx, initState);
-
-    store = createStore(
-        createReducer({
-            ...reducers
-        }),
+    const epicMiddleware = createEpicMiddleware();
+    let store: any = createStore(
+        reducer,
         initialState,
-        bindMiddleware([])
+        bindMiddleware([epicMiddleware])
     );
 
-    store.asyncReducers = reducers;
-
-    // saga
-    store.asyncSagas = {};
-    store.injectAsyncSaga = sagas => {
-        if (sagas) {
-            for (const key in sagas) {
-                if (!store.asyncSagas[key]) {
-                    store.asyncSagas[key] = sagas[key];
-                    const task = store.runSagaTask(sagas[key]);
-                }
-            }
-        }
-    };
-
-    // reducer
-    store.injectAsynReducer = keyValues => {
-        for (const key in keyValues) {
-            if (!store.asyncReducers[key]) {
-                store.asyncReducers[key] = keyValues[key];
-            }
-        }
-        store.replaceReducer(createReducer(store.asyncReducers));
-    };
-
-    return store;
-}
-
-export default function getStore() {
-    if (!store) {
-        return initStore();
-    }
+    epicMiddleware.run(rootEpic);
     return store;
 }

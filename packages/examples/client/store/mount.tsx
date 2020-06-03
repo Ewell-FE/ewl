@@ -4,11 +4,14 @@ import dictReducer from './dict/reducer';
 
 import authReducer from './authority/reducer';
 
+import DemoReducer from './demo/reducer';
+
 export default function(ctx, initialState: any) {
     const reducers = {
         appReducer,
         dictReducer,
-        authReducer
+        authReducer,
+        DemoReducer
     };
     if (ctx.isServer && initialState === null) {
         initialState = {};

@@ -1,21 +1,29 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "strict": false,
     "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "isolatedModules": false, //将每个文件作为单独的模块
+    "pretty": true,
+    "sourceMap": true,
+    "target": "es5",
+    "declaration": true,   //生成相应的.d.ts文件
+    "forceConsistentCasingInFileNames": true, // 禁止对同一文件使用大小写不一致的引用
+    "resolveJsonModule": true,  //支持 .json扩展模块。
+    "preserveConstEnums": true,  // 保留 const和 enum声明
+    "allowSyntheticDefaultImports": true,  //  import React  === import * as React
+    "noImplicitAny": false,   //在表达式和声明上有隐含的any类型时报错
+    "removeComments": true,   //删除所有注释，除了以/!*开头的版权信息
+    "emitDecoratorMetadata": true,   //给源码里的装饰器声明加上设计类型元数据
+    "experimentalDecorators": true,  //启用实验性装饰器
+    "skipLibCheck": true,  //忽略所有生命文件
+    "jsx": "preserve",
     "lib": [
       "dom",
       "es2015"
-    ],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "noImplicitAny": false,
-    "preserveConstEnums": true,
-    "pretty": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "target": "es5"
+    ]
   },
   "typeRoots": [
     "node_modules/@types",
