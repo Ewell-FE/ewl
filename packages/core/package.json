@@ -15,7 +15,7 @@
   "homepage": "https://github.com/Ewell-FE/ew-material.github.io",
   "license": "MIT",
   "publishConfig": {
-    "registry": "http://192.168.150.59:8081/repository/npm-host1/"
+    "registry": "http://192.168.150.59:8081/repository/npm-hosted/"
   },
   "repository": {
     "type": "git",
@@ -55,5 +55,5 @@
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
   },
-  "gitHead": "b60f236feef31fb1745859b1682b3651a6ac8829"
+  "gitHead": "2bd5a84e71382445af02b0e1723d841733627e1a"
 }
