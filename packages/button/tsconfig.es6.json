@@ -1,5 +1,5 @@
 {
-  "extends": "ew-material-configs/tsconfig.es6.json",
+  "extends": "@ewl/ts-configs/tsconfig.es6.json",
   "compilerOptions": {
     "declaration": true,
     "outDir": "es6",

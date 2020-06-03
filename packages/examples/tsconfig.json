@@ -1,5 +1,5 @@
 {
-  "extends": "ew-material-configs/tsconfig.json",
+  "extends": "@ewl/ts-configs/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

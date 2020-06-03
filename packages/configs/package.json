@@ -1,7 +1,13 @@
 {
-  "name": "ew-material-configs",
-  "private": true,
+  "name": "@ewl/ts-configs",
   "version": "0.1.3",
+  "publishConfig": {
+    "registry": "http://192.168.150.59:8081/repository/npm-host1/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ewell-FE/ew-material/tree/master/packages/configs"
+  },
   "devDependencies": {
     "raw-loader": "^4.0.0",
     "react-test-renderer": "^16.12.0"
