@@ -1,9 +1,6 @@
 {
   "name": "@ewl/ts-configs",
   "version": "0.1.8",
-  "publishConfig": {
-    "registry": "http://192.168.150.59:8081/repository/npm-hosted/"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Ewell-FE/ew-material/tree/master/packages/configs"
@@ -18,5 +15,5 @@
     "@typescript-eslint/parser": "^2.14.0",
     "ts-jest": "^24.2.0"
   },
-  "gitHead": "2bd5a84e71382445af02b0e1723d841733627e1a"
+  "gitHead": "f9b19a728609fea24c74c9992cd631f105439d66"
 }
