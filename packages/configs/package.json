@@ -1,6 +1,6 @@
 {
   "name": "@ewl/ts-configs",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "license": "MIT",
   "publishConfig": {
     "registry": "http://192.168.150.59:8081/repository/npm-hosted/"

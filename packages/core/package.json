@@ -1,6 +1,6 @@
 {
   "name": "@ewl/core",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "core is app main",
   "main": "lib/index.js",
   "module": "es6/index.js",
@@ -31,7 +31,7 @@
     "start:tsc:es6": "yarn build:tsc:es6 --watch --preserveWatchOutput"
   },
   "dependencies": {
-    "@ewl/button": "^0.1.8",
+    "@ewl/button": "^0.1.9",
     "@material-ui/core": "^4.7.1",
     "@types/express": "^4.17.2",
     "@typescript-eslint/eslint-plugin": "^2.14.0",
@@ -40,7 +40,7 @@
     "ts-jest": "^24.2.0"
   },
   "devDependencies": {
-    "@ewl/ts-configs": "^0.1.9",
+    "@ewl/ts-configs": "^0.1.10",
     "@types/jest": "^24.0.23",
     "@types/node": "^12.12.14",
     "@types/react": "^16.9.13",
