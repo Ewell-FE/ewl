@@ -1,6 +1,6 @@
 {
   "name": "@ewl/ts-configs",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "publishConfig": {
     "registry": "http://192.168.150.59:8081/repository/npm-host1"
   },
