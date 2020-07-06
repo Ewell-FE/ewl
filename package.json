@@ -7,10 +7,11 @@
   "scripts": {
     "precommit": "pretty-quick --staged",
     "clean": "lerna run clean && lerna clean --yes && rimraf node_modules",
-    "start": "yarn build && lerna run start --parallel",
+    "start": "yarn build && lerna run start --ignore=examples --parallel",
     "dev": "lerna run start --scope=examples --parallel",
+    "docs": "yarn workspace docs dev",
     "export": "lerna run export --scope=examples --parallel",
-    "build": "lerna run build --concurrency=2 --stream",
+    "build": "lerna run build --ignore=docs --concurrency=2 --stream",
     "test": "lerna run test --concurrency=2 --stream",
     "test:quick": "lerna run test:quick --concurrency=2 --stream",
     "test:coverage": "cat packages/*/coverage/lcov.info | coveralls",
@@ -20,22 +21,30 @@
     "lint:staged": "lint-staged --debug"
   },
   "devDependencies": {
-    "eslint": "6.4.0",
-    "@typescript-eslint/eslint-plugin": "2.14.0",
-    "@typescript-eslint/parser": "2.14.0",
     "prettier": "^1.19.1",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "7.18.3",
     "standard": "^14.3.1",
     "husky": "3.0.5",
     "lerna": "3.16.4",
     "lint-staged": "9.3.0",
     "rimraf": "3.0.0",
     "typescript": "3.6.3",
-    "eslint-config-prettier": "^6.7.0"
+    "eslint": "6.4.0",
+    "dtslint": "^3.2.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "7.18.3",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-import-resolver-webpack": "^0.12.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-mocha": "^6.1.1",
+    "eslint-plugin-react-hooks": "^2.1.1",
+    "confusing-browser-globals": "^1.0.9"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "docs"
   ],
   "bugs": {
     "url": "https://github.com/Ewell-FE/ewl/issues"

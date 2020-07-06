@@ -15,8 +15,6 @@
   },
   "dependencies": {
     "@types/express": "^4.17.2",
-    "@typescript-eslint/eslint-plugin": "^2.14.0",
-    "@typescript-eslint/parser": "^2.14.0",
     "ts-jest": "^24.2.0"
   },
   "gitHead": "6de02bbf7e070ba17c5832df0ba701e9ea385eb2"

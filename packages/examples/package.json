@@ -52,7 +52,7 @@
     "lodash": "^4.17.15",
     "log4js": "^6.1.0",
     "markdown-to-jsx": "^6.10.3",
-    "next": "^9.1.4",
+    "next": "^9.3.0",
     "next-redux-wrapper": "^4.0.1",
     "node-apollo": "^1.2.1",
     "opentracing": "^0.14.4",
