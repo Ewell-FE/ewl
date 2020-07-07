@@ -14,7 +14,7 @@ function resolvePath (sourcePath, currentFile, opts) {
 }
 
 const alias = {
-    '@material-ui/docs': '../packages/material-ui-docs/src',
+    '@material-ui/docs': '../plugins/material-ui-docs/src',
     docs: './',
     modules: '../modules',
     pages: './pages'

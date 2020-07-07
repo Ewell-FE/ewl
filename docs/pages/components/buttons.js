@@ -11,13 +11,6 @@ const requireRaw = require.context(
 );
 
 export default function Page({ demos, docs }) {
-
-  const map = {}
-  for (const key of requireDemo.keys()) {
-    map[key] = requireDemo(key)
-  }
-  console.log(map)
-
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
 }
 

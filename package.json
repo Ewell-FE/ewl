@@ -7,7 +7,7 @@
   "scripts": {
     "precommit": "pretty-quick --staged",
     "clean": "lerna run clean && lerna clean --yes && rimraf node_modules",
-    "start": "yarn build && lerna run start --ignore=examples --parallel",
+    "start": "yarn build && lerna run start --ignore=docs --parallel",
     "dev": "lerna run start --scope=examples --parallel",
     "docs": "yarn workspace docs dev",
     "export": "lerna run export --scope=examples --parallel",
@@ -44,7 +44,8 @@
   },
   "workspaces": [
     "packages/*",
-    "docs"
+    "docs",
+    "plugins"
   ],
   "bugs": {
     "url": "https://github.com/Ewell-FE/ewl/issues"

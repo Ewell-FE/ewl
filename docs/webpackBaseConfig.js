@@ -7,7 +7,7 @@ module.exports = {
   resolve: {
     modules: [path.join(__dirname, '../'), 'node_modules'],
     alias: {
-        '@material-ui/docs': '../packages/material-ui-docs/src',
+        '@material-ui/docs': '../plugins/material-ui-docs/src',
         docs: path.resolve(__dirname, '../docs'),
     },
     extensions: ['.js', '.ts'],
