@@ -1,7 +1,7 @@
 {
   "name": "@ewl/button",
   "private": true,
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "button",
   "main": "lib/index.js",
   "module": "es6/index.js",
@@ -41,7 +41,7 @@
     "react": "^16.12.0"
   },
   "devDependencies": {
-    "@ewl/ts-configs": "^0.1.10",
+    "@ewl/ts-configs": "^0.1.11",
     "@types/jest": "^24.0.23",
     "@types/react": "^16.9.13",
     "jest": "^24.9.0",
