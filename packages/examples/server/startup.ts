@@ -70,7 +70,6 @@ export class Startup {
           tracer.inject(span.context(), opentracing.FORMAT_TEXT_MAP, carrier);
           zone.setRootContext('tradeId', carrier);
           req.tradeSpan = span;
-          console.log(req.url)
           next()
         })
         await this.app.prepare()

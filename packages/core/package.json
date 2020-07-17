@@ -1,5 +1,6 @@
 {
   "name": "@ewl/core",
+  "private": true,
   "version": "0.1.10",
   "description": "core is app main",
   "main": "lib/index.js",

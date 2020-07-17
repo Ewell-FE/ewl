@@ -25,7 +25,7 @@ const CharacterInfo = ({
 );
 
 export default connect((state) => ({
-    character: state.character,
-    error: state.error,
-    isFetchedOnServer: state.isFetchedOnServer
+    character: state.demo.character,
+    error: state.demo.error,
+    isFetchedOnServer: state.demo.isFetchedOnServer
 }))(CharacterInfo);

@@ -153,7 +153,6 @@ export function prepareMarkdown(config) {
           : 'en';
 
       const markdown = requireRaw(filename);
-      console.log(markdown)
       const headers = getHeaders(markdown);
       const title = headers.title || getTitle(markdown);
       const description = headers.description || getDescription(markdown);

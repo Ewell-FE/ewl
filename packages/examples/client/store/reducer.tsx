@@ -1,8 +1,9 @@
 import {combineReducers} from 'redux';
-export const exampleInitialState: object = {};
+import reducer from './demo/reducer';
 
-export default function createReducer(asyncReducers) {
+export default function createReducer(asyncReducers = {}) {
     const reducers = {
+        demo: reducer,
         ...asyncReducers
     };
     return combineReducers(reducers);

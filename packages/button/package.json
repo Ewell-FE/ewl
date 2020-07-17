@@ -1,5 +1,6 @@
 {
   "name": "@ewl/button",
+  "private": true,
   "version": "0.1.9",
   "description": "button",
   "main": "lib/index.js",
