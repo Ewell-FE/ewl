@@ -44,8 +44,9 @@
   },
   "workspaces": [
     "packages/*",
+    "xh-packages/*",
     "docs",
-    "plugins"
+    "plugins/*"
   ],
   "bugs": {
     "url": "https://github.com/Ewell-FE/ewl/issues"

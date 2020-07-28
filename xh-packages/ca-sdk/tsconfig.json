@@ -1,7 +1,6 @@
 {
   "extends": "@ewl/ts-configs/tsconfig.json",
   "compilerOptions": {
-    "jsx": "react",
     "outDir": "lib"
   },
   "include": [

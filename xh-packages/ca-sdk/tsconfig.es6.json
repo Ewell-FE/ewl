@@ -1,0 +1,12 @@
+{
+  "extends": "@ewl/ts-configs/tsconfig.es6.json",
+  "compilerOptions": {
+    "allowJs": false,
+    "declaration": true,
+    "outDir": "es6",
+    "declarationDir": "es6"
+  },
+  "include": [
+    "src"
+  ]
+}

@@ -2411,6 +2411,11 @@
         "signature": "5859c951fdc2f03f96a25661b33eec6c3747b461dc9331bb1096690a8924edc5",
         "affectsGlobalScope": false
       },
+      "../../../node_modules/@types/react-slick/index.d.ts": {
+        "version": "a0f0c5a61de861c2c3b63f2331a440d9e644ea7ef99436734dcb7b16688f82c7",
+        "signature": "a0f0c5a61de861c2c3b63f2331a440d9e644ea7ef99436734dcb7b16688f82c7",
+        "affectsGlobalScope": false
+      },
       "../../../node_modules/@types/react-swipeable-views/index.d.ts": {
         "version": "e31433b460710385562dcf2cf218f34dbcd3ac03a95029148d0a4ccd5aa78dfb",
         "signature": "e31433b460710385562dcf2cf218f34dbcd3ac03a95029148d0a4ccd5aa78dfb",
@@ -6368,6 +6373,13 @@
       ],
       "../../../node_modules/@types/react-router/index.d.ts": [
         "../../../node_modules/@types/history/index.d.ts",
+        "../../../node_modules/@types/node/fs.d.ts",
+        "../../../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../../../node_modules/@types/node/ts3.2/util.d.ts",
+        "../../../node_modules/@types/node/util.d.ts",
+        "../../../node_modules/@types/react/index.d.ts"
+      ],
+      "../../../node_modules/@types/react-slick/index.d.ts": [
         "../../../node_modules/@types/node/fs.d.ts",
         "../../../node_modules/@types/node/ts3.2/fs.d.ts",
         "../../../node_modules/@types/node/ts3.2/util.d.ts",
@@ -10656,6 +10668,13 @@
         "../../../node_modules/@types/node/util.d.ts",
         "../../../node_modules/@types/react/index.d.ts"
       ],
+      "../../../node_modules/@types/react-slick/index.d.ts": [
+        "../../../node_modules/@types/node/fs.d.ts",
+        "../../../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../../../node_modules/@types/node/ts3.2/util.d.ts",
+        "../../../node_modules/@types/node/util.d.ts",
+        "../../../node_modules/@types/react/index.d.ts"
+      ],
       "../../../node_modules/@types/react-swipeable-views-utils/index.d.ts": [
         "../../../node_modules/@types/node/fs.d.ts",
         "../../../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -11601,6 +11620,7 @@
       "../../../node_modules/@types/react-native/legacy-properties.d.ts",
       "../../../node_modules/@types/react-router-dom/index.d.ts",
       "../../../node_modules/@types/react-router/index.d.ts",
+      "../../../node_modules/@types/react-slick/index.d.ts",
       "../../../node_modules/@types/react-swipeable-views-utils/index.d.ts",
       "../../../node_modules/@types/react-swipeable-views-utils/node_modules/@material-ui/types/index.d.ts",
       "../../../node_modules/@types/react-swipeable-views/index.d.ts",

@@ -3,13 +3,12 @@
     "allowJs": true,
     "strict": false,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "isolatedModules": false, //将每个文件作为单独的模块
     "pretty": true,
     "sourceMap": true,
     "target": "es5",
-    "declaration": true,   //生成相应的.d.ts文件
     "forceConsistentCasingInFileNames": true, // 禁止对同一文件使用大小写不一致的引用
     "resolveJsonModule": true,  //支持 .json扩展模块。
     "preserveConstEnums": true,  // 保留 const和 enum声明
