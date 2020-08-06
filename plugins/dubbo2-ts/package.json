@@ -1,23 +1,26 @@
 {
-  "name": "ca-sdk",
+  "name": "dubbo2-ts",
   "version": "0.0.1",
-  "description": "ca ",
+  "description": "dubbo for nodejs",
   "keywords": [
-    "ca"
+    "dubbojs"
   ],
   "author": "lileilei <lileilei@ewell.cc>",
   "homepage": "http://192.168.150.61:2080/Web-team/sh-emr-group/packages",
   "license": "ISC",
-  "main": "lib/index.js",
+  "main": "es6/index.js",
+  "types": "./es6/typings/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
   },
   "files": [
+    "es6",
     "lib"
   ],
   "scripts": {
     "clean": "rimraf lib es6 types coverage",
+    "test": "node test.js",
     "build": "yarn clean && yarn build:tsc:es5 && yarn build:tsc:es6",
     "build:tsc:es5": "tsc",
     "build:tsc:es6": "tsc --project tsconfig.es6.json",
@@ -30,24 +33,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://192.168.150.61:2080/Web-team/sh-emr-group/xh-packages/ca-sdk"
+    "url": "http://192.168.150.61:2080/Web-team/sh-emr-group/plugins/dubbo2-ts"
   },
   "bugs": {
     "url": "http://192.168.150.61:2080/Web-team/sh-emr-group/issues"
   },
-  "devDependencies": {
-    "@babel/preset-env": "^7.10.4",
-    "babel-loader": "^8.1.0",
-    "ts-loader": "^8.0.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
-  },
   "dependencies": {
-    "axios": "^0.18.0"
+    "debug": "^4.1.1",
+    "hessian.js": "^2.10.0",
+    "ip": "^1.1.5",
+    "js-to-java": "^2.6.1",
+    "npm-run-all": "^4.1.5",
+    "rxjs": "^6.6.2"
   },
-  "babel": {
-    "presets": [
-      "@babel/env"
-    ]
+  "devDependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/ip": "^1.1.0"
   }
 }

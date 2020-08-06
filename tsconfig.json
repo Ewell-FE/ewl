@@ -12,6 +12,7 @@
     "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": true,
+    "downlevelIteration": true,
     "allowJs": true,
     "paths": {
       "test/*": ["./test/*"]

@@ -476,6 +476,11 @@
         "signature": "88ba64abf597a52a0b0952f344456a758efb5dfc42e15ed7b0947afdb86d93e1",
         "affectsGlobalScope": false
       },
+      "../../../node_modules/@types/debug/index.d.ts": {
+        "version": "3cf5f191d75bbe7c92f921e5ae12004ac672266e2be2ece69f40b1d6b1b678f9",
+        "signature": "3cf5f191d75bbe7c92f921e5ae12004ac672266e2be2ece69f40b1d6b1b678f9",
+        "affectsGlobalScope": false
+      },
       "../../../node_modules/@types/eslint-visitor-keys/index.d.ts": {
         "version": "725d9be2fd48440256f4deb00649adffdbc5ecd282b09e89d4e200663792c34c",
         "signature": "725d9be2fd48440256f4deb00649adffdbc5ecd282b09e89d4e200663792c34c",
@@ -559,6 +564,11 @@
       "../../../node_modules/@types/hoist-non-react-statics/index.d.ts": {
         "version": "bfe1b52cf71aea9bf8815810cc5d9490fa9617313e3d3c2ee3809a28b80d0bb4",
         "signature": "bfe1b52cf71aea9bf8815810cc5d9490fa9617313e3d3c2ee3809a28b80d0bb4",
+        "affectsGlobalScope": false
+      },
+      "../../../node_modules/@types/ip/index.d.ts": {
+        "version": "4d2319a2a33bd370e1b85399fa1b83751725981f21aae64a521b1db123e38cf4",
+        "signature": "4d2319a2a33bd370e1b85399fa1b83751725981f21aae64a521b1db123e38cf4",
         "affectsGlobalScope": false
       },
       "../../../node_modules/@types/istanbul-lib-coverage/index.d.ts": {
@@ -955,6 +965,12 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
+      "../../../node_modules/@types/debug/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
       "../../../node_modules/@types/eslint-visitor-keys/index.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -1051,6 +1067,13 @@
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
+      "../../../node_modules/@types/ip/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/ts3.7/index.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
       "../../../node_modules/@types/istanbul-lib-coverage/index.d.ts": [
@@ -2197,6 +2220,12 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
+      "../../../node_modules/@types/debug/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
       "../../../node_modules/@types/eslint-visitor-keys/index.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -2293,6 +2322,13 @@
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
+      "../../../node_modules/@types/ip/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/ts3.7/index.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
       "../../../node_modules/@types/istanbul-lib-coverage/index.d.ts": [
@@ -3365,6 +3401,7 @@
       "../../../node_modules/@types/color-name/index.d.ts",
       "../../../node_modules/@types/connect/index.d.ts",
       "../../../node_modules/@types/css-mediaquery/index.d.ts",
+      "../../../node_modules/@types/debug/index.d.ts",
       "../../../node_modules/@types/eslint-visitor-keys/index.d.ts",
       "../../../node_modules/@types/express-serve-static-core/index.d.ts",
       "../../../node_modules/@types/express/index.d.ts",
@@ -3377,6 +3414,7 @@
       "../../../node_modules/@types/history/locationutils.d.ts",
       "../../../node_modules/@types/history/pathutils.d.ts",
       "../../../node_modules/@types/hoist-non-react-statics/index.d.ts",
+      "../../../node_modules/@types/ip/index.d.ts",
       "../../../node_modules/@types/istanbul-lib-coverage/index.d.ts",
       "../../../node_modules/@types/istanbul-lib-report/index.d.ts",
       "../../../node_modules/@types/istanbul-reports/index.d.ts",

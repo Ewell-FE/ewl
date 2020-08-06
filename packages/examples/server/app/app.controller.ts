@@ -5,7 +5,7 @@ import {AppService} from './app.service';
 @Controller('app')
 export class AppController {
     @Post(':id')
-    getOne(@Param() params) {
+    getOne(@Param() params: any) {
         return {
             name: `旺财${params.id}`,
             birth_year: '123',
