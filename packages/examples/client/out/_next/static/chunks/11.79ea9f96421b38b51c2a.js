@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[11],{daOh:function(t,e,n){"use strict";n.r(e);var i={docs:{title:"next static page test1"}};e.default=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:i;return(arguments.length>1?arguments[1]:void 0).type,t}}}]);

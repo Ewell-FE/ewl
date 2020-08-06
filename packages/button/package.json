@@ -1,0 +1,59 @@
+{
+  "name": "@ewl/button",
+  "private": true,
+  "version": "0.1.11-alpha.0",
+  "description": "button",
+  "main": "lib/index.js",
+  "module": "es6/index.js",
+  "types": "es6/index.d.ts",
+  "source": "src/index.tsx",
+  "jsnext:main": "src/index.tsx",
+  "main:src": "src/index.tsx",
+  "keywords": [
+    "button"
+  ],
+  "author": "lileilei <lileilei@ewell.cc>",
+  "homepage": "https://github.com/Ewell-FE/ew-material.github.io",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "http://192.168.150.59:8081/repository/npm-hosted/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ewell-FE/ew-material/tree/master/packages/button"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:quick": "yarn test",
+    "clean": "rimraf lib es6 types coverage",
+    "build": "yarn clean && yarn build:tsc:es5 && yarn build:tsc:es6",
+    "build:tsc:es5": "tsc",
+    "build:tsc:es6": "tsc --project tsconfig.es6.json",
+    "start": "npm-run-all -p start:tsc:es5 start:tsc:es6",
+    "start:tsc:es5": "yarn build:tsc:es5 --watch --preserveWatchOutput",
+    "start:tsc:es6": "yarn build:tsc:es6 --watch --preserveWatchOutput"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.7.1",
+    "react": "^16.12.0"
+  },
+  "devDependencies": {
+    "@ewl/ts-configs": "^0.1.12-alpha.0",
+    "@types/express": "^4.17.2",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
+    "@types/jest": "^24.0.23",
+    "@types/react": "^16.9.13",
+    "jest": "^24.9.0",
+    "npm-run-all": "^4.1.5",
+    "raw-loader": "^4.0.0",
+    "react-test-renderer": "^16.12.0",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.7.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  },
+  "gitHead": "6de02bbf7e070ba17c5832df0ba701e9ea385eb2"
+}

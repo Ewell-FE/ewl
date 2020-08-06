@@ -1,0 +1,173 @@
+@import '../vars.less';
+@import '../theme.less';
+
+@backGroundColor:#EEEEEE;
+@tableActionColor:#169BD8;
+.clearFloat{
+  content:'';
+  height: 0;
+  clear: both;
+  display: block;
+  zoom: 1;
+}
+
+#purchase{
+  label{
+    width: auto;
+  }
+  width: 100%;
+  height: 100%;
+  background-color: @backGroundColor;
+  display: flex;
+  flex-direction: column;
+  .content{
+    padding:10px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+  .header-item{
+    display: flex;
+    .header-item-label{
+      line-height: 30px;
+      padding-right:10px;
+      width:auto;
+      white-space: nowrap;
+    }
+  }
+  .table-action-list{
+    .table-action{
+      color:@tableActionColor;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .table-action:last-child{
+      margin-right: 0;
+    }
+  }
+}
+.purchase-modal{
+  .ant-drawer-wrapper-body{
+    height: 100%;
+    position: relative;
+  }
+  #purchase-modal-box{
+    // padding: 10px 20px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    .modal-top{
+      // display: flex;
+      .top-left{
+        // width: 30%;
+        width : 100%;
+        padding-top: 10px;
+      }
+      .top-right{
+        padding-top: 18px;
+        margin-bottom: 18px;
+        // width: calc(70% - 10px);
+        // margin-left: 10px;
+        width : 100%;
+        background-color: #F4F4F4;
+        .form-list{
+          .list-item{
+            .item-label{
+              width: 94px;
+            }
+            .item-component{
+              width: calc(100% - 94px);
+            }
+          }
+        }
+      }
+      .form-list{
+        .list-item{
+          // padding-bottom: 10px;
+          padding-bottom: 18px;
+          width: 33%;
+          float: left;
+          .item-label{
+            float: left;
+            white-space: nowrap;
+            padding-right:10px;
+            line-height: 30px;
+            width: 30%;
+            text-align: right;
+          }
+          .item-component{
+            width: 70%;
+            float: left;
+          }
+          &::after{
+            .clearFloat
+          }
+        }
+        .list-item-33{
+          width: 33%;
+          float: left;
+
+        }
+        .list-item-66{
+          width: 66%;
+          float: left;
+
+        }
+        .list-item-99{
+          width: 99%;
+          float: left;
+        }
+        &::after{
+          .clearFloat
+        }
+      }
+    }
+    .modal-bottom{
+      padding-top: 10px;
+      flex: 1;
+      .drug-choose-box{
+        position: relative;
+        .search-box{
+          position: absolute;
+          // top: -40px;
+          right:0;
+          top: 0;
+          display: block;
+          z-index: 100;
+          width: 258px;
+          .search-label{
+            float: left;
+            line-height: 30px;
+            width: 67px;
+          }
+          .search-input{
+            float: left;
+            width: 191px;
+          }
+          &::after{
+            .clearFloat
+          }
+        }
+      }
+      .ant-tabs-nav .ant-tabs-tab{
+        margin-right: 0;
+      }
+      .ant-table-pagination.ant-pagination{
+        margin-bottom: 0;
+      }
+    }
+    .modal-footer{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px 0;
+      background-color: white;
+      box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.15);
+      text-align: center;
+      Button:last-child{
+        margin-left: 10px;
+      }
+    }
+  }
+}
+

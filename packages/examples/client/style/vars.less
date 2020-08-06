@@ -1,0 +1,65 @@
+
+ @import 'color/colorPalette';
+
+// color
+@primary-color : #1D569F;
+//场景:a:hover, btn:active
+@primary-color-light: #2aa1a3;
+@primary-color-dark: #1A5062;
+@danger-color : #FF2800;
+@info-color : #0041FF;
+@success-color : #35A16B;
+@warn-color : #FF9900;
+@serious-color : #9A0079;
+@text-color : #1A1A1A;
+@text-color-secondary : #7F878F;
+@text-color-muted : #c8c8c8;
+@disabled-color: rgba(0, 0, 0, 0.25);
+@primary-1: fade(@primary-color, 10%);
+@primary-6: color(~`colorPalette('@{primary-color}', 6) `);
+//@primary-6:  #1D569F;
+
+// padding, maigin
+@padding-lg : 40px; // containers
+@padding-md : 16px; // small containers and buttons
+@padding-sm : 12px; // Form controls and items
+@padding-xs : 8px; // small items
+
+@panel-padding-vertical: 10px;
+@panel-padding-horizontal: 16px;
+
+// shadow
+@shadow-color : rgba(0,0,0,0.10);
+@shadow-2: 0 2px 4px 0 @shadow-color;
+
+// Border color
+@border-color-base : #C1C5CE; // base border outline a component
+@border-color-split: #e5e5e5;
+@border-color-primary : fade(@primary-color, 20%); // base border outline a component
+
+// vertical padding for all form controls
+@control-padding-horizontal: @padding-md;
+@control-padding-horizontal-sm: @padding-xs;
+
+// Base background color for most components
+@border-radius-base : 2px;
+@font-size-base : 14px;
+
+//control
+@control-height-base: 30px;
+@input-height-base : @control-height-base;
+
+//my
+@bg-main:#d3d7d8;
+@bg-head:#efefef;
+@component-background: #fff;
+
+// table
+@table-header-bg: #EEF5F9;
+@table-header-color: #1A5E62;
+@table-padding-vertical: 9px;
+@table-padding-horizontal: 10px;
+@table-padding-horizontal: 10px;
+// table 展开行的背景颜色
+@table-expanded-row-bg: #EFEFEF;
+@table-tr-hover-bg: #e5f2f2;

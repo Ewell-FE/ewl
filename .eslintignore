@@ -1,0 +1,8 @@
+node_modules
+.next
+/.git
+/docs/export
+packages/*/es6
+packages/*/lib
+packages/*/__tests__
+packages/*/tscache

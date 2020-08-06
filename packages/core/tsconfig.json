@@ -1,0 +1,14 @@
+{
+  "extends": "@ewl/ts-configs/tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "incremental": true,
+    "tsBuildInfoFile": "./tscache/cache",
+    "declaration": true,
+    "outDir": "lib",
+    "declarationDir": "lib"
+  },
+  "include": [
+    "src"
+  ]
+}

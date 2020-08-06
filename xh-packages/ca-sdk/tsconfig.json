@@ -1,0 +1,9 @@
+{
+  "extends": "@ewl/ts-configs/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "lib"
+  },
+  "include": [
+    "src"
+  ]
+}

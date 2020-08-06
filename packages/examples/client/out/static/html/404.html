@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404</title>
+  <script>
+    function exec(cb) {
+      if (window.Api) {
+        return cb()
+      }
+    }
+
+    /**
+     * 壳的页面跳转
+     * @param url: string  壳要跳转的页面地址
+     */
+    function winLoad(url) {
+      const isDebug = (window.location.href.indexOf("DEBUG=true") !=-1)
+      if (isDebug) {
+        parent.postMessage(JSON.stringify({
+          url: url,
+          type: "winLoad"
+        }), '*')
+      } else {
+        exec(function () {
+          Api.Win.load(Api.App.getPackageInfo('main'));
+        })
+      }
+    }
+
+    alert("当前用户没有分配权限，请分配权限后再登录！")
+    winLoad("/login")
+  </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "*.{tsx}": [
+    "yarn lint",
+    "git add"
+  ]
+}

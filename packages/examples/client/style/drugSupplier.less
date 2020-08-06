@@ -1,0 +1,434 @@
+@import 'vars.less';
+.am-mt-inner-control {
+  margin-top: @padding-sm !important;
+}
+.am-mb-control{
+  margin-bottom: @padding-md !important;
+}
+.am-link-disabled{
+  color: rgba(0,0,0,0.25);
+}
+
+//用于纵向表单按钮没有左侧的情况
+.am1-form-offset-label{
+  margin-left: 110px;
+}
+//刷新图标
+.them-i-sync {
+  font-size: 14px;
+  color: #0F9096;
+}
+.them-i-sync:hover {
+  color: #2aa1a3;
+}
+.them-i-sync:active {
+  color: #066770;
+}
+
+.am-tag-urgent{
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+ // background: url(/static/image/i-urgent.svg) no-repeat center center;
+}
+
+//行选中， 目前里面只是3种
+.bg-click-active{
+  background: #e5f2f2;
+}
+
+//蓝色按钮
+.ant-btn.theme-btn-info{
+  background-color: #2A63CB;
+  border-color: #2A63CB;
+  color: #fff;
+  &:hover{
+    color: #fff;
+    background-color: #5085d9;
+    border-color: #5085d9;
+  }
+  &:active{
+    color: #fff;
+    background-color: #1b47a6;
+    border-color: #1b47a6;
+  }
+}
+
+// 带点的 标题
+.hd-dot {
+  position: relative;
+  line-height: @control-height-base + 8px;
+  color: #0D5273;
+  padding: 0 0 0 9px;
+  font-size: @font-size-base + 2px;
+  &::before {
+    content: "";
+    position: absolute;
+    top: @control-height-base/2 + 2px;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background: #0D5273;
+    margin-top: 0;
+  }
+  .right {
+    position: absolute;
+    right: @panel-padding-horizontal;
+    top: 0;
+    font-size: 14px;
+    color: @text-color;
+  }
+  .after{
+    line-height: normal;
+    padding-bottom: @panel-padding-vertical + 2px;
+  }
+}
+
+//预约计划
+.calendar-plane{
+  border: 1px solid @border-color-split;
+  &:before, &:after{
+    content: "";
+    display: table;
+  }
+  &:after{
+    clear: both;
+  }
+  .calendar-selcted-date{
+    font-weight: 700;
+    margin-right: @padding-md;
+  }
+}
+.calendar-plane-side{
+  float: left;
+  width: 345px;
+  border-right: 1px solid @border-color-split;
+}
+.calendar-plane-container{
+  float: left;
+  width: calc(100% - 345px);
+  .hd{
+    line-height: 24px;
+    padding: 0 10px;
+    background: #EEF5F9;
+    color: #1A5E62;
+  }
+  >.bd{
+    padding: 0 0 8px 10px;
+    height: 115px;
+    overflow: auto;
+  }
+  .plane-card{
+    position: relative;
+    display: inline-block;
+    width: 130px;
+    vertical-align: top;
+    padding: 8px 12px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    border: 1px solid @border-color-split;
+    cursor: pointer;
+    margin: 8px 10px 0 0;
+    overflow: hidden;
+
+    h4{
+      margin: 0;
+      font-size: 14px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      color: inherit;
+    }
+    p{
+      margin: 0;
+    }
+    &:hover{
+      border-color: rgba(0,0,0,0.09);
+      -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+      background: #E5F9F5;
+    }
+    &.active{
+      background: #E5F9F5;
+      .i-card-check{
+        background: @primary-color;
+        color: #fff;
+      }
+    }
+    &.disabled{
+      color: rgba(0,0,0,0.25);
+      background-color: #f5f5f5;
+      border-color: #d9d9d9;
+      text-shadow: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      cursor: no-drop;
+      .i-card-check{
+        display: none;
+      }
+    }
+    .i-card-check{
+      background: #EDEFF2;
+      position: absolute;
+      right: -30px;
+      top: -30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 60px;
+      color: #848994;
+      .anticon{
+        position: absolute;
+        left: 3px;
+        top: 29px;
+        width: 30px;
+        text-align: center;
+        line-height: 30px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+.theme-fullcalendar-header{
+  padding: 8px 10px;
+}
+.theme-Calendar{
+  border-top-color: @border-color-split;
+  .ant-fullcalendar-calendar-body{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .ant-fullcalendar-value{
+    width: auto;
+  }
+  .ant-fullcalendar-content{
+    top: 9px;
+    bottom: auto;
+  }
+  .calendar-check{
+    position: relative;
+    z-index: 10;
+    margin: 0 1px;
+    .anticon{
+      position: absolute;
+      left: 2px;
+      top: 0;
+      font-size: 12px;
+      color: #0F9096;
+    }
+  }
+  .calendar-txt-full{
+    position: absolute;
+    right: 2px;
+    top: 0;
+    color: @danger-color;
+    line-height: 1;
+  }
+  .ant-fullcalendar-selected-day{
+    .calendar-check{
+      .anticon{
+        color: #fff;
+      }
+    }
+    .calendar-txt-full{
+      color: #fff;
+    }
+  }
+}
+
+//time控件之间的分割线
+.am-timePicker-space{
+  display: inline-block;
+  min-width: 10px;
+  height: 100%;
+  color: rgba(0,0,0,0.45);
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: top;
+  pointer-events: none;
+  margin: 0 4px;
+}
+
+// 纵向表单紧凑220有点框， 设置窄一点点, 重置
+// .am1-form-compact.am1-form-compact-120{
+//     .am1-form-item{
+//       &.item-num2{
+//         .am1-form-item-control{
+//           width: 560px;
+//         }
+//       }
+//     }
+// }
+.am1-form-compact.am1-form-compact-120{
+  .am1-form-item-label{
+    width: 90px;
+  }
+  .am1-form-item.item-num2{
+    .am1-form-item-control{
+      width: 330px;
+    }
+  }
+  .am1-form-item-control{
+    display: inline-block;
+    vertical-align: top;
+    width: 120px;
+    margin-left: 0;
+    white-space: normal;
+    &.txt{
+      margin-bottom: 0;
+    }
+  }
+  .am1-form-offset-label{
+    margin-left: 90px;
+  }
+}
+
+//tag 文字
+.am-tag-txt{
+  display: inline-block;
+  min-width: 36px;
+  text-align: center;
+  min-height: 19px;
+  padding: 0 5px;
+  line-height: 1.5;
+  border-radius: 20px;
+  &.light-info{
+    background: fade(#0D5273, 10%);
+    color: #0D5273;
+  }
+  &.light-success{
+    background: fade(@success-color, 10%);
+    color: @success-color;
+  }
+  &.light-warn{
+    background: fade(@warn-color, 10%);
+    color: @warn-color;
+  }
+}
+
+//带圈的可连接文字-退
+.am-link-circle{
+  display: inline-block;
+  min-width: 18px;
+  height: 18px;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid @primary-color;
+}
+
+//隐藏表格中单选中不可选的按钮
+.hide-selection-radio-disabled{
+  .ant-radio-disabled{
+    visibility: hidden;
+  }
+}
+
+//比一般的要小的下拉箭头
+.i-theme-down{
+  font-size: 12px;
+  transform: scale(.83333333) rotate(0deg);
+  margin: 0 2px;
+  transition: transform 0.3s;
+  &.active{
+    transform: scale(0.83333333) rotate(180deg);
+  }
+}
+.i-theme-op{
+  font-size: 14px;
+}
+
+//分割线-纵向
+.theme-divider-v{
+  margin: 0 10px 10px 10px;
+}
+
+.cure-order-active{
+  color: #2aa1a3;
+  cursor: pointer;
+}
+
+
+#respository {
+  height: 100vh;
+
+  .filter-menu {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+
+    .select-type {
+      color: #000c17;
+    }
+
+    .active {
+      color: @primary-color;
+      font-weight: bold;
+    }
+
+    .split {
+      margin: 0 10px;
+    }
+  }
+}
+
+#respository-add, #respository-repel {
+  .title-header {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+    border-bottom: 1px solid #F1F1F1;
+  }
+
+  h4 {
+    border-left: 3px solid @primary-color;
+    line-height: 20px;
+    padding: 0 5px;
+    margin: 20px 10px;
+  }
+
+  .label {
+    float: left;
+    width: 70px;
+    line-height: 30px;
+    text-align: right;
+  }
+
+  .context {
+    margin-left: 75px;
+    padding-right: 20px;
+  }
+
+  .pro-items {
+    border: 1px solid #d6d6d6;
+    margin-left: 75px;
+    padding: 10px;
+
+    .item {
+      margin-right: 10px;
+    }
+  }
+
+  .params-card {
+    border: 1px solid #d6d6d6;
+    margin: 20px;
+    display: flex;
+
+    .tit {
+      flex: 1;
+      border-right: 1px solid #d6d6d6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        margin: 0 auto;
+      }
+    }
+
+    .form-item {
+      flex: 10;
+      padding: 10px;
+    }
+  }
+}

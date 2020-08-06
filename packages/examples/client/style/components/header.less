@@ -1,0 +1,53 @@
+@import '../vars.less';
+@import '../theme.less';
+
+.clearFloat{
+  content:'';
+  height: 0;
+  clear:both;
+  display: block;
+  zoom: 1;
+}
+
+#component-header{
+  label{
+    width: auto;
+  }
+  background-color: white;
+  .title{
+    padding:6px 0 6px 12px;
+    font-weight:bold;
+    float: left;
+    line-height: 30px;
+    font-size:18px;
+  }
+  .other-left{
+    float: left;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap:wrap;
+    align-items: center;
+    .other-item{
+      padding: 6px 0 6px 10px;
+    }
+    .other-item-last{
+      padding-right: 12px;
+    }
+  }
+  .other{
+    float: right;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap:wrap;
+    align-items: center;
+    .other-item{
+      padding: 6px 0 6px 10px;
+    }
+    .other-item-last{
+      padding-right: 12px;
+    }
+  }
+  &::after{
+    .clearFloat
+  }
+}

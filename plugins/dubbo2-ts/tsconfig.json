@@ -1,0 +1,11 @@
+{
+  "extends": "@ewl/ts-configs/tsconfig.json",
+  "compilerOptions": {
+    "downlevelIteration": true,
+    "target": "es2017",
+    "outDir": "lib"
+  },
+  "include": [
+    "src"
+  ]
+}

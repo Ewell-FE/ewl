@@ -1,0 +1,14 @@
+{
+  "extends": "@ewl/ts-configs/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/client/*": [
+        "./client/*"
+      ]
+    },
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  }
+}
