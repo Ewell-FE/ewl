@@ -853,15 +853,15 @@
       }
     },
     "options": {
-      "allowJs": true,
+      "allowJs": false,
       "strict": false,
       "esModuleInterop": true,
       "module": 1,
       "moduleResolution": 2,
       "isolatedModules": false,
       "pretty": true,
-      "sourceMap": true,
       "target": 1,
+      "downlevelIteration": true,
       "forceConsistentCasingInFileNames": true,
       "resolveJsonModule": true,
       "preserveConstEnums": true,
@@ -881,6 +881,8 @@
       "declaration": true,
       "outDir": "../lib",
       "declarationDir": "../lib",
+      "watch": true,
+      "preserveWatchOutput": true,
       "configFilePath": "../tsconfig.json"
     },
     "referencedMap": {

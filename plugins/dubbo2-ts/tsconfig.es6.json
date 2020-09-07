@@ -3,9 +3,9 @@
   "compilerOptions": {
     "allowJs": false,
     "declaration": true,
-    "downlevelIteration": true,
     "outDir": "es6",
-    "declarationDir": "./es6/typings"
+    "incremental": true,
+    "tsBuildInfoFile": "./.tscache/tscache"
   },
   "include": [
     "src"

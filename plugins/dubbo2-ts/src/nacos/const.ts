@@ -1,0 +1,1 @@
+export const DEFAULT_GROUP = 'DEFAULT_GROUP';

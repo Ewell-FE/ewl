@@ -44,7 +44,6 @@
     "@typescript-eslint/parser": "^2.14.0",
     "apache-dubbo-js": "^3.0.0-rc6",
     "asyncctx": "^2.0.13",
-    "ca-sdk": "^0.0.1",
     "class-validator": "^0.11.0",
     "cross-env": "^6.0.3",
     "dubbo2-ts": "^0.0.1",

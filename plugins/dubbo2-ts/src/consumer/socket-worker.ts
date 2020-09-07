@@ -5,17 +5,19 @@ import DubboEncoder from './encode';
 import DecodeBuffer from './decode-buffer';
 import {decode} from './decode';
 import HeartBeat from './heartbeat';
+import {SOCKET_STATUS} from './socket-status';
 import {ISocketProps, ISocketSubscriber} from './types';
 
 const log = debug('dubbo:socket-worker');
 const DEFAULT_HEARTBEAT = 60 * 1000;  //心跳时间
 const RETRY_TIMES = 3;  //心跳失败次数
-let pid = 0;
+let pid = 0; //一个tcp连接的标识
 
 
 export default class SocketWorker {
     private _host: string;
     private _retry: number;
+    private _status: SOCKET_STATUS;
     private _port: string;
     private pid: number;
     private reconnectCount: number;
@@ -28,11 +30,12 @@ export default class SocketWorker {
     constructor(options: ISocketProps) {
         this.pid = ++pid;
         this._retry = 0;
+        this._status = SOCKET_STATUS.PADDING;
         this.reconnectCount = 0;
         this._decodeBuff = new DecodeBuffer().subscribe(this._onSubscribeDecodeBuff);
         this._host = options.host;
         this._port = options.port;
-        this._socket = this._initSocket(options.host, options.port);
+        this._socket = this._initSocket();
         this._subscriber = {
             onConnect: options.onConnect,
             onData: options.onData,
@@ -54,21 +57,22 @@ export default class SocketWorker {
         this._decodeBuff.clearBuffer();
         //刚启动就没连成功 或者 过程中断开 健康检查了3次 则尝试重连
         if (this._retry === 0 || this._retry > 3) {
+            this._status = SOCKET_STATUS.RETRY;
             this.reconnect();
+        } else {
+            this._status = SOCKET_STATUS.CLOSED;
+            this._subscriber.onClose();
         }
     }
 
     /**
-     * send data to dubbo service
+     * @description  发送请求到服务
      * @param ctx dubbo context
      */
     write(ctx: Context) {
         log(`SocketWorker#${this.pid} =invoked=> ${ctx.requestId}`);
-        //current dubbo context record the pid
-        //when current worker close, fail dubbo request
         ctx.pid = this.pid;
         const encoder = new DubboEncoder(ctx);
-        // this.setWriteTimestamp();
         this._socket.write(encoder.encode());
     }
 
@@ -76,18 +80,16 @@ export default class SocketWorker {
      * @description 创建tcp链接
      * @param 地址 ，端口
      */
-    _initSocket(host: string, port: string) {
-        if (this._socket) {
-            this._socket.destroy();
-        }
+    _initSocket() {
+        this.destroy()
         const _socket = new net.Socket();
         _socket.setNoDelay();
-        _socket.connect(Number(port), host, () => {
-            this.reconnectCount = 0; //重连失败次数重置
-            this._retry = 0;  //心跳失败次数重置
+        _socket.connect(Number(this._port), this._host, () => {
+            this._status = SOCKET_STATUS.CONNECTED;
+            this._reset();//连接成功，重置次数
             this._subscriber.onConnect();
             this._healthReset();//开启心跳
-            log(`SocketWorker#${this.pid} <=connected=> ${host}:${port}`);
+            log(`SocketWorker#${this.pid} <=connected=> ${this._port}:${this._host}`);
         }).on('data', this._onData.bind(this))
             .on('error', this._onError.bind(this))
             .on('close', this._onClose.bind(this));
@@ -95,7 +97,31 @@ export default class SocketWorker {
     }
 
     /**
-     * @description 创建tcp链接
+     * @description 获取当前连接状态
+     */
+    get status() {
+        return this._status;
+    }
+
+    /**
+     * @description 销毁连接
+     */
+    destroy(){
+        if (this._socket) {
+            this._socket.destroy();
+        }
+    }
+
+    /**
+     * @description 重置 心跳 重连次数
+     */
+    _reset() {
+        this.reconnectCount = 0; //重连失败次数重置
+        this._retry = 0;  //心跳失败次数重置
+    }
+
+    /**
+     * @description 心跳检查
      */
     _healthReset() {
         clearTimeout(this._timeId);
@@ -109,18 +135,28 @@ export default class SocketWorker {
     }
 
     /**
-     * @description 创建tcp链接
+     * @description 重连机制
      */
     reconnect() {
         if (this.reconnectCount <= 10) {
             clearTimeout(this._reconnectTimeId);//避免多次同时调用多个close事件触发
             this._reconnectTimeId = setTimeout(() => {
                 this.reconnectCount = this.reconnectCount + 1;
-                this._socket = this._initSocket(this._host, this._port);
+                this._socket = this._initSocket();
             }, 3000);
         } else {
             this._socket.destroy();
         }
+    }
+
+    /**
+     * @description 换实例重连,主要应用于集群内部动态ip端口的时候
+     */
+    reInitSocket(option) {
+        this._host = option.host;
+        this._port = option.port;
+        this._reset(); //重置 心跳 重连失败次数，防止首次连接失败不再尝试
+        this._initSocket();
     }
 
     private _onSubscribeDecodeBuff = (data: Buffer) => {

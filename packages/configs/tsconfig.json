@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "allowJs": false,
     "strict": false,
     "esModuleInterop": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "isolatedModules": false, //将每个文件作为单独的模块
     "pretty": true,
-    "sourceMap": true,
     "target": "es5",
+    "downlevelIteration": true,  /* 当target为'ES5' or 'ES3'时，为'for-of', spread, and destructuring'中的迭代器提供完全支持 */
     "forceConsistentCasingInFileNames": true, // 禁止对同一文件使用大小写不一致的引用
     "resolveJsonModule": true,  //支持 .json扩展模块。
     "preserveConstEnums": true,  // 保留 const和 enum声明

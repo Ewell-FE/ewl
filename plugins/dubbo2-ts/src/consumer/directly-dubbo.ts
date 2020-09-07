@@ -1,8 +1,9 @@
+import compose from 'koa-compose';
 import Context from './context';
 import debug from 'debug';
 import {SOCKET_STATUS} from './socket-status';
 import SocketWorker from './socket-worker';
-import {IDirectlyDubboProps, IHessianType, IInvokeParam} from './types';
+import {IDirectlyDubboProps, IHessianType, IInvokeParam, Middleware} from './types';
 
 const log = debug('directly-dubbo');
 
@@ -10,22 +11,52 @@ export class DirectlyDubbo {
 
     private _options: IDirectlyDubboProps;
     private _queue: Map<number, Context>;
-    private _socketStatus: SOCKET_STATUS;
-    private readonly _socketWorker: SocketWorker;
+    private readonly _socketWorker: Array<SocketWorker>;
+    private _middleware: Array<Middleware<Context>> = [];
 
     constructor(options: IDirectlyDubboProps) {
-        this._socketStatus = SOCKET_STATUS.PADDING;
         this._queue = new Map();
         this._options = options;
-        const [host, port] = options.dubboAddress.split(':');
-        this._socketWorker = new SocketWorker({
-            host: host,
-            port: port,
-            onConnect: this.onConnect,
-            onData: this.onData,
-            onClose: this.onClose
-        });
+        this._socketWorker = this._createSocketAgents(options.dubboAddress);
+    }
 
+
+    _createSocketAgents(dubboAddress: string | Array<string>) {
+        if (Array.isArray(dubboAddress)) {
+            let socketAgents = dubboAddress.map((address) => {
+                const [host, port] = address.split(':');
+                return new SocketWorker({
+                    host: host,
+                    port: port,
+                    onConnect: this.onConnect,
+                    onData: this.onData,
+                    onClose: this.onClose
+                });
+            });
+            return socketAgents;
+        } else if (typeof dubboAddress === 'string') {
+            const [host, port] = dubboAddress.split(':');
+            return [new SocketWorker({
+                host: host,
+                port: port,
+                onConnect: this.onConnect,
+                onData: this.onData,
+                onClose: this.onClose
+            })];
+        }
+    }
+
+    _getConnectedSocketAgents() {
+        let agent = this._socketWorker.filter(function(socketWorker) {
+            return socketWorker.status === SOCKET_STATUS.CONNECTED;
+        });
+        let len = agent.length;
+        if (len === 0) {
+            //这里是否有必要发起重连?
+            throw new TypeError(`this._socketWorker could not find any connected socekt worker`);
+        } else if (len > 0) {
+            return agent[Math.floor(Math.random() * len)];
+        }
     }
 
     static from(options: IDirectlyDubboProps) {
@@ -38,7 +69,7 @@ export class DirectlyDubbo {
 
         Object.keys(methods).forEach(methodName => {
             proxy[methodName] = (...args: Array<IHessianType>) => {
-                return new Promise((resolve, reject) => {
+                return new Promise(async (resolve, reject) => {
                     const ctx = Context.create();
                     ctx.resolve = resolve;
                     ctx.reject = reject;
@@ -49,7 +80,7 @@ export class DirectlyDubbo {
                     ctx.dubboInterface = dubboInterface;
                     ctx.path = dubboInterface;
                     ctx.group = group;
-                    ctx.timeout = timeout;
+                    ctx.timeout = timeout || this._options.dubboInvokeTimeout;
                     ctx.version = version || ctx.dubboVersion;
 
                     //check param
@@ -62,7 +93,6 @@ export class DirectlyDubbo {
                         reject(new Error('not all arguments are valid hessian type'));
                         return;
                     }
-
                     //超时检测
                     ctx.timeoutId = setTimeout(() => {
                         const {requestId} = ctx;
@@ -70,6 +100,13 @@ export class DirectlyDubbo {
                         this.fail(requestId, new Error('remote invoke timeout'));
                     }, this._options.dubboInvokeTimeout * 1000);
 
+                    log('middleware->', this._middleware);
+                    const fn = compose(this._middleware);
+                    try {
+                        await fn(ctx);
+                    } catch (err) {
+                        log(err);
+                    }
                     //add task to queue
                     this.addQueue(ctx);
                 }).then(res => ({
@@ -83,6 +120,23 @@ export class DirectlyDubbo {
         });
 
         return proxy;
+    }
+
+
+    /**
+     * extends middleware, api: the same as koa
+     * @param fn
+     */
+    use(fn) {
+        let arr = Array.isArray(fn) ? fn : [fn];
+        for (let i = 0; i < arr.length; i++) {
+            if (typeof arr[i] != 'function') {
+                throw new TypeError('middleware must be a function');
+            }
+            log('use middleware %s', arr[i]._name || arr[i].name || '-');
+            this._middleware.push(arr[i]);
+        }
+        return this;
     }
 
 
@@ -121,15 +175,15 @@ export class DirectlyDubbo {
     private addQueue(ctx: Context) {
         const {requestId} = ctx;
         this._queue.set(requestId, ctx);
-
-        log(`current socketworkder=> ${this._socketStatus}`);
+        let socketWorker = this._getConnectedSocketAgents();
+        log(`current socketworkder=> ${socketWorker.status}`);
 
         //根据当前socket的worker的状态，来对任务进行处理
-        switch (this._socketStatus) {
+        switch (socketWorker.status) {
             case SOCKET_STATUS.PADDING:
                 break;
             case SOCKET_STATUS.CONNECTED:
-                this._socketWorker.write(ctx);
+                socketWorker.write(ctx);
                 break;
             case SOCKET_STATUS.CLOSED:
                 this.fail(requestId, new Error(`SocketWorker had closed.`));
@@ -137,14 +191,42 @@ export class DirectlyDubbo {
         }
     }
 
+    //动态ip重连
+    reInitSocket(address: string | Array<string>) {
+        //todo：为保证滚动重启，不能一次全断开。需要有个机制去依次重连断开
+        let addressList = typeof address === 'string' ? [address] : address;
+        // 多余的老连接 移除销毁
+        if (addressList.length < this._socketWorker.length) {
+            this._socketWorker.splice(addressList.length).forEach((agent) => {
+                agent.destroy();
+            });
+        }
+        addressList.forEach((dubboAddress, index) => {
+            const [host, port] = dubboAddress.split(':');
+            if (this._socketWorker[index]) {
+                this._socketWorker[index].reInitSocket({
+                    host,
+                    port
+                });
+            } else {
+                this._socketWorker.push(new SocketWorker({
+                    host: host,
+                    port: port,
+                    onConnect: this.onConnect,
+                    onData: this.onData,
+                    onClose: this.onClose
+                }));
+            }
+        });
+    }
+
     //===================socket event===================
     private onConnect = () => {
-        this._socketStatus = SOCKET_STATUS.CONNECTED;
-
+        let socketWorker = this._getConnectedSocketAgents();
         for (let ctx of this._queue.values()) {
             //如果还没有被处理
             if (ctx.isNotScheduled) {
-                this._socketWorker.write(ctx);
+                socketWorker.write(ctx);
             }
         }
     };
@@ -157,7 +239,6 @@ export class DirectlyDubbo {
 
     private onClose = () => {
         log('SocketWorker was closed');
-        this._socketStatus = SOCKET_STATUS.CLOSED;
         //failed all
         for (let ctx of this._queue.values()) {
             ctx.reject(new Error('socket-worker was closed.'));

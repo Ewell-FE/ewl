@@ -1,5 +1,9 @@
-import {IUserService} from '../cc/ewell/authority/api/v3/service/IUserService';
+import {IUserService} from '../cc/ewell/message/api/service/IUserService';
+import {IMessageDubboService} from '../cc/ewell/message/api/service/IMessageDubboService';
+import {IMetadataService} from '../cc/ewell/message/api/service/MetadataService';
 
-export default <any>{
-  IUserService
+export default {
+    IUserService,
+    IMessageDubboService,
+    IMetadataService
 };

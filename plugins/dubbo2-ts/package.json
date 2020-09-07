@@ -8,10 +8,9 @@
   "author": "lileilei <lileilei@ewell.cc>",
   "homepage": "http://192.168.150.61:2080/Web-team/sh-emr-group/packages",
   "license": "ISC",
-  "main": "es6/index.js",
-  "types": "./es6/typings/index.d.ts",
+  "main": "lib/index.js",
   "directories": {
-    "lib": "lib",
+    "es6": "lib",
     "test": "__tests__"
   },
   "files": [
@@ -21,12 +20,12 @@
   "scripts": {
     "clean": "rimraf lib es6 types coverage",
     "test": "node test.js",
-    "build": "yarn clean && yarn build:tsc:es5 && yarn build:tsc:es6",
-    "build:tsc:es5": "tsc",
-    "build:tsc:es6": "tsc --project tsconfig.es6.json",
+    "build": "yarn clean && yarn build:tsc:es5  && yarn build:tsc:es6",
+    "build:tsc:es5": "tsc --declarationDir ./lib/typings",
+    "build:tsc:es6": "tsc  --project tsconfig.es6.json  --declarationDir ./es6/typings",
     "start": "npm-run-all -p start:tsc:es5 start:tsc:es6",
-    "start:tsc:es5": "yarn build:tsc:es5 --watch --preserveWatchOutput",
-    "start:tsc:es6": "yarn build:tsc:es6 --watch --preserveWatchOutput"
+    "start:tsc:es5": "tsc  --watch --preserveWatchOutput",
+    "start:tsc:es6": "tsc  --project tsconfig.es6.json  --watch --preserveWatchOutput"
   },
   "publishConfig": {
     "registry": "http://192.168.150.59:8081/repository/npm-host1"
@@ -41,10 +40,13 @@
   "dependencies": {
     "debug": "^4.1.1",
     "hessian.js": "^2.10.0",
+    "interpret-util": "^0.0.6",
     "ip": "^1.1.5",
     "js-to-java": "^2.6.1",
+    "koa-compose": "^4.1.0",
     "npm-run-all": "^4.1.5",
-    "rxjs": "^6.6.2"
+    "rxjs": "^6.6.2",
+    "urllib": "^2.36.1"
   },
   "devDependencies": {
     "@types/debug": "^4.1.5",

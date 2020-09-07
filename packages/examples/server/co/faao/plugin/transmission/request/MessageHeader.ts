@@ -5,6 +5,7 @@ export interface IMessageHeader {
   uuheader?: string;
   params?: string;
   i18n?: string;
+    nvalue?: string;
 }
 
 export class MessageHeader {
@@ -13,12 +14,14 @@ export class MessageHeader {
     this.uuheader = params.uuheader;
     this.params = params.params;
     this.i18n = params.i18n;
+    this.nvalue = params.nvalue;
   }
 
   datatype?: string;
   uuheader?: string;
   params?: string;
   i18n?: string;
+    nvalue?: string;
 
   __fields2java() {
     return {
@@ -28,6 +31,7 @@ export class MessageHeader {
         uuheader: java.String(this.uuheader),
         params: java.String(this.params),
         i18n: java.String(this.i18n),
+          nvalue: java.String(this.nvalue),
       },
     };
   }

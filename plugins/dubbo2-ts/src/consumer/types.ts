@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-import {IUserServiceWrapper} from 'examples/build/server/cc/ewell/authority/api/v3/service/IUserService';
 
 export type THostPort = string;
 export type TAgentAddr = string;

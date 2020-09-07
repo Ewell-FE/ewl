@@ -31,74 +31,74 @@ export class Startup {
             dev: this.env !== 'production',
             dir: resolve('.', 'client'),
             conf: require(resolve('.', 'next.config.js'))
-        }
-      this.app = next(nextConfig)
-      this.handle = this.app.getRequestHandler();
-      this.server = new ExpressAdapter(express());
+        };
+        this.app = next(nextConfig);
+        this.handle = this.app.getRequestHandler();
+        this.server = new ExpressAdapter(express());
     }
 
     async main() {
         try {
             const handle = this.handle;
-        const app = await this.configureNest();
+            const app = await this.configureNest();
 
-        // 开发环境本地代理配置
-        this.server.use(proxy({env: this.env}));
+            // 开发环境本地代理配置
+            this.server.use(proxy({env: this.env}));
 
-        // 阿波罗配置
-        // this.server.use(await apollo({appId: 'xh-medrec'}));
+            // 阿波罗配置
+            // this.server.use(await apollo({appId: 'xh-medrec'}));
 
-        // favicon.ico 拦截
-        this.server.use(favicon(path.resolve(process.cwd(), 'client/static/favicon.ico')))
+            // favicon.ico 拦截
+            this.server.use(favicon(path.resolve(process.cwd(), 'client/static/favicon.ico')));
 
-        // 健康检查必须在权限上面
-        this.server.use(health('/api/app/health'))
+            // 健康检查必须在权限上面
+            this.server.use(health('/api/app/health'));
 
-        // 权限中间件
-        this.server.use(auth(handle, this.port));
+            // 权限中间件
+            this.server.use(auth(handle, this.port));
 
-        this.server.post(/^(\/api)/, (req, res, next) => {
+            this.server.post(/^(\/api)/, (req, res, next) => {
                 let referer = req.headers.referer || 'http://localhost:3002';
-          let url = new URL(referer);
-          const span = tracer.startSpan(req.url, {
+                let url = new URL(referer);
+                const span = tracer.startSpan(req.url, {
                     tags: {
                         referer: url.origin + url.pathname,
                         url: req.url
                     }
                 });
-          let carrier = {};
-          tracer.inject(span.context(), opentracing.FORMAT_TEXT_MAP, carrier);
-          zone.setRootContext('tradeId', carrier);
-          req.tradeSpan = span;
-          next()
-        })
-        await this.app.prepare()
-        await app.listen(this.port);
-        console.log('http://localhost:' + this.port);
-      } catch (e) {
+                let carrier = {};
+                tracer.inject(span.context(), opentracing.FORMAT_TEXT_MAP, carrier);
+                zone.setRootContext('tradeId', carrier);
+                req.tradeSpan = span;
+                next();
+            });
+            await this.app.prepare();
+            await app.listen(this.port);
+            console.log('http://localhost:' + this.port);
+        } catch (e) {
             console.log('error');
-        console.error(e);
-        process.exit(1);
-      }
+            console.error(e);
+            process.exit(1);
+        }
     }
 
     private async configureNest() {
         this.server.use(express.json({limit: '50mb'}));
-      const app: INestApplication = await NestFactory.create(this.config.module, this.server, {
-        bodyParser: true,
-        cors: true
-      });
-      app.setGlobalPrefix('api')
-      const options = new DocumentBuilder()
+        const app: INestApplication = await NestFactory.create(this.config.module, this.server, {
+            bodyParser: true,
+            cors: true
+        });
+        app.setGlobalPrefix('api');
+        const options = new DocumentBuilder()
             .setTitle('企业级前端微服务框架')
             .setDescription('swagger api')
             .setVersion('1.0')
             .addTag('入口服务')
             .build();
-      const document = SwaggerModule.createDocument(app, options);
-      SwaggerModule.setup('swagger', app, document);
+        const document = SwaggerModule.createDocument(app, options);
+        SwaggerModule.setup('swagger', app, document);
 
-      return app;
+        return app;
     }
 
     private async configureNext() {

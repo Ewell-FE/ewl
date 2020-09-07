@@ -1,9 +1,12 @@
 {
   "extends": "@ewl/ts-configs/tsconfig.json",
   "compilerOptions": {
-    "downlevelIteration": true,
+    "allowJs": false,
     "target": "es2017",
-    "outDir": "lib"
+    "declaration": true,
+    "outDir": "./lib",
+    "incremental": true,
+    "tsBuildInfoFile": "./.tscache/tscache"
   },
   "include": [
     "src"
