@@ -4,6 +4,7 @@ import debug from 'debug';
 import {SOCKET_STATUS} from './socket-status';
 import SocketWorker from './socket-worker';
 import {IDirectlyDubboProps, IHessianType, IInvokeParam, Middleware} from './types';
+import {noop} from './util';
 
 const log = debug('directly-dubbo');
 
@@ -13,10 +14,20 @@ export class DirectlyDubbo {
     private _queue: Map<number, Context>;
     private readonly _socketWorker: Array<SocketWorker>;
     private _middleware: Array<Middleware<Context>> = [];
+    private _subscriber: {
+        onConnect: Function;
+        onData: Function;
+        onClose: Function;
+    };
 
     constructor(options: IDirectlyDubboProps) {
         this._queue = new Map();
         this._options = options;
+        this._subscriber = {
+            onConnect: noop,
+            onData: noop,
+            onClose: noop
+        };
         this._socketWorker = this._createSocketAgents(options.dubboAddress);
     }
 
@@ -52,8 +63,12 @@ export class DirectlyDubbo {
         });
         let len = agent.length;
         if (len === 0) {
-            //这里是否有必要发起重连?
-            throw new TypeError(`this._socketWorker could not find any connected socekt worker`);
+            for (let ctx of this._queue.values()) {
+                ctx.reject(new Error('socket-worker was closed.'));
+                ctx.cleanTimeout();
+            }
+            this._queue.clear();
+            throw new Error(`this._socketWorker could not find any connected socket worker`);
         } else if (len > 0) {
             return agent[Math.floor(Math.random() * len)];
         }
@@ -220,6 +235,15 @@ export class DirectlyDubbo {
         });
     }
 
+
+    subscribe(subscriber) {
+        this._subscriber = {
+            ...this._subscriber,
+            ...subscriber
+        };
+        return this;
+    }
+
     //===================socket event===================
     private onConnect = () => {
         let socketWorker = this._getConnectedSocketAgents();
@@ -229,6 +253,8 @@ export class DirectlyDubbo {
                 socketWorker.write(ctx);
             }
         }
+        //有连上的服务就触发
+        this._subscriber.onConnect();
     };
 
     private onData = (opts: any) => {
@@ -239,11 +265,13 @@ export class DirectlyDubbo {
 
     private onClose = () => {
         log('SocketWorker was closed');
-        //failed all
-        for (let ctx of this._queue.values()) {
-            ctx.reject(new Error('socket-worker was closed.'));
-            ctx.cleanTimeout();
+        //有实例断开，则尝试获取是否还有健康实例
+        try {
+            this._getConnectedSocketAgents();
+        } catch (e) {
+            //没有连上的服务了才触发
+            this._subscriber.onClose();
+            console.log(e);
         }
-        this._queue.clear();
     };
 }

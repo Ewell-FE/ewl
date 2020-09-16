@@ -23,16 +23,17 @@ export class classFactory {
         return methods;
     }
 
+
     create() {
         let serviceInterface = Object.create(null);
         this.MetadataArray.forEach((MetadataUrl) => {
             let Metadata = querystring.parse(MetadataUrl);
-            let interfaceName = Metadata.interface.split('.').slice(-1)[0];
-            serviceInterface[interfaceName] = (dubbo: DirectlyDubbo): IInterfaceService => {
+            let group = Metadata.group || ""
+            serviceInterface[`${Metadata.interface}:${Metadata.version}:${group}`] = (dubbo: DirectlyDubbo): IInterfaceService => {
                 return dubbo.proxyService<IInterfaceService>({
                     dubboInterface: Metadata.interface,
                     version: Metadata.version,
-                    group: Metadata.group,
+                    group: group,
                     methods: this.formatMethods(Metadata.methods)
                 });
             };

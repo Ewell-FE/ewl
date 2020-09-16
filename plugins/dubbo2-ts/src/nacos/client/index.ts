@@ -9,6 +9,7 @@ import Context from '../../consumer/context';
 import debug from 'debug';
 import config from '../config';
 import {classFactory} from './class-factory';
+import {METADATA_INTERFACE} from '../const';
 
 const log = debug('nacos:bootstrap ');
 
@@ -20,11 +21,17 @@ interface INacosClientProps {
     dubboSetting: setting
 }
 
+interface IMetadata {
+    'dubbo.metadata-service.url-params': string;
+    'dubbo.subscribed-services.revision': string;
+}
+
 export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> {
 
     private readonly _props: INacosClientProps;
     private readonly _service: TDubboService<TService> = Object.create({});
     private readonly _instances: Map<string, Array<DirectlyDubbo>> = new Map();
+    private readonly _metadataInstances: Map<string, DirectlyDubbo> = new Map();
     private readonly _middleware: Array<Middleware<Context>> = [];
 
     constructor(options: INacosClientProps) {
@@ -88,7 +95,8 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
         let DubboSettings = this._props.dubboSetting.getAllDubboSetting();
         let requestArray = DubboSettings.map(function(item) {
             return openApi.getAllInstances({
-                serviceName: item.dubboSetting.serviceName
+                serviceName: item.dubboSetting.serviceName,
+                groupName: item.dubboSetting.group
             });
         });
         Promise.all(requestArray).then(function(arr) {
@@ -97,28 +105,74 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
                 let hosts = json.hosts;
                 let len = hosts.length;
                 if (len === 0) {
-                    throw new Error(`hosts could not find any avaliable socekt worker`);
+                    throw new Error(`hosts could not find any avaliable socket worker`);
                     return null;
                 }
-                let serviceSetting = self._props.dubboSetting.getDubboSettingByName(json.dom);
-                let SocketPool = self._props.dubboSocketPool || config.dubboSocketPool; //默认创建一个连接
-                let dubboArray = [];
-                let address = hosts.map(function(item) {
-                    return item.ip + ':' + item.port;
-                });
-                for (let i = 0; i < SocketPool; i++) {
-                    let dubbo = DirectlyDubbo.from({
-                        dubboAddress: address,
-                        dubboVersion: serviceSetting.dubboSetting.version,
-                        dubboInvokeTimeout: self._props.dubboInvokeTimeout || config.dubboInvokeTimeout
-                    });
-                    dubbo.use(self._middleware);
-                    dubboArray.push(dubbo);
-                }
-
-                self._instances.set(json.dom, dubboArray);
-                self._registryService();
+                self._initMetadataService(json);
             });
+        });
+    }
+
+    /**
+     * @description  根据 源数据，连接实例，并且注册方法
+     */
+    _createDubboByMetaData(Metadata_ID, revisionAddress, result) {
+        let self = this;
+        let serviceSetting = self._props.dubboSetting.getDubboSettingByName(Metadata_ID.split(':').slice(-1).toString());
+        let SocketPool = self._props.dubboSocketPool || config.dubboSocketPool; //默认每个实例创建一次连接
+        let dubboArray = [];
+        let address = revisionAddress.get(Metadata_ID);
+        for (let i = 0; i < SocketPool; i++) {
+            let dubbo = DirectlyDubbo.from({
+                dubboAddress: address,
+                dubboVersion: serviceSetting.dubboSetting.version,
+                dubboInvokeTimeout: self._props.dubboInvokeTimeout || config.dubboInvokeTimeout
+            }).subscribe({
+                onClose: self._serviceDiscoveryRegistry
+            });
+            dubbo.use(self._middleware);
+            dubboArray.push(dubbo);
+        }
+        self._instances.set(Metadata_ID, dubboArray);
+
+        let service = new classFactory(result).create();
+        self._registryService(Metadata_ID, service);
+    }
+
+
+    /**
+     * @description  连接 metadataService 服务, 按照 revision 分组
+     */
+    _initMetadataService(json) {
+        let self = this;
+        let revisionAddress = new Map();
+        json.hosts.forEach((item) => {
+            let params = JSON.parse(item.metadata['dubbo.metadata-service.url-params']);
+            let revision = params.dubbo.version;
+            let group = item.serviceName;  //group：当前 MetadataService 分组，数据使用 serviceName
+            let Metadata_ID = `${METADATA_INTERFACE}:${revision}:${group}`; //源数据 dubbo服务id
+            let MetadataDubbo = null;
+            if (!this._metadataInstances.has(Metadata_ID)) {
+                MetadataDubbo = DirectlyDubbo.from({
+                    dubboAddress: item.ip + ':' + params.dubbo.port,
+                    dubboVersion: revision,
+                    dubboInvokeTimeout: this._props.dubboInvokeTimeout || config.dubboInvokeTimeout
+                }).subscribe({
+                    onConnect: async () => {
+                        let metaDataDubboUrl = new classFactory([
+                            `dubbo://${item.ip}:${params.dubbo.port}/${METADATA_INTERFACE}?&interface=${METADATA_INTERFACE}&methods=getExportedURLs&version=${revision}&group=${group}`
+                        ]).create();
+                        self._registryMetadataService(Metadata_ID, metaDataDubboUrl);
+                        let result = await self._service[`${Metadata_ID}`].getExportedURLs();
+                        this._createDubboByMetaData(Metadata_ID, revisionAddress, result.res);
+                    }
+                });
+            } else {
+                MetadataDubbo = this._metadataInstances.get(Metadata_ID);
+            }
+            let address = revisionAddress.get(Metadata_ID) || [];
+            revisionAddress.set(Metadata_ID, [item.ip + ':' + item.port, ...address]);
+            this._metadataInstances.set(Metadata_ID, MetadataDubbo);
         });
     }
 
@@ -130,26 +184,34 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
         res.send('OK');
     }
 
+
+    /**
+     * 根据源数据 revision 分组的key来注册 MetadataService 服务 方法
+     * @param Metadata_ID  ${服务名:revision} 为key
+     * @param service 当前服务的源数据 MetadataService服务
+     * service style:
+     * {[key: string]: (directlyDubbo): T => directlyDubbo.proxyService<T>({...})}
+     */
+    private _registryMetadataService(Metadata_ID, service) {
+        let self = this;
+        for (let interfaceName in service) {
+            self._service[`${Metadata_ID}`] = service[interfaceName](this._metadataInstances.get(Metadata_ID));
+        }
+    }
+
+
     /**
      * 注册服务到 nacos 容器中
      * @param service nacos需要管理的接口服务
      * service style:
      * {[key: string]: (directlyDubbo): T => directlyDubbo.proxyService<T>({...})}
      */
-    private _registryService() {
+    private _registryService(Metadata_ID, service) {
         let self = this;
-        let DubboSettings = this._props.dubboSetting.getAllDubboSetting();
-        DubboSettings.map((item) => {
-            let dubboSetting = item.dubboSetting;
-            let service = new classFactory([
-                'dubbo://192.168.150.55:20886/cc.ewell.message.api.service.EchoService?anyhost=true&application=message-provider&default=true&deprecated=false&dubbo=2.0.2&dynamic=true&generic=false&interface=cc.ewell.message.api.service.EchoService&metadata-type=remote&methods=echo&pid=7933&release=2.7.7&revision=1.0.0&side=provider&threadpool=fixed&timestamp=1598529000565&version=1.0.0',
-                'dubbo://192.168.150.55:20886/cc.ewell.message.api.service.IMessageDubboService?anyhost=true&application=message-provider&default=true&deprecated=false&dubbo=2.0.2&dynamic=true&generic=false&interface=cc.ewell.message.api.service.IMessageDubboService&metadata-type=remote&methods=messageTemplateStateChange,collectMessage,deleteDraftMessage,revokeMessage,getReceiveMessageList,getMessageByMsgId,sendMessage,deleteMessage,getTemplateType,cancleCollectMessage,addMessageTemplate,markMessageReaded,sendDraftMessage,sendSms,recoverMessage,getTypeMessageTemplate,getFirstCatgListNurse,getMessageStatusByMsgIds,getSendMessageList,getMessageTemplateById,claimMessage,editMessageTemplate,editMessageByMsgId&pid=7933&release=2.7.7&revision=1.0.0&side=provider&threadpool=fixed&timestamp=1598529003653&version=1.0.0'
-            ]).create();
-            for (let key in service) {
-                let hosts = self._instances.get(dubboSetting.serviceName);
-                let len = hosts.length;
-                self._service[key] = service[key](hosts[Math.floor(Math.random() * len)]);
-            }
-        });
+        for (let key in service) {
+            let instances = self._instances.get(Metadata_ID);
+            let len = instances.length;
+            self._service[key] = service[key](instances[Math.floor(Math.random() * len)])
+        }
     }
 }
