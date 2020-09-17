@@ -16,7 +16,7 @@ export class classFactory {
     }
 
     formatMethods(methodsString) {
-        let methods = Object.create(null);
+        let methods = Object.create({});
         methodsString.split(',').forEach((name) => {
             methods[name] = argumentMap;
         });
@@ -25,7 +25,7 @@ export class classFactory {
 
 
     create() {
-        let serviceInterface = Object.create(null);
+        let serviceInterface = Object.create({});
         this.MetadataArray.forEach((MetadataUrl) => {
             let Metadata = querystring.parse(MetadataUrl);
             let group = Metadata.group || ""

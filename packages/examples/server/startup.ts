@@ -17,6 +17,8 @@ import health from './middleware/health';
 import proxy from './middleware/proxy';
 import apollo from './middleware/apollo';
 import * as opentracing from 'opentracing';
+import docs from 'dubbo2-ts-docs';
+import dubbo from './dubbo';
 import zone from 'zone-context';
 
 export class Startup {
@@ -53,6 +55,9 @@ export class Startup {
 
             // 健康检查必须在权限上面
             this.server.use(health('/api/app/health'));
+
+            //dubbo服务的接口文档
+            this.server.get('/docs', docs(dubbo.api));
 
             // 权限中间件
             this.server.use(auth(handle, this.port));

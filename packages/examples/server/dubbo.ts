@@ -15,7 +15,6 @@ const nacos = new nacosClient({
     dubboSetting
 });
 
-
 nacos.use(async (ctx, next) => {
     Object.assign(ctx.attachments, {
         tradeId: '000000999999'

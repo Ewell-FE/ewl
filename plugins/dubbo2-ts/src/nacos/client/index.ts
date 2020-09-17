@@ -29,6 +29,7 @@ interface IMetadata {
 export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> {
 
     private readonly _props: INacosClientProps;
+    private readonly _dubboInterface: TDubboService<TService> = Object.create({});
     private readonly _service: TDubboService<TService> = Object.create({});
     private readonly _instances: Map<string, Array<DirectlyDubbo>> = new Map();
     private readonly _metadataInstances: Map<string, DirectlyDubbo> = new Map();
@@ -50,6 +51,11 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
         return this._service;
     }
 
+    //获取service实例列表
+    get api() {
+        return this._dubboInterface;
+    }
+
     //use中间件
     use(fn) {
         if (typeof fn != 'function') {
@@ -64,27 +70,8 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
     /**
      * @description  服务重新注册
      */
-    _serviceDiscoveryRegistry(serviceName) {
-        let _instances = this._instances.get(serviceName) || [];
-        openApi.getAllInstances({
-            serviceName: serviceName
-        }).then(function(res: string) {
-            let json = JSON.parse(res);
-            let hosts = json.hosts;
-            let len = hosts.length;
-            if (len === 0) {
-                throw new Error(`serviceDiscoveryRegistry : hosts could not find any avaliable socekt worker`);
-                return null;
-            }
-            let address = hosts.map(function(item) {
-                return item.ip + ':' + item.port;
-            });
-            _instances.map(function(directlyWorker) {
-                directlyWorker.reInitSocket(address);
-            });
-        }).catch(function(e) {
-            console.error(e);
-        });
+    _dubboInterfaceDiscoveryRegistry(Metadata_ID) {
+        console.log('是否需要自省呢？？？');
     }
 
     /**
@@ -128,13 +115,14 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
                 dubboVersion: serviceSetting.dubboSetting.version,
                 dubboInvokeTimeout: self._props.dubboInvokeTimeout || config.dubboInvokeTimeout
             }).subscribe({
-                onClose: self._serviceDiscoveryRegistry
+                onClose: () => {
+                    self._dubboInterfaceDiscoveryRegistry(Metadata_ID);
+                }
             });
             dubbo.use(self._middleware);
             dubboArray.push(dubbo);
         }
         self._instances.set(Metadata_ID, dubboArray);
-
         let service = new classFactory(result).create();
         self._registryService(Metadata_ID, service);
     }
@@ -148,22 +136,23 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
         let revisionAddress = new Map();
         json.hosts.forEach((item) => {
             let params = JSON.parse(item.metadata['dubbo.metadata-service.url-params']);
-            let revision = params.dubbo.version;
+            let revision = item.metadata['dubbo.exported-services.revision'];
+            let version = params.dubbo.version;
             let group = item.serviceName;  //group：当前 MetadataService 分组，数据使用 serviceName
             let Metadata_ID = `${METADATA_INTERFACE}:${revision}:${group}`; //源数据 dubbo服务id
             let MetadataDubbo = null;
             if (!this._metadataInstances.has(Metadata_ID)) {
                 MetadataDubbo = DirectlyDubbo.from({
                     dubboAddress: item.ip + ':' + params.dubbo.port,
-                    dubboVersion: revision,
+                    dubboVersion: version,
                     dubboInvokeTimeout: this._props.dubboInvokeTimeout || config.dubboInvokeTimeout
                 }).subscribe({
                     onConnect: async () => {
                         let metaDataDubboUrl = new classFactory([
-                            `dubbo://${item.ip}:${params.dubbo.port}/${METADATA_INTERFACE}?&interface=${METADATA_INTERFACE}&methods=getExportedURLs&version=${revision}&group=${group}`
+                            `dubbo://${item.ip}:${params.dubbo.port}/${METADATA_INTERFACE}?&interface=${METADATA_INTERFACE}&methods=getExportedURLs&version=${version}&group=${group}`
                         ]).create();
                         self._registryMetadataService(Metadata_ID, metaDataDubboUrl);
-                        let result = await self._service[`${Metadata_ID}`].getExportedURLs();
+                        let result = await self._dubboInterface[`${Metadata_ID}`].getExportedURLs();
                         this._createDubboByMetaData(Metadata_ID, revisionAddress, result.res);
                     }
                 });
@@ -180,7 +169,7 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
      * @description  暴漏给注册中心通知接口的方法，只支持express
      */
     middleware(req, res, next) {
-        this._serviceDiscoveryRegistry(req.param('serviceName'));
+        this._dubboInterfaceDiscoveryRegistry(req.param('serviceName'));
         res.send('OK');
     }
 
@@ -195,7 +184,7 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
     private _registryMetadataService(Metadata_ID, service) {
         let self = this;
         for (let interfaceName in service) {
-            self._service[`${Metadata_ID}`] = service[interfaceName](this._metadataInstances.get(Metadata_ID));
+            self._dubboInterface[`${Metadata_ID}`] = service[interfaceName](this._metadataInstances.get(Metadata_ID));
         }
     }
 
@@ -211,7 +200,26 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
         for (let key in service) {
             let instances = self._instances.get(Metadata_ID);
             let len = instances.length;
-            self._service[key] = service[key](instances[Math.floor(Math.random() * len)])
+            self._dubboInterface[key] = service[key](instances[Math.floor(Math.random() * len)]);
+            //为了简化调用，当没有相同服务名称的时候以 `I${服务名}` 来简化调用
+            let dubboInterface = key.split(':')[0].split('.').slice(-1)[0];
+            let proxy = self._service[dubboInterface] || {};
+            Object.defineProperty(self._service, `I${dubboInterface}`, {
+                get() {
+                    let keys = Object.keys(proxy);
+                    if (keys.length >= 2) {
+                        console.warn('Containing the same service，Please differentiate the call');
+                        return proxy;
+                    }
+                    return proxy[keys[0]];
+                },
+                enumerable: true,
+                configurable: true
+            });
+            self._service[dubboInterface] = {
+                ...proxy,
+                [key]: service[key](instances[Math.floor(Math.random() * len)])
+            };
         }
     }
 }

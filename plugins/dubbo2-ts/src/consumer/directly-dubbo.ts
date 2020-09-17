@@ -80,7 +80,7 @@ export class DirectlyDubbo {
 
     proxyService<T extends Object>(invokeParam: IInvokeParam): T {
         const {dubboInterface, methods, timeout, group, version} = invokeParam;
-        const proxy = Object.create(null);
+        const proxy = Object.create({});
 
         Object.keys(methods).forEach(methodName => {
             proxy[methodName] = (...args: Array<IHessianType>) => {
@@ -271,7 +271,7 @@ export class DirectlyDubbo {
         } catch (e) {
             //没有连上的服务了才触发
             this._subscriber.onClose();
-            console.log(e);
+            console.error(e);
         }
     };
 }
