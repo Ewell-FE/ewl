@@ -27,12 +27,9 @@ export class AuthorityController {
             'params': '{"messageId":"1057472937218904064","i18n":"en-GB"}',
             'nvalue': 'd'
         };
-        console.log(dubbo.service.IIMessageDubboService)
         let resi = await dubbo.service.IEchoService.echo(java.String("ok"))
         // let result = await dubbo.service.IMessageDubboService.getMessageStatusByMsgIds(new MessageHeader(params));
         // let result2 = await dubbo.service.IMetadataService.getExportedURLs();
         return resi;
     }
 }
-
-

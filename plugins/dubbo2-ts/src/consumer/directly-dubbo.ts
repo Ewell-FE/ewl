@@ -57,8 +57,23 @@ export class DirectlyDubbo {
         }
     }
 
+
+    /**
+     * 获取所有连接实例
+     */
+    get socketWorker() {
+        return this._socketWorker;
+    }
+
+    /**
+     * 获取健康连接实例
+     */
     _getConnectedSocketAgents() {
         let agent = this._socketWorker.filter(function(socketWorker) {
+            return socketWorker.status !== SOCKET_STATUS.CLOSED;
+        });
+
+        let connectedAgent = this._socketWorker.filter(function(socketWorker) {
             return socketWorker.status === SOCKET_STATUS.CONNECTED;
         });
         let len = agent.length;
@@ -68,7 +83,10 @@ export class DirectlyDubbo {
                 ctx.cleanTimeout();
             }
             this._queue.clear();
-            throw new Error(`this._socketWorker could not find any connected socket worker`);
+            throw new Error(`_socketWorker could not find any connected socket worker`);
+        } else if (connectedAgent.length > 0) {
+            //有健康连接的优先返回
+            return connectedAgent[Math.floor(Math.random() * len)];
         } else if (len > 0) {
             return agent[Math.floor(Math.random() * len)];
         }
@@ -97,7 +115,6 @@ export class DirectlyDubbo {
                     ctx.group = group;
                     ctx.timeout = timeout || this._options.dubboInvokeTimeout;
                     ctx.version = version || ctx.dubboVersion;
-
                     //check param
                     //param should be hessian data type
                     if (!ctx.isMethodArgsHessianType) {
@@ -113,7 +130,7 @@ export class DirectlyDubbo {
                         const {requestId} = ctx;
                         log(`${dubboInterface} method: ${methodName} invoke timeout`);
                         this.fail(requestId, new Error('remote invoke timeout'));
-                    }, this._options.dubboInvokeTimeout * 1000);
+                    }, ctx.timeout * 1000);
 
                     log('middleware->', this._middleware);
                     const fn = compose(this._middleware);
@@ -197,6 +214,8 @@ export class DirectlyDubbo {
         switch (socketWorker.status) {
             case SOCKET_STATUS.PADDING:
                 break;
+            case SOCKET_STATUS.RETRY:
+                break;
             case SOCKET_STATUS.CONNECTED:
                 socketWorker.write(ctx);
                 break;
@@ -264,7 +283,7 @@ export class DirectlyDubbo {
     };
 
     private onClose = () => {
-        log('SocketWorker was closed');
+        log(' SocketWorker was closed');
         //有实例断开，则尝试获取是否还有健康实例
         try {
             this._getConnectedSocketAgents();

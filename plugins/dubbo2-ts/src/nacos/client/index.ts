@@ -46,14 +46,23 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
         this._registryInstances();
     }
 
-    //获取service实例列表
+
+    //获取service 接口方法 `${interface}:${vision}:${group}` 的方式精确调用
+    get api() {
+        return this._dubboInterface;
+    }
+
+    //获取service 接口方法 通过 `I${方法名}` 快速便捷的调用 _dubboInterface 的接口
     get service() {
         return this._service;
     }
 
-    //获取service实例列表
-    get api() {
-        return this._dubboInterface;
+    //获取service实例对象
+    get instances() {
+        return {
+            metadataInstances: this._metadataInstances,
+            instances: this._instances
+        };
     }
 
     //use中间件
@@ -92,11 +101,13 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
                 let hosts = json.hosts;
                 let len = hosts.length;
                 if (len === 0) {
-                    throw new Error(`hosts could not find any avaliable socket worker`);
+                    throw new Error(`hosts could not find any available socket worker`);
                     return null;
                 }
                 self._initMetadataService(json);
             });
+        }).catch(e => {
+            console.error('_registryInstances', e);
         });
     }
 
@@ -152,8 +163,12 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
                             `dubbo://${item.ip}:${params.dubbo.port}/${METADATA_INTERFACE}?&interface=${METADATA_INTERFACE}&methods=getExportedURLs&version=${version}&group=${group}`
                         ]).create();
                         self._registryMetadataService(Metadata_ID, metaDataDubboUrl);
-                        let result = await self._dubboInterface[`${Metadata_ID}`].getExportedURLs();
-                        this._createDubboByMetaData(Metadata_ID, revisionAddress, result.res);
+                        try {
+                            let result = await self._dubboInterface[`${Metadata_ID}`].getExportedURLs();
+                            this._createDubboByMetaData(Metadata_ID, revisionAddress, result.res);
+                        } catch (e) {
+                            console.error('getExportedURLs by MetadataService: ', e.message);
+                        }
                     }
                 });
             } else {
@@ -201,17 +216,17 @@ export class nacosClient<TService = {[key: string]: {[key: string]: Function}}> 
             let instances = self._instances.get(Metadata_ID);
             let len = instances.length;
             self._dubboInterface[key] = service[key](instances[Math.floor(Math.random() * len)]);
-            //为了简化调用，当没有相同服务名称的时候以 `I${服务名}` 来简化调用
+            //为了简化调用，当没有相同接口不同group活着版本的时候以 `I${服务名}` 来简化调用
             let dubboInterface = key.split(':')[0].split('.').slice(-1)[0];
             let proxy = self._service[dubboInterface] || {};
             Object.defineProperty(self._service, `I${dubboInterface}`, {
                 get() {
-                    let keys = Object.keys(proxy);
+                    let keys = Object.keys(self._service[dubboInterface]);
                     if (keys.length >= 2) {
-                        console.warn('Containing the same service，Please differentiate the call');
-                        return proxy;
+                        //Containing the same service，Please differentiate the call
+                        return self._service[dubboInterface];
                     }
-                    return proxy[keys[0]];
+                    return self._service[dubboInterface][keys[0]];
                 },
                 enumerable: true,
                 configurable: true

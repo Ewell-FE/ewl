@@ -18,6 +18,7 @@ interface IOPTIONS {
 export function getAllInstances(options: IOPTIONS) {
     return new Promise(function(resolve, reject) {
         urllib.request(NACOS_URL_INSTANCE, {
+            timeout: 60 * 1000,
             method: 'GET',
             data: {
                 groupName: Constants.DEFAULT_GROUP,

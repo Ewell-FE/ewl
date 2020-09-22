@@ -9,7 +9,7 @@ import {SOCKET_STATUS} from './socket-status';
 import {ISocketProps, ISocketSubscriber} from './types';
 
 const log = debug('dubbo:socket-worker');
-const DEFAULT_HEARTBEAT = 60 * 1000;  //心跳时间
+const DEFAULT_HEARTBEAT = 120 * 1000;  //心跳时间
 const RETRY_TIMES = 3;  //心跳失败次数
 let pid = 0; //一个tcp连接的标识
 
@@ -55,8 +55,8 @@ export default class SocketWorker {
 
     _onClose() {
         this._decodeBuff.clearBuffer();
-        //刚启动就没连成功 或者 过程中断开 健康检查了3次 则尝试重连
-        if (this._retry === 0 || this._retry > 3) {
+        //健康检查了3次的时间段内,所有请求失败都会尝试重连
+        if (this._retry < RETRY_TIMES) {
             this._status = SOCKET_STATUS.RETRY;
             this.reconnect();
         } else {
@@ -81,7 +81,7 @@ export default class SocketWorker {
      * @param 地址 ，端口
      */
     _initSocket() {
-        this.destroy()
+        this.destroy();
         const _socket = new net.Socket();
         _socket.setNoDelay();
         _socket.connect(Number(this._port), this._host, () => {
@@ -106,7 +106,7 @@ export default class SocketWorker {
     /**
      * @description 销毁连接
      */
-    destroy(){
+    destroy() {
         if (this._socket) {
             this._socket.destroy();
         }
@@ -131,6 +131,11 @@ export default class SocketWorker {
             if (this._retry <= RETRY_TIMES) {
                 this._healthReset();
             }
+            if (this._retry > 1) {
+                //超时错误不一定立即触发，手动触发
+                this._onClose();
+            }
+            log(`RETRY_TIMES %S`, this._retry);
         }, DEFAULT_HEARTBEAT);
     }
 
@@ -138,14 +143,14 @@ export default class SocketWorker {
      * @description 重连机制
      */
     reconnect() {
-        if (this.reconnectCount <= 10) {
+        if (this.reconnectCount <= 20) {
             clearTimeout(this._reconnectTimeId);//避免多次同时调用多个close事件触发
             this._reconnectTimeId = setTimeout(() => {
                 this.reconnectCount = this.reconnectCount + 1;
                 this._socket = this._initSocket();
             }, 3000);
         } else {
-            this._socket.destroy();
+            this.destroy();
         }
     }
 

@@ -11,6 +11,7 @@ const dubboSetting = setting
 const nacos = new nacosClient({
     application: {name: 'node-nacos'},
     register: '192.168.150.42:32118',
+    dubboSocketPool: 1,
     dubboInvokeTimeout: 60,
     dubboSetting
 });
@@ -22,4 +23,4 @@ nacos.use(async (ctx, next) => {
     await next(ctx);
 });
 
-export default nacos
+export default nacos;

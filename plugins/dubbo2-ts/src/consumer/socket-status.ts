@@ -16,8 +16,8 @@
  */
 
 export const enum SOCKET_STATUS {
-  PADDING = 'PADDING',
-  CONNECTED = 'CONNECTED',
-  CLOSED = 'CLOSED',
-  RETRY = 'RETRY',
+    PADDING = 'PADDING', //初始化等待连接
+    CONNECTED = 'CONNECTED',//连接在线
+    CLOSED = 'CLOSED', //连接已经断开
+    RETRY = 'RETRY', //心跳失败，尝试重连中
 }

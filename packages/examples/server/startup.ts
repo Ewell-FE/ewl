@@ -19,6 +19,7 @@ import apollo from './middleware/apollo';
 import * as opentracing from 'opentracing';
 import docs from 'dubbo2-ts-docs';
 import dubbo from './dubbo';
+import {DirectlyDubbo} from 'dubbo2-ts';
 import zone from 'zone-context';
 
 export class Startup {
@@ -58,6 +59,40 @@ export class Startup {
 
             //dubbo服务的接口文档
             this.server.get('/docs', docs(dubbo.api));
+
+            this.server.get('/jiankong', function(req, res, next) {
+                let result = Object.keys(dubbo.instances).map(function(key) {
+                    let instance = dubbo.instances[key];
+                    let json = {};
+                    let type = {
+                        'metadataInstances': '源数据服务',
+                        'instances': '微服务'
+                    }[key];
+                    instance.forEach(function(value, key, map) {
+                        let revision = key.split(':')[1];
+                        let serviceName = key.split(':')[2];
+                        let provider = Array.isArray(value) ? value : [value];
+                        json[key] = provider.map(function(worker: DirectlyDubbo) {
+                            return {
+                                type: type,
+                                serviceName: serviceName,
+                                revision: revision,
+                                agentsStatus: worker.socketWorker.map(function(item) {
+                                    return {
+                                        'PADDING': '初始化',
+                                        'RETRY': '重连中',
+                                        'CONNECTED': '在线',
+                                        'CLOSED': '下线'
+                                    }[item.status];
+                                })
+                            };
+                        });
+                    });
+                    return json;
+                });
+
+                res.json(result);
+            });
 
             // 权限中间件
             this.server.use(auth(handle, this.port));
