@@ -19,6 +19,7 @@ export class AuthorityController {
     }
 
 
+
     @Post('test')
     async test() {
         let params = {

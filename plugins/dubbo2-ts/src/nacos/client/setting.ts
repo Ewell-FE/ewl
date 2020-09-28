@@ -62,6 +62,7 @@ export class setting {
                 matchedRule.dubboSetting
             );
             this._cache.set(dubboInterface, matchedRule.dubboSetting);
+
             return matchedRule.dubboSetting;
         }
         return null;

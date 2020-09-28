@@ -83,7 +83,7 @@ export default class SocketWorker {
     _initSocket() {
         this.destroy();
         const _socket = new net.Socket();
-        _socket.setNoDelay();
+        _socket.setNoDelay(true);  //禁用 Nagle的算法
         _socket.connect(Number(this._port), this._host, () => {
             this._status = SOCKET_STATUS.CONNECTED;
             this._reset();//连接成功，重置次数

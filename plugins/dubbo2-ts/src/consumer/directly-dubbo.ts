@@ -227,7 +227,6 @@ export class DirectlyDubbo {
 
     //动态ip重连
     reInitSocket(address: string | Array<string>) {
-        //todo：为保证滚动重启，不能一次全断开。需要有个机制去依次重连断开
         let addressList = typeof address === 'string' ? [address] : address;
         // 多余的老连接 移除销毁
         if (addressList.length < this._socketWorker.length) {

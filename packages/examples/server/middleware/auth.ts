@@ -5,7 +5,7 @@ import log4js from '../config/logger';
 const logger = log4js.getLogger();
 
 export default function(handle, port) {
-    return async function(req, res, next) {
+    return function(req, res, next) {
         if (req.method.toUpperCase() === 'GET') {
             if (
                 _.startsWith(req.url, '/login') ||
