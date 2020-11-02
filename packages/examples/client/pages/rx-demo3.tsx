@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {of, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import Link from 'next/link';
 
 export default function Example() {
     // 声明一个新的叫做 “count” 的 state 变量
@@ -24,6 +25,9 @@ export default function Example() {
             <button onClick={() => setCount(count + 1)}>
                 Click me
             </button>
+            <Link href="/rx-demo4">
+                <a>Next</a>
+            </Link>
         </div>
     );
 }

@@ -58,7 +58,7 @@ export class Startup {
             this.server.use(health('/api/app/health'));
 
             //dubbo服务的接口文档
-            this.server.get('/docs', docs(dubbo.api));
+            // this.server.get('/docs', docs(dubbo.api));
 
             this.server.get('/jiankong', function(req, res, next) {
                 let result = Object.keys(dubbo.instances).map(function(key) {

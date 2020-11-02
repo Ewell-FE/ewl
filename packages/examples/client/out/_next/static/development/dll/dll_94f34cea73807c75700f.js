@@ -28311,7 +28311,7 @@ function warnNoop(publicInstance, callerName) {
 var ReactNoopUpdateQueue = {
   /**
    * Checks whether or not this composite component is mounted.
-   * @param {ReactClass} publicInstance The instance we want to test.
+   * @param {ReactClass} publicInstance The instance we want to test.js
    * @return {boolean} True if mounted, false otherwise.
    * @protected
    * @final

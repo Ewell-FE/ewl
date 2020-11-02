@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {Observable, fromEvent} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable, of, interval} from 'rxjs';
+import {map,take} from 'rxjs/operators';
+import Link from 'next/link';
 
 export default function Example() {
-    // 声明一个新的叫做 “count” 的 state 变量
-    const [count, setCount] = useState(0);
 
 
     useEffect(() => {
@@ -56,10 +55,41 @@ export default function Example() {
 
     return (
         <div>
-            <p>You clicked {count} times</p>
-            <button onClick={() => setCount(count + 1)}>
-                Click me
+            <h3>Operators (操作符)</h3>
+            <p>案例1</p>
+            <button onClick={() => {
+                map((x: number) => x * x)(of(1, 2, 3)).subscribe((v) => console.log(`value: ${v}`));
+            }}>
+                test1
             </button>
+            <p>案例2</p>
+            <p>op4()(op3()(op2()(op1()(obs)))) => obs.pipe(
+                op1(),
+                op2(),
+                op3(),
+                op3(),
+                )</p>
+            <button onClick={() => {
+                map((x: number) => x * x)(of(1, 2, 3)).subscribe((v) => console.log(`value: ${v}`));
+            }}>
+                test2
+            </button>
+
+            <p>案例3</p>
+            <p>一个案例</p>
+            <button onClick={() => {
+                const numbers = interval(1000);
+                console.log(take(4))
+                const takeFourNumbers = numbers.pipe(take(4));
+
+                takeFourNumbers.subscribe(x => console.log('Next: ', x));
+            }}>
+                test3
+            </button>
+
+            <Link href="/rx-demo3">
+                <a>Next</a>
+            </Link>
         </div>
     );
 }

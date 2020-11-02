@@ -7,6 +7,7 @@ import initStore from '../store/createStore';
 import withRedux from 'next-redux-wrapper';
 import {Provider} from 'react-redux';
 
+
 class MyApp extends App {
     componentDidMount() {
         // Remove the server-side injected CSS.
