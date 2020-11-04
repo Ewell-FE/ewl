@@ -481,6 +481,31 @@
         "signature": "3cf5f191d75bbe7c92f921e5ae12004ac672266e2be2ece69f40b1d6b1b678f9",
         "affectsGlobalScope": false
       },
+      "../../../node_modules/@types/eslint/helpers.d.ts": {
+        "version": "f345b0888d003fd69cb32bad3a0aa04c615ccafc572019e4bd86a52bd5e49e46",
+        "signature": "f345b0888d003fd69cb32bad3a0aa04c615ccafc572019e4bd86a52bd5e49e46",
+        "affectsGlobalScope": true
+      },
+      "../../../node_modules/@types/json-schema/index.d.ts": {
+        "version": "b2be568d8ce95fcb26eebd04c035d94825655fdf689bf67d799f5ff8cbbb1024",
+        "signature": "b2be568d8ce95fcb26eebd04c035d94825655fdf689bf67d799f5ff8cbbb1024",
+        "affectsGlobalScope": false
+      },
+      "../../../node_modules/@types/estree/index.d.ts": {
+        "version": "6a38e250306ceccbab257d11b846d5bd12491157d20901fa01afe4050c93c1b5",
+        "signature": "6a38e250306ceccbab257d11b846d5bd12491157d20901fa01afe4050c93c1b5",
+        "affectsGlobalScope": false
+      },
+      "../../../node_modules/@types/eslint/index.d.ts": {
+        "version": "be337886c0b7b94a0cec462da9d6136abfda99d51b4cd67830351cd691285387",
+        "signature": "be337886c0b7b94a0cec462da9d6136abfda99d51b4cd67830351cd691285387",
+        "affectsGlobalScope": false
+      },
+      "../../../node_modules/@types/eslint-scope/index.d.ts": {
+        "version": "274bda283ef15f4205603ca9967313fc013aa77ae89f2cbeab5fbd51439e96ed",
+        "signature": "274bda283ef15f4205603ca9967313fc013aa77ae89f2cbeab5fbd51439e96ed",
+        "affectsGlobalScope": false
+      },
       "../../../node_modules/@types/eslint-visitor-keys/index.d.ts": {
         "version": "725d9be2fd48440256f4deb00649adffdbc5ecd282b09e89d4e200663792c34c",
         "signature": "725d9be2fd48440256f4deb00649adffdbc5ecd282b09e89d4e200663792c34c",
@@ -601,11 +626,6 @@
         "signature": "375c56b1890858dcdae495877f0ce3b694980adf64762e2fd3fbe78e3eac76ba",
         "affectsGlobalScope": true
       },
-      "../../../node_modules/@types/json-schema/index.d.ts": {
-        "version": "ecdf947a5111318568ba99f2a87b8498382d8871207f1bc6271ff3b9536a2448",
-        "signature": "ecdf947a5111318568ba99f2a87b8498382d8871207f1bc6271ff3b9536a2448",
-        "affectsGlobalScope": false
-      },
       "../../../node_modules/@types/json2mq/index.d.ts": {
         "version": "05b7214fa5c35d03c893ea2b24157e58a4af26509261a8da013cb348421cfe45",
         "signature": "05b7214fa5c35d03c893ea2b24157e58a4af26509261a8da013cb348421cfe45",
@@ -634,11 +654,6 @@
       "../../../node_modules/@types/parsimmon/index.d.ts": {
         "version": "22b844818fec4e48821e54432b10638943aaead80b340028b207d6930f13de68",
         "signature": "22b844818fec4e48821e54432b10638943aaead80b340028b207d6930f13de68",
-        "affectsGlobalScope": false
-      },
-      "../../../node_modules/@types/q/index.d.ts": {
-        "version": "f9a2dd6a6084665f093ed0e9664b8e673be2a45e342a59dd4e0e4e552e68a9ad",
-        "signature": "f9a2dd6a6084665f093ed0e9664b8e673be2a45e342a59dd4e0e4e552e68a9ad",
         "affectsGlobalScope": false
       },
       "../../../node_modules/@types/react-dom/index.d.ts": {
@@ -973,7 +988,36 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
+      "../../../node_modules/@types/eslint-scope/index.d.ts": [
+        "../../../node_modules/@types/eslint/index.d.ts",
+        "../../../node_modules/@types/estree/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
       "../../../node_modules/@types/eslint-visitor-keys/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
+      "../../../node_modules/@types/eslint/helpers.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
+      "../../../node_modules/@types/eslint/index.d.ts": [
+        "../../../node_modules/@types/eslint/helpers.d.ts",
+        "../../../node_modules/@types/estree/index.d.ts",
+        "../../../node_modules/@types/json-schema/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
+      "../../../node_modules/@types/estree/index.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
@@ -1161,12 +1205,6 @@
         "../node_modules/@types/node/util.d.ts"
       ],
       "../../../node_modules/@types/prop-types/index.d.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts"
-      ],
-      "../../../node_modules/@types/q/index.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
@@ -2228,7 +2266,36 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
+      "../../../node_modules/@types/eslint-scope/index.d.ts": [
+        "../../../node_modules/@types/eslint/index.d.ts",
+        "../../../node_modules/@types/estree/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
       "../../../node_modules/@types/eslint-visitor-keys/index.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
+      "../../../node_modules/@types/eslint/helpers.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
+      "../../../node_modules/@types/eslint/index.d.ts": [
+        "../../../node_modules/@types/eslint/helpers.d.ts",
+        "../../../node_modules/@types/estree/index.d.ts",
+        "../../../node_modules/@types/json-schema/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts"
+      ],
+      "../../../node_modules/@types/estree/index.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
@@ -2416,12 +2483,6 @@
         "../node_modules/@types/node/util.d.ts"
       ],
       "../../../node_modules/@types/prop-types/index.d.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts"
-      ],
-      "../../../node_modules/@types/q/index.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
@@ -3404,7 +3465,11 @@
       "../../../node_modules/@types/connect/index.d.ts",
       "../../../node_modules/@types/css-mediaquery/index.d.ts",
       "../../../node_modules/@types/debug/index.d.ts",
+      "../../../node_modules/@types/eslint-scope/index.d.ts",
       "../../../node_modules/@types/eslint-visitor-keys/index.d.ts",
+      "../../../node_modules/@types/eslint/helpers.d.ts",
+      "../../../node_modules/@types/eslint/index.d.ts",
+      "../../../node_modules/@types/estree/index.d.ts",
       "../../../node_modules/@types/express-serve-static-core/index.d.ts",
       "../../../node_modules/@types/express/index.d.ts",
       "../../../node_modules/@types/glob/index.d.ts",
@@ -3431,7 +3496,6 @@
       "../../../node_modules/@types/parse-json/index.d.ts",
       "../../../node_modules/@types/parsimmon/index.d.ts",
       "../../../node_modules/@types/prop-types/index.d.ts",
-      "../../../node_modules/@types/q/index.d.ts",
       "../../../node_modules/@types/qs/index.d.ts",
       "../../../node_modules/@types/range-parser/index.d.ts",
       "../../../node_modules/@types/react-dom/index.d.ts",
