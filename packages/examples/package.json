@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ewell-FE/ew-material/packages/examples"
+    "url": "https://github.com/Ewell-FE/ewl/packages/examples"
   },
   "scripts": {
     "export": "cd client && next export",
