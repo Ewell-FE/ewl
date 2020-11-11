@@ -9,37 +9,12 @@ import {rootEpic} from '../store/demo/epics';
 import * as actions from '../store/demo/actions';
 import {mapToClass} from '@nestjs/core/middleware/utils';
 import * as axios from '../utils/axios';
+import dynamic from 'next/dynamic';
 
-class IndexPage extends Component<any, any> {
-    static async getInitialProps({store, isServer}) {
-        // const state$ = new StateObservable(new Subject(), store.getState());
-        // const resultAction = await rootEpic(
-        //     of(actions.fetchCharacter(isServer)),
-        //     state$
-        // ).toPromise(); // we need to convert Observable to Promise
-        // store.dispatch(resultAction);
-        store.dispatch({
-            type: 'PING'
-        });
-        return {isServer};
-    }
+const RemoteTitle = dynamic(import('next1/exposedTitle'), {ssr: false});
+const RemoteNav = dynamic(import('next2/nav'), {ssr: false});
 
-    render() {
-        return (
-            <div>
-                <h1>Index Page</h1>
-                <Link href="/other">
-                    <a>Get back to "/other"</a>
-                </Link>
-            </div>
-        );
-    }
-}
-export default IndexPage
-
-//
-//
-// class Counter extends Component<any, any> {
+// class IndexPage extends Component<any, any> {
 //     static async getInitialProps({store, isServer}) {
 //         // const state$ = new StateObservable(new Subject(), store.getState());
 //         // const resultAction = await rootEpic(
@@ -53,48 +28,83 @@ export default IndexPage
 //         return {isServer};
 //     }
 //
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             list: []
-//         };
-//     }
-//
-//
-//     componentDidMount() {
-//         this.props.startFetchingCharacters();
-//     }
-//
-//     componentWillUnmount() {
-//         this.props.stopFetchingCharacters();
-//     }
-//
 //     render() {
 //         return (
 //             <div>
 //                 <h1>Index Page</h1>
-//                 <h2>pingpingpangpang+{this.props.isPinging}</h2>
-//                 <button onClick={e => {
-//                     this.props.pang();
-//                 }}>PANG
-//                 </button>
-//                 <CharacterInfo/>
-//                 <br/>
-//                 <nav>
-//                     <Link href="/other">
-//                         <a>Navigate to "/other22"</a>
-//                     </Link>
-//                     <img width={200} height={200} src={'data:image/png;base64,' + this.state.base64}/>
-//                 </nav>
+//                 <p>this is module federation , the module comes from nextjs project of module-federation-examples </p>
+//                 <RemoteTitle/>
+//                 <Link href="/other">
+//                     <a>Get back to "/other"</a>
+//                 </Link>
 //             </div>
 //         );
 //     }
 // }
+// export default IndexPage
+
 //
-// export default connect((state) => ({
-//     isPinging: state.demo.isPinging
-// }), {
-//     pang: actions.pang,
-//     startFetchingCharacters: actions.startFetchingCharacters,
-//     stopFetchingCharacters: actions.stopFetchingCharacters
-// })(Counter);
+//
+class Counter extends Component<any, any> {
+    static async getInitialProps({store, isServer}) {
+        // const state$ = new StateObservable(new Subject(), store.getState());
+        // const resultAction = await rootEpic(
+        //     of(actions.fetchCharacter(isServer)),
+        //     state$
+        // ).toPromise(); // we need to convert Observable to Promise
+        // store.dispatch(resultAction);
+        store.dispatch({
+            type: 'PING'
+        });
+        return {isServer};
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            list: []
+        };
+    }
+
+
+    componentDidMount() {
+        this.props.startFetchingCharacters();
+    }
+
+    componentWillUnmount() {
+        this.props.stopFetchingCharacters();
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>Index Page</h1>
+                <h2>pingpingpangpang+{this.props.isPinging}</h2>
+                <button onClick={e => {
+                    this.props.pang();
+                }}>PANG
+                </button>
+                <CharacterInfo/>
+                <br/>
+                <p>The module comes from nextjs/next1 </p>
+                <RemoteTitle/>
+                <p>The module comes from nextjs/next2 </p>
+                <RemoteNav/>
+                <nav>
+                    <Link href="/other">
+                        <a>Navigate to "/other22"</a>
+                    </Link>
+                    <img width={200} height={200} src={'data:image/png;base64,' + this.state.base64}/>
+                </nav>
+            </div>
+        );
+    }
+}
+
+export default connect((state) => ({
+    isPinging: state.demo.isPinging
+}), {
+    pang: actions.pang,
+    startFetchingCharacters: actions.startFetchingCharacters,
+    stopFetchingCharacters: actions.stopFetchingCharacters
+})(Counter);

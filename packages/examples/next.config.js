@@ -40,6 +40,9 @@ const nextConfig = {
                 next1: isServer
                     ? "next1@http://localhost:3000/_next/static/remoteEntryMerged.js"
                     : "next1",
+                next2: isServer
+                    ? "next2@http://localhost:3001/_next/static/remoteEntryMerged.js"
+                    : "next2",
             },
             exposes: {
 
@@ -49,6 +52,11 @@ const nextConfig = {
 
         withModuleFederation(config, options, mfConf);
 
+        if (!isServer) {
+            config.externals = {
+                react: "React",
+            };
+        }
         config.module.rules.push({
             test: /\.md$/,
             use: [
