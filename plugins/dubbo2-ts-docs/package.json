@@ -1,5 +1,6 @@
 {
   "name": "dubbo2-ts-docs",
+  "private": true,
   "version": "0.0.1",
   "description": "docs for dubbo2-ts",
   "keywords": [

@@ -1,5 +1,6 @@
 {
   "name": "dubbo2-ts",
+  "private": true,
   "version": "0.0.1",
   "description": "dubbo for nodejs",
   "keywords": [
