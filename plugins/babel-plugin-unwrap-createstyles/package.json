@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-unwrap-createstyles",
   "private": true,
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "unwraps createStyles call",
   "main": "src/index.js",
   "author": "Material-UI Team",
@@ -15,7 +15,5 @@
   },
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha packages/babel-plugin-unwrap-createStyles/test"
-  },
-  "devDependencies": {
   }
 }

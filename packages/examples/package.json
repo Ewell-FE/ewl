@@ -1,7 +1,7 @@
 {
   "name": "examples",
   "private": true,
-  "version": "0.1.12-alpha.0",
+  "version": "0.1.12",
   "description": "demo",
   "keywords": [
     "react",
@@ -32,7 +32,7 @@
     "prod": "cross-env NODE_ENV=production node build/server/main.js"
   },
   "dependencies": {
-    "@ewl/core": "^0.1.12-alpha.0",
+    "@ewl/core": "^0.1.12",
     "@material-ui/core": "^4.7.1",
     "@material-ui/icons": "^4.5.1",
     "@module-federation/nextjs-mf": "^0.0.2",
@@ -47,8 +47,8 @@
     "asyncctx": "^2.0.13",
     "class-validator": "^0.11.0",
     "cross-env": "^6.0.3",
-    "dubbo2-ts": "^0.0.1",
-    "dubbo2-ts-docs": "^0.0.1",
+    "dubbo2-ts": "^0.0.2",
+    "dubbo2-ts-docs": "^0.0.2",
     "express": "^4.17.1",
     "http-proxy": "^1.18.0",
     "immer": "^6.0.9",
@@ -77,7 +77,7 @@
     "zone-context": "^1.1.0"
   },
   "devDependencies": {
-    "@ewl/ts-configs": "^0.1.12-alpha.0",
+    "@ewl/ts-configs": "^0.1.12",
     "@types/express": "^4.17.2",
     "@types/jest": "^24.0.23",
     "@types/next": "^9.0.0",
