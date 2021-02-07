@@ -51,7 +51,7 @@
     "dubbo2-ts-docs": "^0.0.2",
     "express": "^4.17.1",
     "http-proxy": "^1.18.0",
-    "immer": "^6.0.9",
+    "immer": "^8.0.1",
     "interpret-util": "^0.0.6",
     "jaeger-client": "^3.17.1",
     "js-to-java": "^2.6.1",
