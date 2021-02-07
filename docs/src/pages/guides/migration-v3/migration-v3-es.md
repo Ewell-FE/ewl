@@ -1,26 +1,26 @@
-# Migration from v3 to v4
+# Migración de v3 a v4
 
-<p class="description">Yeah, v4 has been released!</p>
+<p class="description">¡Sí, v4 ha sido lanzada!</p>
 
-Looking for the v3 docs? [Find them here](https://material-ui.com/versions/).
+¿Buscando la documentación de v3? [Encuéntralos aquí](https://material-ui.com/versions/).
 
-> This document is a work in progress. Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
+> Este documento es un trabajo en curso. ¿Ha actualizado su sitio y se ha topado con algo que no está cubierto aquí? [Añade tus cambios en GitHub](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/guides/migration-v3/migration-v3.md).
 
-## Introduction
+## Introducción
 
-This is a reference for upgrading your site from Material-UI v3 to v4. While there's a lot covered here, you probably won't need to do everything for your site. We'll do our best to keep things easy to follow, and as sequential as possible so you can quickly get rocking on v4!
+Esta es una referencia para actualizar su sitio de Material-UI v3 a v4. Aunque hay mucho cubierto aquí, probablemente no tendrá que hacer todo por su sitio. Haremos todo lo posible para mantener las cosas fáciles de seguir, y tan secuencial como sea posible para que usted pueda rápidamente ponerse rocando en la v4!
 
-## Why you should migrate
+## Por qué debería migrar
 
-This documentation page covers the *how* of migrating from v3 to v4. The *why* is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+Esta página de documentación cubre *cómo* migrar de v3 a v4. La *razón * está cubierta en la publicación del blog [de lanzamiento en Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
 
-## Updating your dependencies
+## Actualizando tus dependencias
 
-The very first thing you will need to do is to update your dependencies.
+Lo primero que necesitará hacer es actualizar sus dependencias.
 
-### Update Material-UI version
+### Actualizar versión de Material-UI
 
-You need to update your `package.json` to use the latest version of Material-UI.
+Necesitas actualizar tu `package.json` para usar la última versión de Material-UI.
 
 ```json
 "dependencies": {
@@ -33,18 +33,18 @@ Or run
 ```sh
 npm install @material-ui/core
 
-or
+o
 
 yarn add @material-ui/core
 ```
 
-### Update React version
+### Actualizar versión de React
 
-The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`. This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
+La versión mínima requerida de React se incrementó de `react@^16.3.0` a `react@^16.8.0`. Esto nos permite confiar en [Hooks](https://reactjs.org/docs/hooks-intro.html) (ya no usamos la API de clase).
 
-### Update Material-UI Styles version
+### Actualizar la versión de los estilos de Material-UI
 
-If you were previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles.
+Si previamente estaba usando `@material-ui/styles` con v3, necesita actualizar su `package.json` para usar la última versión de los estilos Material-UI.
 
 ```json
 "dependencies": {
@@ -57,7 +57,7 @@ Or run
 ```sh
 npm install @material-ui/styles
 
-or
+o
 
 yarn add @material-ui/styles
 ```
@@ -70,7 +70,7 @@ yarn add @material-ui/styles
 
 ### Estilos
 
-- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. (Removing `react-jss` from your `package.json` can help). The StylesProvider component replaces the JssProvider one.
+- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. The StylesProvider component replaces the JssProvider one. (Removing `react-jss` from your `package.json` can help).
 - Remove the first option argument of `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
   
     It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
@@ -180,11 +180,11 @@ function MySelect({ children }) {
 }
 ```
 
-This change is explained in more detail in the [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
+Este cambio se explica con más detalle en la [guía TypeScript](/guides/typescript/#handling-value-and-event-handlers)
 
 ### Button
 
-- [Button] Remove the deprecated button variants (flat, raised and fab):
+- [Button] Quitar las variantes de botón obsoletas (plano, elevado y fab):
   
   ```diff
   -<Button variant="raised" />
@@ -406,7 +406,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   +<Typography variantMapping={variantMapping}>
   ```
 
-- [Typography] Change the default variant from `body2` to `body1`. A font size of 16px is a better default than 14px. Bootstrap, material.io, and even the documentation use 16px as a default font size. 14px like Ant Design uses is understandable, as Chinese users have a different alphabet. 12px is recommended as the default font size for Japanese.
+- [Typography] Change the default variant from `body2` to `body1`. A font size of 16px is a better default than 14px. 14px like Ant Design uses is understandable, as Chinese users have a different alphabet. Bootstrap, material.io, and even the documentation use 16px as a default font size. 12px is recommended as the default font size for Japanese.
 - [Typography] Remove the default color from the typography variants. The color should inherit most of the time. It's the default behavior of the web.
 - [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028). The usage of *default* should be avoided, it lacks semantic.
 

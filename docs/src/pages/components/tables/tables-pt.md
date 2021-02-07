@@ -1,5 +1,5 @@
 ---
-title: Componente React  para Tabelas
+title: Componente React Tabela
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
@@ -7,7 +7,7 @@ components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead,
 
 <p class="description">Tabelas exibem conjuntos de dados. Elas podem ser totalmente customizadas.</p>
 
-[Tabelas](https://material.io/design/components/data-tables.html) apresentam informações de uma forma fácil de visualizar, de modo que os usuários podem procurar por padrões e percepções. Elas podem ser incorporadas no conteúdo principal, assim como Cartões.
+[Tabelas](https://material.io/design/components/data-tables.html) apresentam informações de uma forma fácil de visualizar, de modo que os usuários podem procurar por padrões e percepções. Elas podem ser incorporadas no conteúdo principal, assim como cartões.
 
 As tabelas podem incluir:
 
@@ -19,29 +19,29 @@ Ao incluir ferramentas, elas devem ser colocadas diretamente acima ou abaixo da 
 
 ## Estrutura
 
+Um exemplo simples sem frescuras.
+
 Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes das colunas, seguidas pelas linhas dos dados.
 
-Caixas de seleção devem acompanhar cada linha se o usuário precisar selecionar ou manipular dados.
+## Tabela de dados
 
-Para acessibilidade, a primeira coluna é ajustada para ser um elemento `<th>`, com um `escopo` de `"linha"`. Isso permite que os leitores de tela identifiquem o valor de uma célula por seu nome de linha e coluna.
+O componente `Table` tem um mapeamento próximo dos elementos nativos de `<table>`. Este requisito torna a construção de tabelas de dados ricas e desafiadora.
+
+O [componente `DataGrid`](/components/data-grid/) é projetado para situações de uso que focam em torno da manipulação de uma grande quantidade de dados tabulares. Enquanto vem com uma estrutura mais rígida, em troca, você ganha recursos poderosos.
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
 ## Tabela Simples
 
-Um exemplo simples sem frescuras.
-
-{{"demo": "pages/components/tables/SimpleTable.js", "bg": true}}
-
-## Tabela Densa
-
-Um exemplo simples de uma tabela densa sem frescuras.
+Um exemplo simples de uma tabela densa sem muito enfeite.
 
 {{"demo": "pages/components/tables/DenseTable.js", "bg": true}}
 
-## Classificando & Selecionando
+## Tabela Densa
 
-Este exemplo demonstra o uso de linhas clicáveis e `Checkbox` para a seleção, com uma barra de ferramentas personalizada `Toolbar`. Ele usa o componente `TableSortLabel` para ajudar no estilo dos cabeçalhos das colunas.
+Este exemplo demonstra o uso de linhas clicáveis com `Checkbox` para a seleção, e com um componente `Toolbar` customizado. Ele usa o componente `TableSortLabel` para ajudar no estilo dos cabeçalhos das colunas.
 
-A tabela recebeu uma largura fixa para demonstrar a rolagem horizontal. Para impedir que os controles de paginação rolem, o componente TablePagination é usado fora da tabela. (O [Exemplo 'da ação de paginação personalizada'](#custom-pagination-actions) abaixo mostra a paginação dentro de TableFooter.)
+A tabela recebeu uma largura fixa para demonstrar a rolagem horizontal. Para impedir que os controles de paginação rolem, o componente TablePagination é usado fora da tabela. (O [Exemplo da 'ação de paginação customizada'](#custom-pagination-actions) abaixo mostra a paginação dentro de um TableFooter.)
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
@@ -61,7 +61,7 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
     <TablePagination rowsPerPageOptions={[10, 50]} />
     ```
 
-- **objects**, as chaves `value` e `label` serão utilizadas, respectivamente para exibição do rótulo e valor da opção (útil para strings de idioma como 'Todos').
+- **objects**, as chaves `value` e `label` serão utilizadas respectivamente para exibição do rótulo e valor da opção (útil para strings de idioma como 'Todos').
     
     ```jsx
     <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
@@ -75,7 +75,7 @@ A propriedade `ActionsComponent` do componente `TablePagination` permite a imple
 
 ## Cabeçalho fixo
 
-Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. Ele aproveita do suporte de `stickyHeader` (⚠️ sem suporte ao IE 11).
+Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. Ele se beneficia do suporte de `stickyHeader` (⚠️ sem suporte ao IE 11).
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
@@ -97,30 +97,12 @@ No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://git
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
-## Projetos Complementares
-
-Para situações de uso mais avançadas, você pode tirar proveito com:
-
-### material-table
-
-![estrelas](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
-
-[material-table](https://github.com/mbrn/material-table) é uma tabela de dados simples e poderosa para React baseado na tabela do Material-UI com alguns recursos adicionais. Eles suportam muitos formas de utilização (edição, filtragem, agrupamento, ordenação, seleção, i18n, árvore de dados e muito mais). Você deveria dar uma olhada.
-
-{{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
-
-### Outros
-
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) Uma grade de dados para Material-UI com paginação, ordenação, filtragem, agrupamento e funções de edição.([Com licenciamento de uso pago](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables): Tabelas de dados responsivas para Material-UI com filtro, ordenação, pesquisa e muito mais.
-- [tubular-react](https://github.com/unosquare/tubular-react): Uma tabela de Material-UI com fonte de dados local ou remota. Com filtragem, classificação, pesquisa de texto livre, exportação para CSV localmente e agregações.
-
 ## Acessibilidade
 
 (WAI tutorial: https://www.w3.org/WAI/tutorials/tables/)
 
 ### Caption
 
-Um caption funciona como um título para uma tabela. A maioria dos leitores de tela anunciam o conteúdo das legendas. Os captions ajudam os usuários a encontrar uma tabela e a entender o que ela representa e decidir se querem lê-la.
+Um caption funciona como um título para uma tabela. A maioria dos leitores de tela anunciam o conteúdo dos captions. Os captions ajudam os usuários a encontrar uma tabela e a entender o que ela representa e decidir se querem lê-la.
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {styled} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import NoSsr from '@material-ui/core/NoSsr';
 
 const EwlButton = styled(Button)({
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -19,6 +20,6 @@ export default class ButtonComponent extends React.Component<any, any> {
     }
 
     render() {
-        return <EwlButton {...this.props}>{this.props.children}</EwlButton>;
+        return <NoSsr><EwlButton {...this.props}>{this.props.children}</EwlButton></NoSsr>;
     }
 }

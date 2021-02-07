@@ -1,9 +1,9 @@
 ---
-title: Componente de React Button
+title: React Button component
 components: Button, IconButton, ButtonBase
 ---
 
-# Button (botón)
+# Botón
 
 <p class="description">Los botones permiten a los usuarios ejecutar acciones, y tomar decisiones, con un simple toque.</p>
 
@@ -44,15 +44,15 @@ Los botones delineados también son una alternativa de menos énfasis que los bo
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
-## Handling clicks
+## Controlador del click
 
-All components accept an `onClick` handler that is applied to the root DOM element.
+Todos los componentes aceptan un controlador `onClick` el cual se aplica al elemento raíz en el DOM.
 
 ```jsx
-<Button onClick={() => { alert('clicked') }}>Click me</Button>
+<Button onClick={() => { alert('pulsado') }}>Hazme click</Button>
 ```
 
-Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
+Ten en cuenta que la documentación [evita](/guides/api/#native-properties) mencionar las propiedades nativas (existen varias) en la sección API de los componentes.
 
 ## Botón de subida
 
@@ -84,7 +84,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button).
+🎨 Si estás buscando inspiración, puedes mirar [los ejemplos de MUI Treasury](https://mui-treasury.com/styles/button).
 
 ## Botones Complejos
 
@@ -96,17 +96,17 @@ Los Botones de Texto, los Botones Contenidos, los Botones de Acción Flotantes y
 
 Un caso de uso común es emplear el botón para iniciar la navegación hacia una nueva página. El componente `ButtonBase` provee un atributo para tratar este uso: `component`. Sin embargo, para ciertos rellenos `ButtonBase` requiere el nodo DOM del componente proporcionado. Esto se logra adjuntando una referencia al componente y esperando que el componente reenvíe esta referencia al nodo DOM subyacente. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
-Here is an [integration example with react-router](/guides/composition/#button).
+Aquí hay un ejemplo de integración con [react-router](/guides/composition/#button).
 
 ## Limitaciones
 
-### Cursor not-allowed
+### Cursor no permitido
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
+El componente ButtonBase define `pointer-events: none;` en los botones deshabilitados, lo que previene la aparición del cursor desactivado.
 
-If you wish to use `not-allowed`, you have two options:
+Si deseas usar `not-allowed`, tienes dos opciones:
 
-1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
+1. **Mediante CSS**. Puedes eliminar los estilos del cursor aplicados cuando el elemento `<button>` está deshabilitado:
 
   ```css
   .MuiButtonBase-root:disabled {
@@ -115,17 +115,17 @@ If you wish to use `not-allowed`, you have two options:
   }
   ```
 
-However:
+Sin embargo:
 
-- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements).
+- Debería añadir `pointer-events: none` cuando necesite mostrar [tooltips en elemento deshabilitados](/components/tooltips/#disabled-elements).
 - The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
 
-2. **DOM change**. You can wrap the button:
+2. **Cambio en el DOM**. Puede encapsular el botón:
 
   ```jsx
   <span style={{ cursor: 'not-allowed' }}>
     <Button component={Link} disabled>
-      disabled
+      Deshabilitado
     </Button>
   </span>
   ```

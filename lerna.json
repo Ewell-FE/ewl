@@ -2,6 +2,11 @@
   "packages": [
     "packages/*"
   ],
+  "command": {
+    "bootstrap": {
+      "ignore": "docs"
+    }
+  },
   "version": "independent",
   "useWorkspaces": true,
   "npmClient": "yarn"

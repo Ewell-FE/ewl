@@ -1,5 +1,5 @@
 ---
-title: Timeline React component
+title: React Timeline component
 components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent, TimelineOppositeContent
 ---
 
@@ -7,7 +7,7 @@ components: Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConn
 
 <p class="description">The timeline displays a list of events in chronological order.</p>
 
-**Note:** This component is not documented in the [Material Design guidelines](https://material.io/), but Material-UI supports it.
+**注意:** このコンポーネントは [Material Design guidelines](https://material.io/)に記載されていませんが、Material-UIはそれをサポートしています。
 
 ## Basic timeline
 
@@ -45,6 +45,6 @@ The timeline can display content on opposite sides.
 
 ## Customized timeline
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}

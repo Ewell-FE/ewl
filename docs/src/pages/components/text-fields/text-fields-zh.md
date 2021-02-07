@@ -1,5 +1,5 @@
 ---
-title: React Text Field 文本框组件
+title: React Text Field（文本框）组件
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
@@ -37,7 +37,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
-## 选择属性
+## Select 选择属性
 
 使用 `select` 属性的时候，您可以在文本框内插入一个 [Select](/components/selects/) 组件。
 
@@ -95,7 +95,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## 自定义输入
 
-你可以参考以下一些例子来自定义组件。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/components/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -103,9 +103,9 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-🎨如果你是在寻找灵感，你可以查看 [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field)。
+🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/text-field)。
 
-## 局限性
+## 设计局限
 
 ### 缩放
 
@@ -171,9 +171,9 @@ function MyInputComponent(props) {
 />;
 ```
 
-## 可及性
+## 无障碍设计
 
-为了确保您的文本框是可及的，**输入框必须和标签以及帮助文本连在一起调用**。 而且，深层的 DOM 节点应该遵循这个结构。
+为了确保您的文本框是的无障碍访问，**输入框必须和标签以及帮助文本连在一起调用**。 而且，深层的 DOM 节点应该遵循这个结构。
 
 ```jsx
 <div class="form-control">

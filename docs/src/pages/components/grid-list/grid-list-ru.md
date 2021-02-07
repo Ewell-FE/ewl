@@ -1,6 +1,6 @@
 ---
 title: Сеть изображений, компонент React
-components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
+components: GridList, GridListTile, GridListTileBar
 ---
 
 # Сеть изображений

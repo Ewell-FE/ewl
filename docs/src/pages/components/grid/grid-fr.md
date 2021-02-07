@@ -1,5 +1,5 @@
 ---
-title: Composant React Grid
+title: React Grid component
 components: Grid
 ---
 
@@ -8,6 +8,8 @@ components: Grid
 <p class="description">Le composant responsive Grid de Material Design s'adapte à la taille et à l'orientation de l'écran, garantissant ainsi la cohérence entre les différents agencements.</p>
 
 [Grid](https://material.io/design/layout/responsive-layout-grid.html) créé une cohérence visuelle entre les agencements tout en permettant une certaine flexibilité à travers une grande variété de modèles. L’UI responsive de Material Design est basée sur une grille de 12 colonnes.
+
+> ⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/components/data-grid/).
 
 ## Comment ça marche
 
@@ -65,7 +67,7 @@ La démo suivante ne suit pas la spécification Material Design, mais illustre c
 
 ## Grille imbriquée
 
-The `container` and `item` properties are two independent booleans. They can be combined.
+The `container` and `item` properties are two independent booleans. Ils peuvent être combinés.
 
 > Un **container** flex est la boîte générée par un élément avec un affichage calculé de `flex` ou `inline-flex`. Les enfants entrants d'un conteneur flex sont appelés éléments** flex **et sont disposés à l'aide du modèle d'agencement Flex.
 
@@ -96,7 +98,7 @@ Il existe une limitation à la marge négative utilisée pour mettre en œuvre l
 
 ### white-space: nowrap;
 
-The initial setting on flex items is `min-width: auto`. It's causing a positioning conflict when the children is using `white-space: nowrap;`. You can experience the issue with:
+La configuration initiale sur les éléments flex est `min-width: auto`. Cela provoque un conflit de positionnement lorsque les enfants utilisent `white-space : nowrap;`. Vous pouvez rencontrer le problème avec :
 
 ```jsx
 <Grid item xs>

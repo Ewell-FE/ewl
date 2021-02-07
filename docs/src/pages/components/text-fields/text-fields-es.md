@@ -7,25 +7,25 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 <p class="description">Los campos de texto permiten a los usuarios ingresar y editar texto.</p>
 
-[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
+[Text fields](https://material.io/design/components/text-fields.html) permiten al usuario ingresar un texto en una UI. Generalmente se encuentran en formularios y diálogos.
 
 ## TextField
 
 El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda.
 
-It supports standard, outlined and filled styling.
+Soporta estilos "Standard", "Outlined" y "Filled".
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
-**Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/) ([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)), but Material-UI will continue to support it.
+**Nota:** La variante estándar de `TextField` no esta mas documentada en [guía Material Design](https://material.io/) ([Aquí esta el por que](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)), pero Material-UI continuara soportándolo.
 
-## Form props
+## Propiedades del Form
 
-Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
+Para ello, hay que proporcionar una implementación personalizada del elemento `<input>` con el atributo `inputComponent`. Se pueden utilizar librerías externas para formatear un campo de texto.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
-## Validation
+## Validación 
 
 The `error` prop toggles the error state, the `helperText` prop can then be used to provide feedback to the user about the error.
 
@@ -51,7 +51,7 @@ There are multiple ways to display an icon with a text field.
 
 ### Adornos de campos de texto
 
-The main way is with an `InputAdornment`. This can be used to add a prefix, a suffix or an action to an input. Por ejemplo, puedes usar un botón de icono para esconder o revelar una contraseña.
+The main way is with an `InputAdornment`. Por ejemplo, puedes usar un botón de icono para esconder o revelar una contraseña. This can be used to add a prefix, a suffix or an action to an input.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
@@ -63,7 +63,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 ## Disposición
 
-`margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will. `dense` and `normal` alter other styles to meet the specification.
+`dense` and `normal` alter other styles to meet the specification. `margin` prop can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will.
 
 `fullWidth` can be used to make the input take up the full width of its container.
 
@@ -103,7 +103,7 @@ La personalización no se limita a usar CSS, también puedes usar una composici�
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/text-field).
+🎨 Si buscas un poco de inspiración, puedes visitar [MUI Treasury's ejemplos de customizacion](https://mui-treasury.com/styles/text-field).
 
 ## Limitaciones
 

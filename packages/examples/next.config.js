@@ -2,6 +2,8 @@ const withLess = require('@zeit/next-less')
 const path = require('path')
 const fs = require('fs')
 const lessToJs = require('less-vars-to-js')
+const ModuleFederationPlugin = require("webpack").container
+    .ModuleFederationPlugin;
 const {
     withModuleFederation,
     MergeRuntime,
@@ -16,6 +18,29 @@ const loadedVarOverrides = fs.readFileSync(path.resolve(__dirname, './client/con
 
 // Pass in file contents
 const modifyVars = lessToJs(loadedVarOverrides)
+
+
+const nextServerRemote = (remoteObject) => {
+    if (!typeof remoteObject === "object") {
+        throw new Error("Remotes must be configured as an object");
+    }
+    return Object.entries(remoteObject).reduce((acc, [name, config]) => {
+        acc[name] = {
+            external: `external new Promise(res => {
+      let remote
+      try {
+      remote = require('${config}')['${name}']
+      } catch (e) {
+      delete require.cache['${config}']
+      remote = require('${config}')['${name}']
+      }
+      const proxy = {get:(request)=> remote.get(request),init:(arg)=>{try {return remote.init(arg)} catch(e){console.log('remote container already initialized')}}}
+      res(proxy)
+      })`,
+        };
+        return acc;
+    }, {});
+};
 
 const nextConfig = {
     lessLoaderOptions: {
@@ -50,13 +75,29 @@ const nextConfig = {
             shared: [],
         };
 
-        withModuleFederation(config, options, mfConf);
+        // withModuleFederation(config, options, mfConf);
 
         if (!isServer) {
             config.externals = {
                 react: "React",
             };
         }
+        const federationConfig = {
+            name: mfConf.name,
+            library: mfConf.library
+                ? mfConf.library
+                : { type: config.output.libraryTarget, name: mfConf.name },
+            filename: "static/runtime/remoteEntry.js",
+            remotes: options.isServer
+                ? nextServerRemote(mfConf.remotes)
+                : mfConf.remotes,
+            exposes: mfConf.exposes,
+            shared: mfConf.shared,
+        };
+        // config.plugins.push(
+        //     new ModuleFederationPlugin(federationConfig)
+        // );
+
         config.module.rules.push({
             test: /\.md$/,
             use: [

@@ -1,5 +1,5 @@
 ---
-title: React Popper 弹出提示组件
+title: React Popper（弹出提示）组件
 components: Popper
 ---
 

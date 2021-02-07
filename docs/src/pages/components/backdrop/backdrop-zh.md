@@ -1,6 +1,6 @@
 ---
-title: React Backdrop 背景暗化组件
-components: Backdrop 背景暗化
+title: React Backdrop（背景暗化）组件
+components: Backdrop
 ---
 
 # Backdrop 背景暗化

@@ -11,8 +11,8 @@ import {mapToClass} from '@nestjs/core/middleware/utils';
 import * as axios from '../utils/axios';
 import dynamic from 'next/dynamic';
 
-const RemoteTitle = dynamic(import('next1/exposedTitle'), {ssr: false});
-const RemoteNav = dynamic(import('next2/nav'), {ssr: false});
+// const RemoteTitle = dynamic(import('next1/exposedTitle'), {ssr: false});
+// const RemoteNav = dynamic(import('next2/exposedTitle'), {ssr: false});
 
 // class IndexPage extends Component<any, any> {
 //     static async getInitialProps({store, isServer}) {
@@ -42,6 +42,7 @@ const RemoteNav = dynamic(import('next2/nav'), {ssr: false});
 //     }
 // }
 // export default IndexPage
+
 
 //
 //
@@ -87,14 +88,13 @@ class Counter extends Component<any, any> {
                 <CharacterInfo/>
                 <br/>
                 <p>The module comes from nextjs/next1 </p>
-                <RemoteTitle/>
+                {/*<RemoteTitle/>*/}
                 <p>The module comes from nextjs/next2 </p>
-                <RemoteNav/>
+                {/*<RemoteNav/>*/}
                 <nav>
                     <Link href="/other">
                         <a>Navigate to "/other22"</a>
                     </Link>
-                    <img width={200} height={200} src={'data:image/png;base64,' + this.state.base64}/>
                 </nav>
             </div>
         );

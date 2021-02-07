@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
+import AdReadthedocs from 'docs/src/modules/components/AdReadthedocs';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
 
@@ -64,14 +64,14 @@ const inHouseAds = [
   {
     name: 'scaffoldhub',
     link: 'https://scaffoldhub.io/?partner=1',
-    img: '/static/in-house/scaffoldhub.png',
-    description: '<b>Scaffold</b>. Automate building your full-stack Material-UI web-app.',
+    img: '/static/ads-in-house/scaffoldhub.png',
+    description: '<b>ScaffoldHub</b>. Automate building your full-stack Material-UI web-app.',
   },
   {
     name: 'templates',
     link:
       'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
-    img: '/static/in-house/themes-2.jpg',
+    img: '/static/ads-in-house/themes-2.jpg',
     description:
       '<b>Premium Templates</b>. Start your project with the best templates for admins, dashboards and more.',
   },
@@ -79,7 +79,7 @@ const inHouseAds = [
     name: 'themes',
     link:
       'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
-    img: '/static/in-house/themes.png',
+    img: '/static/ads-in-house/themes.png',
     description:
       '<b>Premium Themes</b>. Kickstart your application development with a ready-made theme.',
   },
@@ -87,7 +87,7 @@ const inHouseAds = [
     name: 'tidelift',
     link:
       'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
-    img: '/static/in-house/tidelift.png',
+    img: '/static/ads-in-house/tidelift.png',
     description:
       '<b>Material-UI for enterprise</b>. Save time and reduce risk. Managed open source — backed by maintainers.',
   },
@@ -95,16 +95,24 @@ const inHouseAds = [
     name: 'sketch',
     link:
       'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
-    img: '/static/in-house/sketch.png',
-    description: '<b>Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
+    img: '/static/ads-in-house/sketch.png',
+    description:
+      '<b>For Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
   },
   {
     name: 'figma',
     link:
       'https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
-    img: '/static/in-house/figma.png',
+    img: '/static/ads-in-house/figma.png',
     description:
-      '<b>Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
+      '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
+  },
+  {
+    name: 'divjoy',
+    link: 'https://divjoy.com?via=material-ui',
+    img: '/static/ads-in-house/divjoy.png',
+    description:
+      '<b>Divjoy</b>. Create your Material-UI app in minutes. You’ll get a nice template, authentication, database integration, subscription payments, and more.',
   },
 ];
 
@@ -113,71 +121,46 @@ function Ad(props) {
 
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
-  const [codeFundOut, setCodeFundOut] = React.useState(null);
 
-  let children;
-
-  // Hide the content to google bot.
-  if (/Googlebot/.test(navigator.userAgent) || disable) {
-    children = <span />;
-  }
-
+  const { current: randomSplit } = React.useRef(Math.random());
   const { current: randomAdblock } = React.useRef(Math.random());
   const { current: randomInHouse } = React.useRef(Math.random());
 
-  if (!children && adblock) {
+  let children;
+  let label;
+  // Hide the content to google bot.
+  if (/Googlebot/.test(navigator.userAgent) || disable) {
+    children = <span />;
+  } else if (adblock) {
     if (randomAdblock < 0.2) {
       children = <PleaseDisableAdblock className={classes.paper} />;
-    } else {
-      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
-    }
-  }
-
-  const { current: randomSplit } = React.useRef(Math.random());
-
-  if (!children) {
-    if (carbonOut || codeFundOut) {
-      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
-    } else if (randomSplit < 0.4) {
-      children = <AdCodeFund />;
-    } else {
-      children = <AdCarbon />;
-    }
-  }
-
-  const getNetwork = () => {
-    let label;
-
-    if (children.type === AdCodeFund) {
-      label = 'codefund';
-    } else if (children.type === AdCarbon) {
-      label = 'carbon';
-    } else if (children.type === AdInHouse) {
-      if (!adblock && codeFundOut) {
-        label = 'in-house-codefund';
-      } else if (!adblock && carbonOut) {
-        label = 'in-house-carbon';
-      } else {
-        label = 'in-house';
-      }
-    } else if (children.type === PleaseDisableAdblock) {
       label = 'in-house-adblock';
+    } else {
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
+      label = 'in-house';
     }
-
-    return label;
-  };
+  } else if (carbonOut) {
+    children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
+    label = 'in-house-carbon';
+  } else if (randomSplit < 0.9) {
+    children = <AdCarbon />;
+    label = 'carbon';
+  } else {
+    children = <AdReadthedocs />;
+    label = 'readthedocs';
+  }
 
   const ad = React.useContext(AdContext);
-  const eventLabel = `${getNetwork()}-${ad.portal.placement}-${adShape}`;
+  const eventLabel = label ? `${label}-${ad.portal.placement}-${adShape}` : null;
 
   const timerAdblock = React.useRef();
 
   const checkAdblock = React.useCallback(
     (attempt = 1) => {
       if (
-        document.querySelector('.cf-wrapper') ||
+        document.querySelector('.ea-placement') ||
         document.querySelector('#carbonads') ||
-        codeFundOut ||
+        document.querySelector('.carbonads') ||
         carbonOut
       ) {
         if (
@@ -202,7 +185,7 @@ function Ad(props) {
         setAdblock(true);
       }
     },
-    [codeFundOut, carbonOut],
+    [carbonOut],
   );
 
   React.useEffect(() => {
@@ -217,51 +200,24 @@ function Ad(props) {
   }, [checkAdblock]);
 
   React.useEffect(() => {
-    const handler = (event) => {
-      if (event.detail.status === 'no-advertiser') {
-        setCodeFundOut(true);
-      }
-    };
-    window.addEventListener('codefund', handler);
-    return () => {
-      window.removeEventListener('codefund', handler);
-    };
-  }, []);
-
-  React.useEffect(() => {
     // Avoid an exceed on the Google Analytics quotas.
-    if (Math.random() < 0.9) {
+    if (Math.random() < 0.9 || !eventLabel) {
       return undefined;
     }
 
     const delay = setTimeout(() => {
-      if (!eventLabel) {
-        return;
-      }
-
       window.ga('send', {
         hitType: 'event',
         eventCategory: 'ad',
         eventAction: 'display',
         eventLabel,
       });
-
-      if (eventLabel.indexOf('in-house') === 0) {
-        window.ga('send', {
-          hitType: 'event',
-          eventCategory: 'in-house-ad',
-          eventAction: 'display',
-          eventLabel: children.props.ad.name,
-        });
-      }
     }, 2500);
 
     return () => {
       clearTimeout(delay);
     };
-  }, [eventLabel, children.props.ad]);
-
-  const key = 0;
+  }, [eventLabel]);
 
   return (
     <span
@@ -270,7 +226,7 @@ function Ad(props) {
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
     >
-      {React.cloneElement(children, { key })}
+      {children}
     </span>
   );
 }

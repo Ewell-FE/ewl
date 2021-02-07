@@ -1,5 +1,5 @@
 ---
-title: Select React component
+title: React Select component
 components: Select, NativeSelect
 ---
 
@@ -17,7 +17,7 @@ Menus are positioned over their emitting elements such that the currently select
 
 The Select component is meant to be interchangeable with a native `<select>` element.
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). It's meant to be an improved version of the "react-select" and "downshift" packages.
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/). C'est censé être une version améliorée de la "react-select" et de "downshift".
 
 ## Native Select
 
@@ -27,7 +27,7 @@ As the user experience can be improved on mobile using the native select of the 
 
 ## Text Fields (Champs de texte)
 
-Le composant d'encapsulation `TextField` est un contrôle de formulaire complet comprenant une étiquette, une entrée et un texte d'aide. You can find an example with the select mode [in this section](/components/text-fields/#select).
+Le composant d'encapsulation `TextField` est un contrôle de formulaire complet comprenant une étiquette, une entrée et un texte d'aide. The first step is to style the `InputBase` component.
 
 ## Customized selects
 
@@ -37,7 +37,7 @@ The first step is to style the `InputBase` component. Once it's styled, you can 
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/select).
+🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/styles/select).
 
 ## Multiple Select
 

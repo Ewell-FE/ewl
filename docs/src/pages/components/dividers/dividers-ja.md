@@ -1,5 +1,5 @@
 ---
-title: Divider React component
+title: React Divider component
 components: Divider
 ---
 
@@ -11,7 +11,7 @@ components: Divider
 
 ## List Dividers
 
-区切り線はデフォルトで `<hr>` としてレンダリングされます。 このDOM要素のレンダリングを節約するには、 `ListItem` コンポーネントの `divider` プロパティを使用します。
+Note the use of the `flexItem` prop to accommodate for the flex container. このDOM要素のレンダリングを節約するには、 `ListItem` コンポーネントの `divider` プロパティを使用します。
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 

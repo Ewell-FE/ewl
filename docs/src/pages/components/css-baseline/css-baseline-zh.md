@@ -18,7 +18,7 @@ export default function MyApp() {
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* The rest of your application */}
+      {/* 你的应用组件的其他部分 */}
     </React.Fragment>
   );
 }

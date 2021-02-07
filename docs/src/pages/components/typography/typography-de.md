@@ -1,5 +1,6 @@
 ---
-components: Typography
+title: React Typography component
+components: Typografie
 ---
 
 # Typography
@@ -53,10 +54,10 @@ Die Komponente Typografie verwendet die Eigenschaft `variantMapping` um eine UI-
 - You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
-{/* There is already an h1 in the page, let's not duplicate it. */}
+Heading
+</Typography> {/* There is already an h1 in the page, let's not duplicate it. {/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
-  h1. Heading
-</Typography>
+  h1.
 ```
 
 - Sie können das Mapping [global mit dem Theme](/customization/globals/#default-props) ändern:

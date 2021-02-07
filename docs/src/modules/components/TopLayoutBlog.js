@@ -4,10 +4,23 @@ import { withStyles } from '@material-ui/core/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
+import { useRouter } from 'next/router';
 import Link from '@material-ui/core/Link';
+import Avatar from '@material-ui/core/Avatar';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 import { exactProp } from '@material-ui/utils';
 import MarkdownElement from './MarkdownElement';
+
+const authors = {
+  oliviertassinari: {
+    name: 'Olivier Tassinari',
+    github: 'oliviertassinari',
+  },
+  mbrookes: {
+    name: 'Matt Brookes',
+    github: 'mbrookes',
+  },
+};
 
 const styles = (theme) => ({
   root: {
@@ -20,8 +33,11 @@ const styles = (theme) => ({
   container: {
     marginBottom: theme.spacing(20),
     maxWidth: 680 + theme.spacing(8 + 4),
-    '& .markdownElement': {
-      fontSize: 18,
+    '& h1': {
+      marginBottom: theme.spacing(4),
+    },
+    '& .markdown-body': {
+      fontSize: theme.typography.pxToRem(17),
       lineHeight: 1.7,
       [theme.breakpoints.up('md')]: {
         paddingRight: theme.spacing(4),
@@ -30,6 +46,9 @@ const styles = (theme) => ({
     '& img, & video': {
       display: 'block',
       margin: 'auto',
+    },
+    '& pre': {
+      fontSize: theme.typography.pxToRem(16),
     },
     '& .blog-description': {
       fontSize: theme.typography.pxToRem(14),
@@ -41,15 +60,44 @@ const styles = (theme) => ({
       },
     },
   },
+  time: {
+    color: theme.palette.text.secondary,
+    ...theme.typography.body2,
+  },
+  avatar: {
+    display: 'flex',
+    gap: theme.spacing(3),
+    '& > div': {
+      marginTop: theme.spacing(-1),
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: theme.spacing(5),
+      fontWeight: theme.typography.fontWeightMedium,
+      '& .MuiAvatar-root': {
+        marginRight: theme.spacing(1),
+      },
+    },
+  },
 });
 
 function TopLayoutBlog(props) {
   const { classes, docs } = props;
-  const { description, rendered, title } = docs.en;
+  const { description, rendered, title, headers } = docs.en;
+  const finalTitle = title || headers.title;
+  const router = useRouter();
 
   return (
     <AppFrame disableDrawer>
-      <Head title={`${title} - Material-UI`} description={description} />
+      <Head
+        title={`${finalTitle} - Material-UI`}
+        description={description}
+        largeCard={headers.card === 'true' ? true : undefined}
+        card={
+          headers.card === 'true'
+            ? `https://material-ui.com/static${router.pathname}/card.png`
+            : undefined
+        }
+      />
       <div className={classes.root}>
         <AppContainer className={classes.container}>
           <Link
@@ -60,6 +108,29 @@ function TopLayoutBlog(props) {
           >
             {'< Back to blog'}
           </Link>
+          {headers.title ? (
+            <React.Fragment>
+              <time dateTime={headers.date} className={classes.time}>
+                {new Intl.DateTimeFormat('en', {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                }).format(new Date(headers.date))}
+              </time>
+              <MarkdownElement>
+                <h1>{headers.title}</h1>
+              </MarkdownElement>
+              <div className={classes.avatar}>
+                {headers.authors.map((author) => (
+                  <div key={author}>
+                    <Avatar src={`https://github.com/${authors[author].github}.png`} />
+                    {authors[author].name}
+                  </div>
+                ))}
+              </div>
+            </React.Fragment>
+          ) : null}
           {rendered.map((chunk, index) => {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}

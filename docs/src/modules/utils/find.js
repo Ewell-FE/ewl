@@ -91,7 +91,7 @@ function findPages(
       .replace(/^\/index$/, '/') // Replace `index` by `/`.
       .replace(/\/index$/, '');
 
-    if (pathname.indexOf('.eslintrc.bak') !== -1) {
+    if (pathname.indexOf('.eslintrc') !== -1) {
       return;
     }
 

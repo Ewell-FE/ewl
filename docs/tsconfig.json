@@ -1,7 +1,9 @@
 {
   "extends": "../tsconfig.json",
   "include": [
-    "types", "src/pages/**/*"],
+    "types",
+    "src/pages/**/*"
+  ],
   "compilerOptions": {
     "allowJs": false,
     "isolatedModules": true,
@@ -11,6 +13,11 @@
     "resolveJsonModule": true,
     "skipLibCheck": false,
     "esModuleInterop": true,
-    "types": ["react"]
-  }
+    "types": [
+      "react"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

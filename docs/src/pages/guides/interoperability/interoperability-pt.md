@@ -43,8 +43,8 @@ import './PlainCssButton.css';
 export default function PlainCssButton() {
   return (
     <div>
-      <Button>Default</Button>
-      <Button className="button">Customized</Button>
+      <Button>Padrão</Button>
+      <Button className="button">Customizado</Button>
     </div>
   );
 }
@@ -97,9 +97,9 @@ import './PlainCssButtonDeep.css';
 export default function PlainCssButtonDeep() {
   return (
     <div>
-      <Button>Default</Button>
+      <Button>Padrão</Button>
       <Button classes={{ root: 'button', label: 'button-label' }}>
-        Customized
+        Customizado
       </Button>
     </div>
   );
@@ -136,11 +136,11 @@ import Button from '@material-ui/core/Button';
 import './GlobalCssButton.css';
 
 export default function GlobalCssButton() {
-  return <Button>Customized</Button>;
+  return <Button>Customizado</Button>;
 }
 ```
 
-### Controlar prioridade ⚠️
+### Controlando prioridade ⚠️
 
 **Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
 
@@ -149,7 +149,10 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Sua árvore de componentes.
-      Agora, você pode sobrescrever os estilos do Material-UI. */}
+      import { StylesProvider } from '@material-ui/core/styles';
+
+<StylesProvider injectFirst>
+  {/* Sua árvore de componentes. */}
 </StylesProvider>
 ```
 
@@ -182,7 +185,7 @@ export default function StyledComponents() {
   return (
     <div>
       <Button>Padrão</Button>
-      <StyledButton> Customizado</StyledButton>
+      <StyledButton>Customizado</StyledButton>
     </div>
   );
 }
@@ -239,7 +242,7 @@ export default function StyledComponentsDeep() {
 }
 ```
 
-A demonstração acima depende [doa valores padrão de `classes`](/styles/advanced/#with-material-ui-core), mas você pode fornecer seu próprio nome de classe: `.label`.
+A demonstração acima depende [dos valores padrão de `classes`](/styles/advanced/#with-material-ui-core), mas você pode fornecer seu próprio nome de classe: `.label`.
 
 ```jsx
 import React from 'react';
@@ -297,9 +300,9 @@ const StyledButton = styled(Button)`
 
 {{"demo": "pages/guides/interoperability/StyledComponentsTheme.js"}}
 
-### Portal
+### Portais
 
-O [Portal](/components/portal/) fornece uma maneira de primeira classe para renderizar filhos em um nó DOM que existe fora da hierarquia DOM do componente pai. Devido a maneira como o escopo de CSS do styled-components funciona, você pode encontrar problemas nos quais o estilo não é aplicado.
+O [Portal](/components/portal/) fornece uma maneira de elegante para renderizar filhos em um nó DOM que existe fora da hierarquia DOM do componente pai. Devido a maneira como o escopo de CSS do styled-components funciona, você pode encontrar problemas nos quais o estilo não é aplicado.
 
 Por exemplo, se você tentar estilizar o [Menu](/components/menus/) de um componente [Select](/components/selects/) usando a propriedade `MenuProps`, você precisará passar a propriedade `className` para o elemento que está sendo renderizado fora de sua hierarquia DOM. O exemplo a seguir mostra uma solução alternativa:
 

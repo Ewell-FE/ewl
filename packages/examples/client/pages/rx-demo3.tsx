@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {of, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {of, Observable,fromEvent} from 'rxjs';
+import {map,scan, mapTo } from 'rxjs/operators';
 import Link from 'next/link';
 
 export default function Example() {
@@ -17,6 +17,12 @@ export default function Example() {
         of({name: '阿黄'}).pipe(
             map((x) => x.name + '--')
         ).subscribe((v) => console.log(`value: ${v}`));
+
+        const clicks = fromEvent(document, 'click');
+        const ones = clicks.pipe(mapTo(1));
+        const seed = 10;
+        const count = ones.pipe(scan((acc, one) => acc + one, seed));
+        count.subscribe(x => console.log(x));
     });
 
     return (

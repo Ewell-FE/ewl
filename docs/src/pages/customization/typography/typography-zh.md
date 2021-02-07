@@ -4,7 +4,7 @@
 
 ## Font family
 
-您可以使用 `theme.gypography.fontFamily` 属性来更改 font family。
+您可以使用 `theme.typography.fontFamily` 属性来更改 font family。
 
 例如，此演示使用了系统的字体而不是默认的 Roboto 字体：
 
@@ -76,7 +76,7 @@ return (
 );
 ```
 
-## 字体大小 
+## 字体大小（Font size）
 
 Material-UI 使用 `rem` 单元来定义字体的大小。 浏览器 `<html>` 元素的默认字体大小为 `16px`，但是浏览器提供了一个改变这个值的选项，所以 `rem` 单元能够让我们适应用户的设置，从而提供更好的无障碍设计的支持。 其实用户改变字体大小设置的原因多种多样，有不太好的视力，或者选择适应设备的最佳设置，这样在大小和查看距离上会有很大的差异。
 
@@ -92,7 +92,7 @@ const theme = createMuiTheme({
 });
 ```
 
-有浏览器计算出来的字体大小遵循了以下数学方程式：
+浏览器计算出来的字体大小遵循了以下数学方程式：
 
 ![font-size](/static/images/font-size.gif)
 

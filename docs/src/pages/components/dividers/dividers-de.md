@@ -1,5 +1,5 @@
 ---
-title: Divider React-Komponente
+title: React Divider component
 components: Divider
 ---
 
@@ -11,7 +11,7 @@ components: Divider
 
 ## Listentrenner
 
-Der Trenner gibt per Standard ein `<hr>`-Element aus. Sie können sich dieses zusätzliche Element sparen, in dem sie die `divider`-Eigenschaft bei der `ListItem`-Komponente verwenden.
+Sie können sich dieses zusätzliche Element sparen, in dem sie die `divider`-Eigenschaft bei der `ListItem`-Komponente verwenden. Der Trenner gibt per Standard ein `<hr>`-Element aus.
 
 {{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 
@@ -33,6 +33,6 @@ In einer Liste sollten sie sicherstellen, dass der `Trenner` als `<li>` gerender
 
 ## Vertikale Trennlinien
 
-You can also render a divider vertically using the `orientation` prop. Note the use of the `flexItem` prop to accommodate for the flex container.
+Sie können einen Trenner auch vertikal mit der `orientation` prop rendern. Note the use of the `flexItem` prop to accommodate for the flex container.
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}

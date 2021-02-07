@@ -1,6 +1,6 @@
 ---
 title: Componente React para Lista cuadriculada
-components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
+components: GridList, GridListTile, GridListTileBar
 ---
 
 # Lista cuadriculada

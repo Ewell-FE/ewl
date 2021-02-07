@@ -1,6 +1,6 @@
 ---
 title: Componente React para Lista de Grade
-components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
+components: GridList, GridListTile, GridListTileBar
 ---
 
 # Lista de Grade

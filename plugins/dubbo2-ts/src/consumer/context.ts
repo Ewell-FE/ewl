@@ -75,7 +75,7 @@ export default class Context<T = any> {
     /**
      * 当前超时的上下文
      */
-    private _timeoutId?: number;
+    private _timeoutId?: null | ReturnType<typeof setTimeout> = null;
 
     /**
      * 当前上下文唯一的id，方便全链路日志跟踪
@@ -235,7 +235,7 @@ export default class Context<T = any> {
 
 
     //===========timeout setter&&getter=================
-    set timeoutId(timeId: number) {
+    set timeoutId(timeId: ReturnType<typeof setTimeout>) {
         log('requestId#%d set timeoutId', this._request.requestId);
         this._timeoutId = timeId;
     }

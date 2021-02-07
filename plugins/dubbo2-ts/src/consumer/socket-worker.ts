@@ -24,8 +24,8 @@ export default class SocketWorker {
     private _decodeBuff: DecodeBuffer;
     private _socket: net.Socket;
     private _subscriber: ISocketSubscriber;
-    private _timeId?: number;
-    private _reconnectTimeId?: number;
+    private _timeId?: null | ReturnType<typeof setTimeout> = null;
+    private _reconnectTimeId?: null | ReturnType<typeof setTimeout> = null;
 
     constructor(options: ISocketProps) {
         this.pid = ++pid;

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import {Button} from "@ewl/core"
 
 const OtherPage = () => (
     <div>
@@ -7,6 +8,7 @@ const OtherPage = () => (
         <Link href="/">
             <a>Get back to "/"</a>
         </Link>
+        <Button>hello ~</Button>
     </div>
 );
 

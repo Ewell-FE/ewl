@@ -1,5 +1,5 @@
 ---
-title: Componente React para Abas
+title: Componente React Abas
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel
 ---
 
@@ -65,7 +65,7 @@ Botões de rolagem para a esquerda e para a direita nunca serão apresentados. T
 
 ## Abas customizadas
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
