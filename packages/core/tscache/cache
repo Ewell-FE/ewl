@@ -146,7 +146,7 @@
         "signature": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
         "affectsGlobalScope": true
       },
-      "../../button/node_modules/csstype/index.d.ts": {
+      "../../../node_modules/csstype/index.d.ts": {
         "version": "2421504d4ad8486abdb522b7bcdd4caafbcf4a320cdf7b19e780df258c639d7f",
         "signature": "2421504d4ad8486abdb522b7bcdd4caafbcf4a320cdf7b19e780df258c639d7f",
         "affectsGlobalScope": false
@@ -576,11 +576,6 @@
         "signature": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
         "affectsGlobalScope": true
       },
-      "../../../node_modules/@types/react/node_modules/csstype/index.d.ts": {
-        "version": "2421504d4ad8486abdb522b7bcdd4caafbcf4a320cdf7b19e780df258c639d7f",
-        "signature": "2421504d4ad8486abdb522b7bcdd4caafbcf4a320cdf7b19e780df258c639d7f",
-        "affectsGlobalScope": false
-      },
       "../../../node_modules/@types/react/index.d.ts": {
         "version": "666fe380406dec2e0d3f05a0089b6a9f5a363dfd8e902a09552e2d27a50a8ea4",
         "signature": "666fe380406dec2e0d3f05a0089b6a9f5a363dfd8e902a09552e2d27a50a8ea4",
@@ -697,8 +692,8 @@
         "affectsGlobalScope": false
       },
       "../../../node_modules/@types/react-native/index.d.ts": {
-        "version": "840379369a1acc542c608e51d067591a04c69a12d7bfaac6d3c55d3495e5b4fd",
-        "signature": "840379369a1acc542c608e51d067591a04c69a12d7bfaac6d3c55d3495e5b4fd",
+        "version": "f5dadf67845f22a843ececcff1489dac8f1fdb6d3bf4608631e33c78b8473415",
+        "signature": "f5dadf67845f22a843ececcff1489dac8f1fdb6d3bf4608631e33c78b8473415",
         "affectsGlobalScope": true
       },
       "../../../node_modules/@types/react-router/ts4.0/index.d.ts": {
@@ -841,9 +836,9 @@
         "signature": "41422586881bcd739b4e62d9b91cd29909f8572aa3e3cdf316b7c50f14708d49",
         "affectsGlobalScope": false
       },
-      "../../../node_modules/csstype/index.d.ts": {
-        "version": "f5c7642899e130a4ea871a03822a1cfb0e23ae9f62ad481f23b38b5a6f71ddac",
-        "signature": "f5c7642899e130a4ea871a03822a1cfb0e23ae9f62ad481f23b38b5a6f71ddac",
+      "../../../node_modules/@types/styled-components/node_modules/csstype/index.d.ts": {
+        "version": "264efc86578e3dbc49c0f3e157da0ed1f88135544dd88d1b1191e13006daab35",
+        "signature": "264efc86578e3dbc49c0f3e157da0ed1f88135544dd88d1b1191e13006daab35",
         "affectsGlobalScope": false
       },
       "../../../node_modules/@types/styled-components/ts3.7/index.d.ts": {
@@ -1019,7 +1014,7 @@
       "../../../node_modules/@types/react-dom/node_modules/@types/react/index.d.ts": [
         "../../../node_modules/@types/prop-types/index.d.ts",
         "../../../node_modules/@types/react-dom/node_modules/@types/react/global.d.ts",
-        "../../button/node_modules/csstype/index.d.ts"
+        "../../../node_modules/csstype/index.d.ts"
       ],
       "../../../node_modules/@types/react-is/index.d.ts": [
         "../../../node_modules/@types/react/index.d.ts"
@@ -1163,7 +1158,7 @@
       "../../../node_modules/@types/react/index.d.ts": [
         "../../../node_modules/@types/prop-types/index.d.ts",
         "../../../node_modules/@types/react/global.d.ts",
-        "../../button/node_modules/csstype/index.d.ts"
+        "../../../node_modules/csstype/index.d.ts"
       ],
       "../../../node_modules/@types/serve-static/index.d.ts": [
         "../../../node_modules/@types/mime/index.d.ts",
@@ -1173,7 +1168,7 @@
       "../../../node_modules/@types/styled-components/ts3.7/index.d.ts": [
         "../../../node_modules/@types/hoist-non-react-statics/index.d.ts",
         "../../../node_modules/@types/react/index.d.ts",
-        "../../../node_modules/csstype/index.d.ts"
+        "../../../node_modules/@types/styled-components/node_modules/csstype/index.d.ts"
       ],
       "../../../node_modules/@types/styled-jsx/index.d.ts": [
         "../../../node_modules/@types/react/index.d.ts",
@@ -1197,8 +1192,8 @@
       ],
       "../../button/node_modules/@types/react/index.d.ts": [
         "../../../node_modules/@types/prop-types/index.d.ts",
-        "../../button/node_modules/@types/react/global.d.ts",
-        "../../button/node_modules/csstype/index.d.ts"
+        "../../../node_modules/csstype/index.d.ts",
+        "../../button/node_modules/@types/react/global.d.ts"
       ],
       "../node_modules/@types/node/base.d.ts": [
         "../node_modules/@types/node/assert.d.ts",
@@ -1355,7 +1350,7 @@
       ],
       "../node_modules/@types/react/index.d.ts": [
         "../../../node_modules/@types/prop-types/index.d.ts",
-        "../../button/node_modules/csstype/index.d.ts",
+        "../../../node_modules/csstype/index.d.ts",
         "../node_modules/@types/react/global.d.ts"
       ],
       "../src/index.tsx": [
@@ -1644,8 +1639,8 @@
       ],
       "../../button/node_modules/@types/react/index.d.ts": [
         "../../../node_modules/@types/prop-types/index.d.ts",
-        "../../button/node_modules/@types/react/global.d.ts",
-        "../../button/node_modules/csstype/index.d.ts"
+        "../../../node_modules/csstype/index.d.ts",
+        "../../button/node_modules/@types/react/global.d.ts"
       ],
       "../node_modules/@types/node/base.d.ts": [
         "../node_modules/@types/node/assert.d.ts",
@@ -1892,9 +1887,9 @@
       "../../../node_modules/@types/react-window/index.d.ts",
       "../../../node_modules/@types/react/global.d.ts",
       "../../../node_modules/@types/react/index.d.ts",
-      "../../../node_modules/@types/react/node_modules/csstype/index.d.ts",
       "../../../node_modules/@types/serve-static/index.d.ts",
       "../../../node_modules/@types/stack-utils/index.d.ts",
+      "../../../node_modules/@types/styled-components/node_modules/csstype/index.d.ts",
       "../../../node_modules/@types/styled-components/ts3.7/index.d.ts",
       "../../../node_modules/@types/styled-jsx/css.d.ts",
       "../../../node_modules/@types/styled-jsx/index.d.ts",
@@ -1909,7 +1904,6 @@
       "../../button/es6/index.d.ts",
       "../../button/node_modules/@types/react/global.d.ts",
       "../../button/node_modules/@types/react/index.d.ts",
-      "../../button/node_modules/csstype/index.d.ts",
       "../node_modules/@types/node/assert.d.ts",
       "../node_modules/@types/node/async_hooks.d.ts",
       "../node_modules/@types/node/base.d.ts",

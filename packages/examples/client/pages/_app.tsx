@@ -2,7 +2,7 @@ import React from 'react';
 import App from 'next/app';
 import {ThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from '../lib/onepirate/modules/theme';
+import theme from '../utils/theme';
 import initStore from '../store/createStore';
 import withRedux from 'next-redux-wrapper';
 import {Provider} from 'react-redux';
